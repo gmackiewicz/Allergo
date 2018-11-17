@@ -1,5 +1,6 @@
-import { Component, Inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { AuthService } from './../../services/auth.service';
+import { JwtUtil } from '../../utils/jwt.util';
 
 @Component({
     selector: 'app-login',
@@ -8,10 +9,17 @@ import { AuthService } from './../../services/auth.service';
 export class LoginComponent {
     public login: string;
     public password: string;
+    public message: string;
 
-    constructor(private authService: AuthService) { }
+    constructor(private authService: AuthService, private jwtUtil: JwtUtil) { }
 
     submit() {
-        this.authService.login(this.login, this.password);
+        
+        if (this.authService.login(this.login, this.password)) {
+            console.log(this.jwtUtil.decode(localStorage.getItem('token')));
+            //redirect
+        } else {
+            this.message = "Email lub hasło są niepoprawne."
+        }
     }
 }

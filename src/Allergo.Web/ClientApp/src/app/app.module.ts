@@ -15,6 +15,7 @@ import { LoginComponent } from './components/login/login.component'
 import { RegisterComponent } from './components/register/register.component';
 
 import { AuthService } from './services/auth.service';
+import { JwtUtil } from './utils/jwt.util';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,10 @@ import { AuthService } from './services/auth.service';
       { path: 'register', component: RegisterComponent }
     ])
   ],
-  providers: [AuthService],
+  providers: [
+    AuthService, 
+    JwtUtil
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,6 +1,8 @@
 import { Inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { LoginModel } from './../models/login.model';
+import { Observable } from 'rxjs';
+import 'rxjs/add/operator/map'
 
 @Injectable()
 export class AuthService {
@@ -12,18 +14,23 @@ export class AuthService {
         this.baseUrl = baseUrl;
     }
     
-    login(login, password) {
+    login(login, password): Observable<boolean> {
         let loginModel = new LoginModel(login, password);
         let url = this.baseUrl + 'api/Auth/Login';
 
         console.log(loginModel);
         console.log(url);
 
-        this.http
+        return this.http
             .post<string>(url, loginModel)
-            .subscribe(result => {
+            .map(result => {
                     localStorage.setItem('token', result);
+                    return true;
                 }, 
-                error => console.error(error));
+                error => {
+                    console.error(error)
+                    return false;
+                });
+
     }
 }
