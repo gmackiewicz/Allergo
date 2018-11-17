@@ -14,12 +14,12 @@ export class LoginComponent {
     constructor(private authService: AuthService, private jwtUtil: JwtUtil) { }
 
     submit() {
-        
-        if (this.authService.login(this.login, this.password)) {
-            console.log(this.jwtUtil.decode(localStorage.getItem('token')));
-            //redirect
-        } else {
-            this.message = "Email lub hasło są niepoprawne."
-        }
+        this.authService
+            .login(this.login, this.password)
+            .subscribe(result => {
+                localStorage.setItem('token', result);
+                this.message = "";
+                //redirect
+            }, error => this.message = "Email lub hasło są niepoprawne.");
     }
 }
