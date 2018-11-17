@@ -40,6 +40,10 @@
 }
 
 /* CUSTOM STYLES */
+body {
+    background-color: #f7fffd !important;
+}
+
 .brand-color-inverse {
     color: #1361aa;
 }

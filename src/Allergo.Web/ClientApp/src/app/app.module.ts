@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
@@ -12,6 +13,8 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
 
 import { LoginComponent } from './components/login/login.component'
 import { RegisterComponent } from './components/register/register.component';
+
+import { AuthService } from './services/auth.service';
 
 @NgModule({
   declarations: [
@@ -26,6 +29,7 @@ import { RegisterComponent } from './components/register/register.component';
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
+    HttpModule,
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
@@ -35,7 +39,7 @@ import { RegisterComponent } from './components/register/register.component';
       { path: 'register', component: RegisterComponent }
     ])
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -10,21 +10,18 @@
                     Logowanie do portalu <strong><span class="brand-color">All</span><span class="brand-color">ergo</span></strong>
                 </div>
                 <div class="card-body">
-                    <form>
                         <div class="form-group">
                             <label for="login-email">Email</label>
-                            <input type="text" placeholder="Email" id="login-email" class="form-control" />
+                            <input type="text" placeholder="Email" id="login-email" class="form-control" [(ngModel)]="login" />
                         </div>
 
                         <div class="form-group">
                             <label for="login-password">Hasło</label>
-                            <input type="password" placeholder="Hasło" id="login-password" class="form-control" />
+                            <input type="password" placeholder="Hasło" id="login-password" class="form-control" [(ngModel)]="password" />
                         </div>
 
                         <a href="#" class="text-muted">Zapomniałem hasła</a>
-                        <a href="index.html" class="btn btn-success float-right">Zaloguj się</a>
-                        <!--<input type="submit" class="btn btn-success float-right" value="Zaloguj się" />-->
-                    </form>
+                        <button class="btn btn-success float-right" (click)="submit()">Zaloguj się</button>
                 </div>
             </div>
         </div>
