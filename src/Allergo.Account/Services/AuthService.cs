@@ -49,7 +49,7 @@ namespace Allergo.Account.Services
 
             if (!result.Succeeded)
             {
-                throw new RegistrationFailedException(
+                throw new BadRequestException(
                     $"An error occured while registering user: {result.Errors.Join()}");
             }
 
@@ -65,7 +65,7 @@ namespace Allergo.Account.Services
 
             if (!result.Succeeded)
             {
-                throw new SignInFailedException(
+                throw new BadRequestException(
                     $"An error occured while signing in user: {model.UserName}");
             }
 

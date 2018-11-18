@@ -19,31 +19,15 @@ namespace Allergo.Web.Controllers
         [HttpPost]
         public async Task<JsonResult> Register([FromBody] RegisterViewModel model)
         {
-            try
-            {
-                var token = await _authService.Register(model);
-                return Json(token);
-            }
-            catch (RegistrationFailedException ex)
-            {
-                Response.StatusCode = (int)HttpStatusCode.BadRequest;
-                return Json(ex.Message);
-            }
+            var token = await _authService.Register(model);
+            return Json(token);
         }
 
         [HttpPost]
         public async Task<JsonResult> Login([FromBody] SignInViewModel model)
         {
-            try
-            {
-                var token = await _authService.SignIn(model);
-                return Json(token);
-            }
-            catch (SignInFailedException ex)
-            {
-                Response.StatusCode = (int)HttpStatusCode.BadRequest;
-                return Json(ex.Message);
-            }
+            var token = await _authService.SignIn(model);
+            return Json(token);
         }
     }
 }
