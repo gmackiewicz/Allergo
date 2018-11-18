@@ -6,57 +6,98 @@
     <div class="row login-main">
         <div class="offset-md-3 col-md-6 login-form">
             <mat-card class="example-card">
-                <form [formGroup]="registerForm" (ngSubmit)="submit()" class="register-form">
-                    <mat-card-header>
-                        <mat-card-title>Utwórz nowe konto</mat-card-title>
-                    </mat-card-header>
-                    <mat-card-content>
-                            <mat-form-field class="input-full-width">
-                                <input matInput placeholder="Email" 
-                                        formControlName="email"
-                                        required>
-                                <mat-error *ngIf="registerForm.controls['email'].errors?.email && !registerForm.controls['email'].errors?.required">
-                                    Please enter a valid email address
-                                </mat-error>
-                                <mat-error *ngIf="registerForm.controls['email'].errors?.required">
-                                    Email jest <strong>wymagany</strong>
-                                </mat-error>
-                            </mat-form-field>
+                <mat-card-header>
+                    <mat-card-title>Utwórz nowe konto</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <mat-vertical-stepper [linear]="isLinear" #stepper (selectionChange)="stepperChange(stepper)">
+                        <mat-step [stepControl]="externalAuthForm">
+                            <form [formGroup]="externalAuthForm">
+                                <ng-template matStepLabel>Portal Pacjenta</ng-template>
 
-                            <mat-form-field class="input-full-width">
-                                <input matInput placeholder="Login" 
-                                        formControlName="login"
-                                        required>
-                                <mat-error *ngIf="registerForm.controls['login'].errors?.required">
-                                    Login jest <strong>wymagany</strong>
-                                </mat-error>
-                            </mat-form-field>
+                                <mat-form-field class="input-full-width">
+                                    <input matInput placeholder="Login" 
+                                            formControlName="login"
+                                            required>
+                                    <mat-error *ngIf="externalAuthForm.hasError('required', 'login')">
+                                        Login jest <strong>wymagany</strong>
+                                    </mat-error>
+                                </mat-form-field>
+        
+                                <mat-form-field class="input-full-width">
+                                    <input type="password"
+                                            matInput placeholder="Hasło" 
+                                            formControlName="password"
+                                            required>
+                                    <mat-error *ngIf="externalAuthForm.hasError('required', 'password')">
+                                        Hasło jest <strong>wymagane</strong>
+                                    </mat-error>
+                                </mat-form-field>
 
-                            <mat-form-field class="input-full-width">
-                                <input type="password"
-                                        matInput placeholder="Hasło" 
-                                        formControlName="password"
-                                        required>
-                                <mat-error *ngIf="registerForm.controls['password'].errors?.required">
-                                    Hasło jest <strong>wymagane</strong>
-                                </mat-error>
-                            </mat-form-field>
+                                <div class="text-center">
+                                    <button mat-raised-button matStepperNext color="primary">Dalej</button>
+                                </div>
+                            </form>
+                        </mat-step>
 
-                            <mat-form-field class="input-full-width">
-                                <input type="password"
-                                        matInput placeholder="Potwierdź hasło" 
-                                        formControlName="confirmPassword"
-                                        [errorStateMatcher]="matcher"
-                                        required>
-                                <mat-error *ngIf="registerForm.hasError('notSame')">
-                                    Hasło muszą być takie same
-                                </mat-error>
-                            </mat-form-field>
-                    </mat-card-content>
-                    <mat-card-actions class="card-submit">
-                        <button type="submit" mat-button>Zarejestruj</button>
-                    </mat-card-actions>
-                </form>
+                        <mat-step [stepControl]="registerForm">
+                            <form [formGroup]="registerForm" (ngSubmit)="submit()">
+                                <ng-template matStepLabel>Uzupełnij dane</ng-template>
+
+                                <mat-form-field class="input-full-width">
+                                    <input matInput placeholder="Email" 
+                                            formControlName="email"
+                                            required>
+                                    <mat-error *ngIf="registerForm.controls['email'].errors?.email && !registerForm.controls['email'].errors?.required">
+                                        Please enter a valid email address
+                                    </mat-error>
+                                    <mat-error *ngIf="registerForm.controls['email'].errors?.required">
+                                        Email jest <strong>wymagany</strong>
+                                    </mat-error>
+                                </mat-form-field>
+        
+                                <mat-form-field class="input-full-width">
+                                    <input matInput placeholder="Login" 
+                                            formControlName="login"
+                                            required>
+                                    <mat-error *ngIf="registerForm.controls['login'].errors?.required">
+                                        Login jest <strong>wymagany</strong>
+                                    </mat-error>
+                                </mat-form-field>
+        
+                                <mat-form-field class="input-full-width">
+                                    <input type="password"
+                                            matInput placeholder="Hasło" 
+                                            formControlName="password"
+                                            required>
+                                    <mat-error *ngIf="registerForm.controls['password'].errors?.required">
+                                        Hasło jest <strong>wymagane</strong>
+                                    </mat-error>
+                                </mat-form-field>
+        
+                                <mat-form-field class="input-full-width">
+                                    <input type="password"
+                                            matInput placeholder="Potwierdź hasło" 
+                                            formControlName="confirmPassword"
+                                            [errorStateMatcher]="matcher"
+                                            required>
+                                    <mat-error *ngIf="registerForm.hasError('notSame')">
+                                        Hasło muszą być takie same
+                                    </mat-error>
+                                </mat-form-field>
+                                
+                                <div class="text-center">
+                                    <button mat-raised-button matStepperPrevious color="basic">Powrót</button>
+                                    <button mat-raised-button type="submit" color="primary">Zarejestruj się</button>
+                                    <small class="form-text text-danger text-center error-message">{{ message }}</small>
+                                </div>
+                            </form>
+                        </mat-step>
+                    </mat-vertical-stepper>
+                </mat-card-content>
+                <mat-card-actions class="card-submit">
+                    
+                </mat-card-actions>
             </mat-card>
         </div>
     </div>

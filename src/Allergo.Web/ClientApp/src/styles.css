@@ -60,6 +60,10 @@ body {
     text-align: center;
 }
 
+.error-message {
+    margin-top: 20px;
+}
+
 /* OVERRIDE BOOTSTRAP */
 .bg-dark {
     color: #ffffff;

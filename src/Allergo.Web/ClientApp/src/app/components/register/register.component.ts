@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AuthService } from './../../services/auth.service';
 import { FormControl, FormGroupDirective, NgForm, Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
+import { Router } from '@angular/router';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
     isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -17,12 +18,25 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
     templateUrl: './register.component.html',
 })
 export class RegisterComponent {
+    isLinear = true;
+    externalAuthForm: FormGroup;
     registerForm: FormGroup;
     message: string;
     matcher = new MyErrorStateMatcher();
 
     
-    constructor(private authService: AuthService, private formBuilder: FormBuilder) {
+    constructor(private authService: AuthService, private formBuilder: FormBuilder, private router: Router) {
+        this.externalAuthForm = this.formBuilder.group({
+            login: [
+                '', 
+                [ Validators.required ]
+            ],
+            password: [
+                '', 
+                [ Validators.required ]
+            ]
+        });
+
         this.registerForm = this.formBuilder.group({
             email: [
                 '', 
@@ -42,6 +56,12 @@ export class RegisterComponent {
         });
     }
     
+    stepperChange(stepper) {
+        if (stepper.selectedIndex === 1) {
+            
+        }
+    }
+
     submit() {
         this.authService
             .register(
@@ -51,8 +71,11 @@ export class RegisterComponent {
             .subscribe(result => {
                 localStorage.setItem('token', result);
                 this.message = "";
-                //redirect
-            }, error => this.message = "Email lub hasło są niepoprawne.");
+                this.router.navigateByUrl('');
+            }, error => {
+                console.log(error);
+                this.message = "Wystąpił błąd, przepraszamy :("
+            });
     }
 
     checkPasswords(group: FormGroup) {

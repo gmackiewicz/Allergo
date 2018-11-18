@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from './../../services/auth.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-login',
@@ -8,11 +9,9 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class LoginComponent {
     loginForm: FormGroup;
-    public login: string;
-    public password: string;
     public message: string;
 
-    constructor(private authService: AuthService, private formBuilder: FormBuilder) {
+    constructor(private authService: AuthService, private formBuilder: FormBuilder, private router: Router) {
         this.loginForm = this.formBuilder.group({
             login: [
                 '', 
@@ -27,11 +26,11 @@ export class LoginComponent {
 
     submit() {
         this.authService
-            .login(this.login, this.password)
+            .login(this.loginForm.controls.login.value, this.loginForm.controls.password.value)
             .subscribe(result => {
                 localStorage.setItem('token', result);
                 this.message = "";
-                //redirect
+                this.router.navigateByUrl('');
             }, error => this.message = "Email lub hasło są niepoprawne.");
     }
 }
