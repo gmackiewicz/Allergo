@@ -17,6 +17,7 @@ import { RegisterComponent } from './components/register/register.component';
 /* SERVICES ANT UTILS */
 import { AuthService } from './services/auth.service';
 import { JwtUtil } from './utils/jwt.util';
+import { AuthGuard } from './utils/authGuard.util';
 
 
 @NgModule({
@@ -30,7 +31,7 @@ import { JwtUtil } from './utils/jwt.util';
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full' },
+      { path: '', component: HomeComponent, pathMatch: 'full', canActivate: [AuthGuard] },
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent }
     ]),
@@ -42,7 +43,8 @@ import { JwtUtil } from './utils/jwt.util';
   ],
   providers: [
     AuthService,
-    JwtUtil
+    JwtUtil,
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })
