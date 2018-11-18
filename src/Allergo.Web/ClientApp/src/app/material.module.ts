@@ -2,13 +2,13 @@ import { NgModule } from '@angular/core';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { 
-        MatCardModule, 
-        MatButtonModule, 
-        MatInputModule, 
-        MatFormFieldModule } 
-    from '@angular/material';
+    MatCardModule, 
+    MatButtonModule, 
+    MatInputModule, 
+    MatFormFieldModule } 
+from '@angular/material';
 
-  @NgModule({
+@NgModule({
     imports: [
         MatCardModule,
         BrowserAnimationsModule,
@@ -23,5 +23,5 @@ import {
         MatInputModule,
         MatFormFieldModule
     ]
-  })
-  export class MaterialModule { }
+})
+export class MaterialModule { }

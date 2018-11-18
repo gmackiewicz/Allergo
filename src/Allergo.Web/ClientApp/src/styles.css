@@ -1,4 +1,4 @@
-/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
 /* LOADING */
 .spinner-container {
@@ -50,6 +50,10 @@ body {
 
 .brand-color {
     color: #51ccc2;
+}
+
+.input-full-width {
+    width: 100%;
 }
 
 /* OVERRIDE BOOTSTRAP */
