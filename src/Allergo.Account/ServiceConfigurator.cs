@@ -10,6 +10,8 @@ namespace Allergo.Account
         {
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IAuthValidationService, AuthValidationService>();
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IUserValidationService, UserValidationService>();
         }
     }
 }

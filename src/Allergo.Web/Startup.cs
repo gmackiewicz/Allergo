@@ -13,6 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Text;
+using Allergo.Web.Middleware;
 
 namespace Allergo.Web
 {
@@ -121,6 +122,8 @@ namespace Allergo.Web
 
             app.UseAuthentication();
             app.UseCors("CorsPolicy");
+
+            app.UseMiddleware(typeof(BadRequestExceptionMiddleware.ErrorHandlingMiddleware));
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
