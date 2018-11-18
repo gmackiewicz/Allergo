@@ -41,7 +41,7 @@ import { JwtUtil } from './utils/jwt.util';
     MaterialModule
   ],
   providers: [
-    AuthService, 
+    AuthService,
     JwtUtil
   ],
   bootstrap: [AppComponent]

@@ -9,9 +9,11 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
     loginForm: FormGroup;
-    public message: string;
+    message: string;
 
-    constructor(private authService: AuthService, private formBuilder: FormBuilder, private router: Router) {
+    constructor(private authService: AuthService, 
+                private formBuilder: FormBuilder, 
+                private router: Router) {
         this.loginForm = this.formBuilder.group({
             login: [
                 '', 
@@ -22,6 +24,7 @@ export class LoginComponent {
                 [ Validators.required ]
             ]
         });
+
     }
 
     submit() {
