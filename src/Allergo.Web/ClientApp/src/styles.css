@@ -56,6 +56,10 @@ body {
     width: 100%;
 }
 
+.card-submit {
+    text-align: center;
+}
+
 /* OVERRIDE BOOTSTRAP */
 .bg-dark {
     color: #ffffff;
