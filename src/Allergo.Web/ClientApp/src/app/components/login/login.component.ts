@@ -11,7 +11,7 @@ export class LoginComponent {
     public password: string;
     public message: string;
 
-    constructor(private authService: AuthService, private jwtUtil: JwtUtil) { }
+    constructor(private authService: AuthService) { }
 
     submit() {
         this.authService
