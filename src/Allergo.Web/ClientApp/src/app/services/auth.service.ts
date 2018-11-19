@@ -4,8 +4,8 @@ import 'rxjs/add/operator/map'
 
 import { JwtUtil } from '../utils/jwt.util';
 
-import { LoginRequest } from '../models/login-request.model';
-import { RegisterRequest } from '../models/register-request.model';
+import { LoginRequest } from '../models/requests/login-request.model';
+import { RegisterRequest } from '../models/requests/register-request.model';
 
 @Injectable()
 export class AuthService {

@@ -13,9 +13,12 @@ import { NavMenuComponent } from './components/nav-menu/nav-menu.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component'
 import { RegisterComponent } from './components/register/register.component';
+import { UsersComponent } from './components/admin/users/users.component';
+import { EditUserComponent } from './components/admin/edit-user/edit-user.component';
 
 /* SERVICES ANT UTILS */
 import { AuthService } from './services/auth.service';
+import { UsersService } from './services/users.service';
 import { JwtUtil } from './utils/jwt.util';
 import { AuthGuard } from './utils/authGuard.util';
 
@@ -26,7 +29,9 @@ import { AuthGuard } from './utils/authGuard.util';
     NavMenuComponent,
     HomeComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    UsersComponent,
+    EditUserComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -43,6 +48,7 @@ import { AuthGuard } from './utils/authGuard.util';
   ],
   providers: [
     AuthService,
+    UsersService,
     JwtUtil,
     AuthGuard
   ],
