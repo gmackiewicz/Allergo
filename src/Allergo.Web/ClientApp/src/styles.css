@@ -64,6 +64,21 @@ body {
     margin-top: 20px;
 }
 
+.container.admin {
+    margin-top: 50px;
+}
+
+/* OVERRIDE ANGULAR MATERIAL */
+.admin .mat-list-item:hover {
+    background-color: #dadada;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.admin .mat-list-item p {
+    color: #848484;
+}
+
 /* OVERRIDE BOOTSTRAP */
 .bg-dark {
     color: #ffffff;

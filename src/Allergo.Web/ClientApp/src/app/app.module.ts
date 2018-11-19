@@ -38,7 +38,9 @@ import { AuthGuard } from './utils/authGuard.util';
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full', canActivate: [AuthGuard] },
       { path: 'login', component: LoginComponent },
-      { path: 'register', component: RegisterComponent }
+      { path: 'register', component: RegisterComponent },
+      { path: 'admin/users', component: UsersComponent, canActivate: [AuthGuard] },
+      { path: 'admin/user/:id', component: EditUserComponent, canActivate: [AuthGuard] }
     ]),
     HttpClientModule,
     HttpModule,
