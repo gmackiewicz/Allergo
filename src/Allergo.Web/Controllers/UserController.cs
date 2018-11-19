@@ -27,5 +27,12 @@ namespace Allergo.Web.Controllers
             var result = await _userService.EditUser(viewModel);
             return Json(result);
         }
+
+        [HttpGet]
+        public async Task<JsonResult> GetUser(string id)
+        {
+            var result = await _userService.GetUser(id);
+            return Json(result);
+        }
     }
 }

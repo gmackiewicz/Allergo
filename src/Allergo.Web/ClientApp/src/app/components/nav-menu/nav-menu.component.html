@@ -17,6 +17,11 @@
                         <span class='glyphicon glyphicon-home'></span> Home
                     </a>
                 </li>
+                <li [routerLinkActive]='["link"]' [routerLinkActiveOptions]='{ exact: true }'>
+                        <a [routerLink]='["/admin/users"]' (click)='collapse()'>
+                            <span class='glyphicon glyphicon-cog'></span> Admin
+                        </a>
+                    </li>
             </ul>
         </div>
     </div>

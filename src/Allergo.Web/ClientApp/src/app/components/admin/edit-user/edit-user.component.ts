@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { User } from './../../../models/user.model';
 import { UsersService } from './../../../services/users.service';
 
@@ -17,7 +17,8 @@ export class EditUserComponent implements OnInit {
 
     constructor(private userService: UsersService, 
                 private route: ActivatedRoute, 
-                private formBuilder: FormBuilder) {
+                private formBuilder: FormBuilder, 
+                private router: Router) {
         this.editUserForm = this.formBuilder.group({
             email: [
                 '', 
@@ -34,8 +35,17 @@ export class EditUserComponent implements OnInit {
         this.sub = this.route.params.subscribe(params => {
             this.id = params['id'];
      
-            console.log(this.id);
+            this.userService
+                .getUser(this.id)
+                .subscribe(result => {
+                    this.editUserForm.controls.email.setValue(result.email);
+                    this.editUserForm.controls.userName.setValue(result.userName);
+                });
          });
+    }
+
+    backToList() {
+        this.router.navigateByUrl('/admin/users');
     }
 
     submit() {

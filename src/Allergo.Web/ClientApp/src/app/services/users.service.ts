@@ -25,6 +25,15 @@ export class UsersService {
         return this.http.get<User[]>(url, { params: params});
     }
 
+    getUser(id) {
+        let url = this.baseUrl + 'api/User/GetUser';
+
+        let params = new HttpParams()
+            .set("id", id);
+
+        return this.http.get<User>(url, { params: params});
+    }
+
     updateUser(id, email, userName) {
         let registerModel = new EditUserRequest(id, email, userName);
         let url = this.baseUrl + 'api/User/Edit';
