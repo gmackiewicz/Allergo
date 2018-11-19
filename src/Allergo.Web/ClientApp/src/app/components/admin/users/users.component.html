@@ -1,0 +1,23 @@
+<div class="container admin">
+    <div class="row">
+        <div class="col-md-12">
+            <mat-card class="example-card">
+                <mat-card-header>
+                    <mat-card-title>Użytkownicy</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <mat-list>
+                        <mat-list-item role="listitem" *ngFor="let user of users" (click)="userSelected(user.id)">
+                            <h4 mat-line>{{ user.userName }}</h4>
+                            <p mat-line>{{ user.email }}</p>
+                        </mat-list-item>
+                    </mat-list>
+                </mat-card-content>
+                <mat-card-actions class="text-center">
+                </mat-card-actions>
+            </mat-card>
+        </div>
+    </div>
+</div>
+
+
