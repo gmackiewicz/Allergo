@@ -14,6 +14,5 @@ namespace Allergo.Data
         public AllergoDbContext(DbContextOptions options) : base(options)
         {
         }
-
     }
 }
