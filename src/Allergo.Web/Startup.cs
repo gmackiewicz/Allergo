@@ -13,7 +13,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Text;
+using Allergo.Web.MappingProfiles;
 using Allergo.Web.Middleware;
+using AutoMapper;
 
 namespace Allergo.Web
 {
@@ -144,6 +146,12 @@ namespace Allergo.Web
                 {
                     spa.UseAngularCliServer(npmScript: "start");
                 }
+            });
+
+            Mapper.Initialize(cfg =>
+            {
+                cfg.AddProfile(new CommonProfile());
+                cfg.AddProfile(new ScheduleProfile());
             });
         }
         private static void UpdateDatabase(IApplicationBuilder app)
