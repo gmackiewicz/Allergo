@@ -1,17 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Allergo.Common.Contracts;
+using Allergo.Common.Dto;
 using Allergo.Common.Exceptions;
 using Allergo.Data.Contracts;
 using Allergo.Data.Models.Account;
+using Allergo.Data.Models.Schedule;
 using Allergo.Schedule.Contracts;
 using Allergo.Schedule.Dto;
-using Microsoft.EntityFrameworkCore;
-using System.Threading.Tasks;
-using Allergo.Common.Contracts;
-using Allergo.Common.Dto;
-using Allergo.Data.Models.Schedule;
 using AutoMapper;
+using Microsoft.EntityFrameworkCore;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Allergo.Schedule.Services
 {
@@ -81,9 +79,18 @@ namespace Allergo.Schedule.Services
             await _dataService.SaveDbAsync();
         }
 
-        public Task RemoveScheduleAsync(RemoveScheduleRequestDto request)
+        public async Task RemoveScheduleAsync(RemoveScheduleRequestDto request)
         {
-            throw new System.NotImplementedException();
+            var existingSchedule = await _dataService.GetSet<AdmissionHours>()
+                .FirstOrDefaultAsync(x => x.Id.ToString() == request.ScheduleId);
+
+            if (existingSchedule == null)
+            {
+                throw new InvalidScheduleIdException($"Couldn't find schedule with id: {request.ScheduleId}");
+            }
+
+            existingSchedule.IsCurrent = false;
+            await _dataService.SaveDbAsync();
         }
     }
 }
