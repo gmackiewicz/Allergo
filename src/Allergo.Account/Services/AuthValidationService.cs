@@ -8,21 +8,25 @@ namespace Allergo.Account.Services
     {
         public void ValidateRegisterViewModel(RegisterViewModel model)
         {
-            if (string.IsNullOrEmpty(model.Email))
+            try
             {
-                throw new BadRequestException(
-                    $"Registration error: Email cannot be null!");
+                var mailAddress = new System.Net.Mail.MailAddress(model.Email);
+            }
+            catch
+            {
+                throw new RegistrationFailedException(
+                    $"Invalid email!");
             }
 
             if (string.IsNullOrEmpty(model.Password))
             {
-                throw new BadRequestException(
+                throw new RegistrationFailedException(
                     $"Registration error: Password cannot be null!");
             }
 
             if (string.IsNullOrEmpty(model.UserName))
             {
-                throw new BadRequestException(
+                throw new RegistrationFailedException(
                     $"Registration error: UserName cannot be null!");
             }
         }
@@ -31,14 +35,14 @@ namespace Allergo.Account.Services
         {
             if (string.IsNullOrEmpty(model.Password))
             {
-                throw new BadRequestException(
-                    $"Registration error: Password cannot be null!");
+                throw new SignInFailedException(
+                    $"Password cannot be empty nor null!");
             }
 
             if (string.IsNullOrEmpty(model.UserName))
             {
-                throw new BadRequestException(
-                    $"Registration error: UserName cannot be null!");
+                throw new SignInFailedException(
+                    $"UserName cannot be empty nor null!");
             }
         }
     }
