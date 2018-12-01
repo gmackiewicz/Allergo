@@ -1,16 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Allergo.Web.ViewModels.Appoinment;
+﻿using Allergo.Web.ViewModels.Appoinment;
 using Allergo.Web.ViewModels.Common;
 using Allergo.Web.ViewModels.Schedule;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Allergo.Web.Controllers
 {
     public class ScheduleController: AllergoBaseController
     {
-        public async Task<JsonResult> GetSchedule(string doctorId)
+        [HttpPost]
+        public async Task<JsonResult> GetSchedule([FromBody]GetScheduleRequestViewModel request)
         {
             var model = new ScheduleViewModel();
 
@@ -97,6 +98,18 @@ namespace Allergo.Web.Controllers
             };
 
             return await Task.FromResult(Json(model));
+        }
+
+        [HttpPost]
+        public async Task CreateSchedule([FromBody] CreateScheduleRequestViewModel request)
+        {
+
+        }
+
+        [HttpDelete]
+        public async Task RemoveSchedule([FromBody] RemoveScheduleRequestViewModel request)
+        {
+
         }
     }
 }

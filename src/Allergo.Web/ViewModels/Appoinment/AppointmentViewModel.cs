@@ -4,5 +4,6 @@
     {
         public int Hour { get; set; }
         public int Minutes { get; set; }
+        public bool IsCurrentUser { get; set; }
     }
 }

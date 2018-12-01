@@ -2,7 +2,7 @@
 
 namespace Allergo.Web.ViewModels.Appoinment
 {
-    public class CreateAppointmentViewModel
+    public class CreateAppointmentRequestViewModel
     {
         public DateTime Date { get; set; }
         public string UserId { get; set; }
