@@ -12,7 +12,8 @@
                     </mat-card-header>
                     <mat-card-content>
                             <mat-form-field class="input-full-width">
-                                <input matInput placeholder="Login" 
+                                <input  id="pp-login"
+                                        matInput placeholder="Login" 
                                         formControlName="login"
                                         required>
                                 <mat-error *ngIf="loginForm.hasError('required', 'login')">
@@ -21,7 +22,8 @@
                             </mat-form-field>
 
                             <mat-form-field class="input-full-width">
-                                <input type="password"
+                                <input  id="pp-password"
+                                        type="password"
                                         matInput placeholder="Hasło" 
                                         formControlName="password"
                                         required>

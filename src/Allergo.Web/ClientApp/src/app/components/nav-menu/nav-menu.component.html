@@ -17,11 +17,28 @@
                         <span class='glyphicon glyphicon-home'></span> Home
                     </a>
                 </li>
+                <li [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }'>
+                    <a [routerLink]='["/appointments"]' (click)='collapse()'>
+                        <span class='glyphicon glyphicon-book'></span> Wizyty
+                    </a>
+                </li>
                 <li [routerLinkActive]='["link"]' [routerLinkActiveOptions]='{ exact: true }'>
-                        <a [routerLink]='["/admin/users"]' (click)='collapse()'>
-                            <span class='glyphicon glyphicon-cog'></span> Admin
-                        </a>
-                    </li>
+                    <a [routerLink]='["/admin"]' (click)='collapse()'>
+                        <span class='glyphicon glyphicon-cog'></span> Zarządzaj
+                    </a>
+                    <ul class="nav navbar-nav">
+                        <li [routerLinkActive]='["link"]' [routerLinkActiveOptions]='{ exact: true }'>
+                            <a [routerLink]='["/admin/users"]' (click)='collapse()'>
+                                <span class='glyphicon glyphicon-user'></span> Użytkownicy
+                            </a>
+                        </li>
+                        <li [routerLinkActive]='["link"]' [routerLinkActiveOptions]='{ exact: true }'>
+                            <a [routerLink]='["/admin/schedule"]' (click)='collapse()'>
+                                <span class='glyphicon glyphicon-calendar'></span> Grafik
+                            </a>
+                        </li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </div>

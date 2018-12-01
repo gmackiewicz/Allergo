@@ -45,7 +45,8 @@
                                 <ng-template matStepLabel>Uzupełnij dane</ng-template>
 
                                 <mat-form-field class="input-full-width">
-                                    <input matInput placeholder="Email" 
+                                    <input  id="pp-email"
+                                            matInput placeholder="Email" 
                                             formControlName="email"
                                             required>
                                     <mat-error *ngIf="registerForm.controls['email'].errors?.email && !registerForm.controls['email'].errors?.required">
@@ -57,7 +58,8 @@
                                 </mat-form-field>
         
                                 <mat-form-field class="input-full-width">
-                                    <input matInput placeholder="Login" 
+                                    <input  id="pp-login"
+                                            matInput placeholder="Login" 
                                             formControlName="login"
                                             required>
                                     <mat-error *ngIf="registerForm.controls['login'].errors?.required">
@@ -66,7 +68,8 @@
                                 </mat-form-field>
         
                                 <mat-form-field class="input-full-width">
-                                    <input type="password"
+                                    <input  id="pp-password"
+                                            type="password"
                                             matInput placeholder="Hasło" 
                                             formControlName="password"
                                             required>
@@ -76,7 +79,8 @@
                                 </mat-form-field>
         
                                 <mat-form-field class="input-full-width">
-                                    <input type="password"
+                                    <input  id="pp-confirm-password"
+                                            type="password"
                                             matInput placeholder="Potwierdź hasło" 
                                             formControlName="confirmPassword"
                                             [errorStateMatcher]="matcher"

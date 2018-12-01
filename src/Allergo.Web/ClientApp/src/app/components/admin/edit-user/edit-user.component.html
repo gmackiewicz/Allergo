@@ -8,7 +8,8 @@
                         </mat-card-header>
                         <mat-card-content>
                                 <mat-form-field class="input-full-width">
-                                    <input matInput placeholder="Email" 
+                                    <input  id="pp-email"
+                                            matInput placeholder="Email" 
                                             formControlName="email"
                                             required>
                                     <mat-error *ngIf="editUserForm.hasError('required', 'email')">
@@ -17,7 +18,8 @@
                                 </mat-form-field>
     
                                 <mat-form-field class="input-full-width">
-                                    <input matInput placeholder="Nazwa użytkownika" 
+                                    <input    id="pp-user-name"
+                                            matInput placeholder="Nazwa użytkownika" 
                                             formControlName="userName"
                                             required>
                                     <mat-error *ngIf="editUserForm.hasError('required', 'userName')">
