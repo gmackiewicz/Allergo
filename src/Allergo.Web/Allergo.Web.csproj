@@ -13,6 +13,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="8.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="2.1.1" />
@@ -28,6 +29,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Allergo.Account\Allergo.Account.csproj" />
     <ProjectReference Include="..\Allergo.Common\Allergo.Common.csproj" />
+    <ProjectReference Include="..\Allergo.Schedule\Allergo.Schedule.csproj" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

@@ -1,4 +1,4 @@
-﻿namespace Allergo.Web.ViewModels.Appoinment
+﻿namespace Allergo.Web.ViewModels.Appointment
 {
     public class AppointmentViewModel
     {

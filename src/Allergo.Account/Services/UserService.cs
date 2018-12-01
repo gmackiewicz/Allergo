@@ -43,5 +43,11 @@ namespace Allergo.Account.Services
 
             return user;
         }
+
+        public async Task<AllergoUser> GetUserByName(string userName)
+        {
+            var user = await _userManager.FindByNameAsync(userName);
+            return user;
+        }
     }
 }

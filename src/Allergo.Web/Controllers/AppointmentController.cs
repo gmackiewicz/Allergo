@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using Allergo.Web.ViewModels.Appoinment;
+using Allergo.Web.ViewModels.Appointment;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Allergo.Web.Controllers
