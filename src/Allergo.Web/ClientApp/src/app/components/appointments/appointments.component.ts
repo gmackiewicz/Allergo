@@ -75,7 +75,7 @@ export class AppointmentsComponent {
                     for (var h = 7; h < 19; h++) {
                         for (var m = 0; m < 60; m += 15) {
                             if (ds.appointments.filter(a => a.hour === h && a.minutes === m).length === 0) {
-                                ds.appointments.push(new Appointment(h, m, false, false));
+                                ds.appointments.push(new Appointment('', h, m, false, false));
                             }
                         }
                     }

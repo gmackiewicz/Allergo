@@ -3,7 +3,7 @@
             <div class="col-md-12">
                 <form class="example-form">
                     <mat-form-field class="half-width">
-                        <input type="text" placeholder="Wybierz lekarza" aria-label="Lekarz" matInput [formControl]="doctorsControl" [matAutocomplete]="auto">
+                        <input id="pp-search-doctor" type="text" placeholder="Wybierz lekarza" aria-label="Lekarz" matInput [formControl]="doctorsControl" [matAutocomplete]="auto">
                         <mat-autocomplete #auto="matAutocomplete">
                             <mat-option *ngFor="let doctor of filteredDoctors | async" [value]="doctor" (click)="doctorSelected(doctor)">
                                 {{ this.doctorUtil.getFullName(doctor) }}
