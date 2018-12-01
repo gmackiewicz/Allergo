@@ -8,5 +8,7 @@ namespace Allergo.Web.ViewModels.Schedule
     {
         public DateTime Day { get; set; }
         public List<AppointmentViewModel> Appointments { get; set; }
+        public TimeSpan StartTime { get; set; }
+        public TimeSpan EndTime { get; set; }
     }
 }
