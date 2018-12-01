@@ -14,5 +14,34 @@ namespace Allergo.Data
         public AllergoDbContext(DbContextOptions options) : base(options)
         {
         }
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            ConfigureAppointmentModel(builder);
+
+            ConfigureAdmissionHoursModel(builder);
+
+            base.OnModelCreating(builder);
+        }
+
+        private void ConfigureAppointmentModel(ModelBuilder builder)
+        {
+            builder.Entity<Appointment>()
+                .HasOne(x => x.Doctor)
+                .WithMany()
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<Appointment>()
+                .HasOne(x => x.User)
+                .WithMany()
+                .OnDelete(DeleteBehavior.Restrict);
+        }
+
+        private void ConfigureAdmissionHoursModel(ModelBuilder builder)
+        {
+            builder.Entity<AdmissionHours>()
+                .HasOne(x => x.Doctor)
+                .WithMany(x => x.AdmissionHours)
+                .OnDelete(DeleteBehavior.Restrict);
+        }
     }
 }

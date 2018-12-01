@@ -226,12 +226,12 @@ namespace Allergo.Data.Migrations
                     b.HasOne("Allergo.Data.Models.Account.AllergoUser", "Doctor")
                         .WithMany()
                         .HasForeignKey("DoctorId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("Allergo.Data.Models.Account.AllergoUser", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("Allergo.Data.Models.Schedule.AdmissionHours", b =>
@@ -239,7 +239,7 @@ namespace Allergo.Data.Migrations
                     b.HasOne("Allergo.Data.Models.Account.AllergoUser", "Doctor")
                         .WithMany("AdmissionHours")
                         .HasForeignKey("DoctorId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
