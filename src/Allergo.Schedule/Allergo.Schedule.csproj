@@ -5,7 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="8.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Allergo.Common\Allergo.Common.csproj" />
+    <ProjectReference Include="..\Allergo.Data\Allergo.Data.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -52,7 +52,7 @@ namespace Allergo.Schedule.Services
 
         public async Task CreateScheduleAsync(CreateScheduleRequestDto request)
         {
-            var doctor = await _doctorService.GetDoctorAsync(request.DoctorId);
+            var doctor = await _doctorService.GetDoctorAsync(request.DoctorId.ToString());
 
             var collidingSchedule = doctor.AdmissionHours
                 .FirstOrDefault(x =>
@@ -82,11 +82,11 @@ namespace Allergo.Schedule.Services
         public async Task RemoveScheduleAsync(RemoveScheduleRequestDto request)
         {
             var existingSchedule = await _dataService.GetSet<AdmissionHours>()
-                .FirstOrDefaultAsync(x => x.Id.ToString() == request.ScheduleId);
+                .FirstOrDefaultAsync(x => x.Id.ToString() == request.ScheduleId && x.IsCurrent);
 
             if (existingSchedule == null)
             {
-                throw new InvalidScheduleIdException($"Couldn't find schedule with id: {request.ScheduleId}");
+                throw new InvalidScheduleIdException($"Couldn't find active schedule with id: {request.ScheduleId}");
             }
 
             existingSchedule.IsCurrent = false;

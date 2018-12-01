@@ -10,5 +10,6 @@ namespace Allergo.Account.Contracts
         Task<AllergoUser> EditUser(EditUserViewModel userViewModel);
         Task<List<AllergoUser>> GetAll(int take, int skip);
         Task<AllergoUser> GetUser(string id);
+        Task<AllergoUser> GetUserByName(string userName);
     }
 }
