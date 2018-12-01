@@ -15,7 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Allergo.Account", "src\Alle
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Allergo.Common", "src\Allergo.Common\Allergo.Common.csproj", "{CDC36EE7-FC4F-4655-9990-377A8CA0015F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Allergo.Schedule", "src\Allergo.Schedule\Allergo.Schedule.csproj", "{FEF32E3B-97D4-4E47-9DE6-91657BDF45EF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Allergo.Schedule", "src\Allergo.Schedule\Allergo.Schedule.csproj", "{FEF32E3B-97D4-4E47-9DE6-91657BDF45EF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Allergo.SeleniumTests", "tests\Allergo.SeleniumTests\Allergo.SeleniumTests.csproj", "{CD6F9433-86F0-4EA0-8B90-5B4EA5509380}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -43,6 +45,10 @@ Global
 		{FEF32E3B-97D4-4E47-9DE6-91657BDF45EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FEF32E3B-97D4-4E47-9DE6-91657BDF45EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FEF32E3B-97D4-4E47-9DE6-91657BDF45EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD6F9433-86F0-4EA0-8B90-5B4EA5509380}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD6F9433-86F0-4EA0-8B90-5B4EA5509380}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD6F9433-86F0-4EA0-8B90-5B4EA5509380}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD6F9433-86F0-4EA0-8B90-5B4EA5509380}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -53,6 +59,7 @@ Global
 		{C5BAE82D-9B2E-495A-A160-F737EA86393E} = {AF11B6DA-4622-49BB-95E3-6253F9D7B01D}
 		{CDC36EE7-FC4F-4655-9990-377A8CA0015F} = {AF11B6DA-4622-49BB-95E3-6253F9D7B01D}
 		{FEF32E3B-97D4-4E47-9DE6-91657BDF45EF} = {AF11B6DA-4622-49BB-95E3-6253F9D7B01D}
+		{CD6F9433-86F0-4EA0-8B90-5B4EA5509380} = {9FCFC062-85E1-4D42-9223-FB832B9888FA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C0DDAAC8-9033-4D70-9179-6D14C192854C}
