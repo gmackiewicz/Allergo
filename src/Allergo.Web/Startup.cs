@@ -13,6 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Text;
+using Allergo.Common;
 using Allergo.Schedule;
 using Allergo.Web.MappingProfiles;
 using Allergo.Web.Middleware;
@@ -107,8 +108,9 @@ namespace Allergo.Web
 
         private static void ConfigureAllergoModules(IServiceCollection services)
         {
-            services.RegisterAccountModule();
             services.RegisterDataModule();
+            services.RegisterCommonModule();
+            services.RegisterAccountModule();
             services.RegisterScheduleModule();
         }
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
