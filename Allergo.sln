@@ -9,11 +9,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{9FCFC062
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Allergo.Web", "src\Allergo.Web\Allergo.Web.csproj", "{4B934ED3-88EF-443C-B5E1-7D7AD4F9D2C8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Allergo.Data", "src\Allergo.Data\Allergo.Data.csproj", "{08250590-64F4-40FD-96BE-2F9AD9848753}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Allergo.Data", "src\Allergo.Data\Allergo.Data.csproj", "{08250590-64F4-40FD-96BE-2F9AD9848753}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Allergo.Account", "src\Allergo.Account\Allergo.Account.csproj", "{C5BAE82D-9B2E-495A-A160-F737EA86393E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Allergo.Account", "src\Allergo.Account\Allergo.Account.csproj", "{C5BAE82D-9B2E-495A-A160-F737EA86393E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Allergo.Common", "src\Allergo.Common\Allergo.Common.csproj", "{CDC36EE7-FC4F-4655-9990-377A8CA0015F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Allergo.Common", "src\Allergo.Common\Allergo.Common.csproj", "{CDC36EE7-FC4F-4655-9990-377A8CA0015F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Allergo.Schedule", "src\Allergo.Schedule\Allergo.Schedule.csproj", "{FEF32E3B-97D4-4E47-9DE6-91657BDF45EF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,6 +39,10 @@ Global
 		{CDC36EE7-FC4F-4655-9990-377A8CA0015F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CDC36EE7-FC4F-4655-9990-377A8CA0015F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CDC36EE7-FC4F-4655-9990-377A8CA0015F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FEF32E3B-97D4-4E47-9DE6-91657BDF45EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FEF32E3B-97D4-4E47-9DE6-91657BDF45EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FEF32E3B-97D4-4E47-9DE6-91657BDF45EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FEF32E3B-97D4-4E47-9DE6-91657BDF45EF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -46,6 +52,7 @@ Global
 		{08250590-64F4-40FD-96BE-2F9AD9848753} = {AF11B6DA-4622-49BB-95E3-6253F9D7B01D}
 		{C5BAE82D-9B2E-495A-A160-F737EA86393E} = {AF11B6DA-4622-49BB-95E3-6253F9D7B01D}
 		{CDC36EE7-FC4F-4655-9990-377A8CA0015F} = {AF11B6DA-4622-49BB-95E3-6253F9D7B01D}
+		{FEF32E3B-97D4-4E47-9DE6-91657BDF45EF} = {AF11B6DA-4622-49BB-95E3-6253F9D7B01D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C0DDAAC8-9033-4D70-9179-6D14C192854C}
