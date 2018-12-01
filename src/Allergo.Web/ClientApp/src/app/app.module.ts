@@ -13,6 +13,8 @@ import { NavMenuComponent } from './components/nav-menu/nav-menu.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component'
 import { RegisterComponent } from './components/register/register.component';
+import { AppointmentsComponent } from './components/appointments/appointments.component';
+import { SetAppointmentComponent } from './components/appointments/set-appointment/set-appointment.component';
 
 import { UsersComponent } from './components/admin/users/users.component';
 import { EditUserComponent } from './components/admin/edit-user/edit-user.component';
@@ -23,8 +25,14 @@ import { ScheduleComponent } from './components/admin/schedule/schedule.componen
 import { AuthService } from './services/auth.service';
 import { UsersService } from './services/users.service';
 import { ScheduleService } from './services/schedule.service';
+import { DoctorService } from './services/doctor.service';
+
 import { JwtUtil } from './utils/jwt.util';
 import { AuthGuard } from './utils/authGuard.util';
+import { ScheduleUtil } from './utils/schedule.util';
+import { DoctorUtil } from './utils/doctor.util';
+import { RemoveAppointmentComponent } from './components/appointments/remove-appointment/remove-appointment.component';
+import { AppointmentService } from './services/appointment.service';
 
 
 @NgModule({
@@ -37,7 +45,10 @@ import { AuthGuard } from './utils/authGuard.util';
     UsersComponent,
     EditUserComponent,
     AdminComponent,
-    ScheduleComponent
+    ScheduleComponent,
+    AppointmentsComponent,
+    SetAppointmentComponent,
+    RemoveAppointmentComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -45,6 +56,7 @@ import { AuthGuard } from './utils/authGuard.util';
       { path: '', component: HomeComponent, pathMatch: 'full', canActivate: [AuthGuard] },
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
+      { path: 'appointments', component: AppointmentsComponent, canActivate: [AuthGuard] },
       { path: 'admin', component: AdminComponent, canActivate: [AuthGuard] },
       { path: 'admin/users', component: UsersComponent, canActivate: [AuthGuard] },
       { path: 'admin/user/:id', component: EditUserComponent, canActivate: [AuthGuard] },
@@ -60,8 +72,17 @@ import { AuthGuard } from './utils/authGuard.util';
     AuthService,
     UsersService,
     ScheduleService,
+    DoctorService,
+    AppointmentService,
+
     JwtUtil,
-    AuthGuard
+    AuthGuard,
+    ScheduleUtil,
+    DoctorUtil
+  ],
+  entryComponents: [
+    SetAppointmentComponent,
+    RemoveAppointmentComponent
   ],
   bootstrap: [AppComponent]
 })

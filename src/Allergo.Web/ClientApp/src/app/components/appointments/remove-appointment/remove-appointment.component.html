@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>Wizyta do {{ this.doctorUtil.getFullName(data.doctor) }}</h1>
+<div mat-dialog-content>
+    <p>Czy na pewno chcesz usunąć wizytę na godzinę <strong>{{ scheduleUtil.getClockFormat(data.appointment.hour, data.appointment.minutes) }}</strong></p>
+</div>
+<div mat-dialog-actions align="end">
+    <button mat-raised-button [mat-dialog-close]="data.animal">Nie</button>
+    <button mat-raised-button color="primary" (click)="submit()">Tak</button>
+</div>

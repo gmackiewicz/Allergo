@@ -17,6 +17,11 @@
                         <span class='glyphicon glyphicon-home'></span> Home
                     </a>
                 </li>
+                <li [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }'>
+                    <a [routerLink]='["/appointments"]' (click)='collapse()'>
+                        <span class='glyphicon glyphicon-book'></span> Wizyty
+                    </a>
+                </li>
                 <li [routerLinkActive]='["link"]' [routerLinkActiveOptions]='{ exact: true }'>
                     <a [routerLink]='["/admin"]' (click)='collapse()'>
                         <span class='glyphicon glyphicon-cog'></span> Zarządzaj

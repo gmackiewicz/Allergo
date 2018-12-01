@@ -8,7 +8,9 @@ import {
     MatFormFieldModule,
     MatStepperModule,
     MatListModule,
-    MatExpansionModule } 
+    MatExpansionModule, 
+    MatAutocompleteModule,
+    MatDialogModule} 
 from '@angular/material';
 
 @NgModule({
@@ -20,7 +22,9 @@ from '@angular/material';
         MatFormFieldModule,
         MatStepperModule,
         MatListModule,
-        MatExpansionModule
+        MatExpansionModule,
+        MatAutocompleteModule,
+        MatDialogModule
     ],
     exports: [
         MatCardModule,
@@ -30,7 +34,9 @@ from '@angular/material';
         MatFormFieldModule,
         MatStepperModule,
         MatListModule,
-        MatExpansionModule
+        MatExpansionModule,
+        MatAutocompleteModule,
+        MatDialogModule
     ]
 })
 export class MaterialModule { }
