@@ -5,7 +5,7 @@ namespace Allergo.Schedule.Contracts
 {
     public interface IScheduleService
     {
-        ScheduleDto GetSchedule(GetScheduleRequestDto request);
+        Task<ScheduleDto> GetSchedule(GetScheduleRequestDto request);
         Task CreateSchedule(CreateScheduleRequestDto request);
         Task RemoveSchedule(RemoveScheduleRequestDto request);
     }

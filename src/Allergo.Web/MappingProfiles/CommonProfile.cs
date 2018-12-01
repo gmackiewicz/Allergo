@@ -1,4 +1,5 @@
 ﻿using Allergo.Common.Dto;
+using Allergo.Data.Models.Account;
 using Allergo.Web.ViewModels.Common;
 using AutoMapper;
 
@@ -9,6 +10,7 @@ namespace Allergo.Web.MappingProfiles
         public CommonProfile()
         {
             CreateMap<DoctorDto, DoctorViewModel>();
+            CreateMap<AllergoUser, DoctorDto>();
         }
     }
 }

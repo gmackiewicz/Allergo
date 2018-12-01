@@ -5,7 +5,12 @@ namespace Allergo.Schedule.Dto
 {
     public class ScheduleDto
     {
-        public DoctorDto DoctorId { get; set; }
+        public DoctorDto Doctor { get; set; }
         public List<DayScheduleDto> DaySchedules { get; set; }
+
+        public ScheduleDto()
+        {
+            DaySchedules = new List<DayScheduleDto>();
+        }
     }
 }

@@ -7,6 +7,8 @@ namespace Allergo.Data.Models.Account
 {
     public class AllergoUser : IdentityUser<Guid>
     {
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
         public virtual ICollection<AdmissionHours> AdmissionHours { get; set; }
     }
 }
