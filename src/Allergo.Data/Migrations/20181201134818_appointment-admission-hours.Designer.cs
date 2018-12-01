@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Allergo.Data.Migrations
 {
     [DbContext(typeof(AllergoDbContext))]
-    [Migration("20181201125320_admission-appointments")]
-    partial class admissionappointments
+    [Migration("20181201134818_appointment-admission-hours")]
+    partial class appointmentadmissionhours
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -228,12 +228,12 @@ namespace Allergo.Data.Migrations
                     b.HasOne("Allergo.Data.Models.Account.AllergoUser", "Doctor")
                         .WithMany()
                         .HasForeignKey("DoctorId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("Allergo.Data.Models.Account.AllergoUser", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("Allergo.Data.Models.Schedule.AdmissionHours", b =>
@@ -241,7 +241,7 @@ namespace Allergo.Data.Migrations
                     b.HasOne("Allergo.Data.Models.Account.AllergoUser", "Doctor")
                         .WithMany("AdmissionHours")
                         .HasForeignKey("DoctorId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
