@@ -16,7 +16,8 @@
                                 <ng-template matStepLabel>Portal Pacjenta</ng-template>
 
                                 <mat-form-field class="input-full-width">
-                                    <input matInput placeholder="Login" 
+                                    <input id="pp-portal_login"
+                                            matInput placeholder="Login" 
                                             formControlName="login"
                                             required>
                                     <mat-error *ngIf="externalAuthForm.hasError('required', 'login')">
@@ -25,7 +26,8 @@
                                 </mat-form-field>
         
                                 <mat-form-field class="input-full-width">
-                                    <input type="password"
+                                    <input id="pp-portal_password"
+                                            type="password"
                                             matInput placeholder="Hasło" 
                                             formControlName="password"
                                             required>
@@ -86,7 +88,7 @@
                                             [errorStateMatcher]="matcher"
                                             required>
                                     <mat-error *ngIf="registerForm.hasError('notSame')">
-                                        Hasło muszą być takie same
+                                        Hasła muszą być takie same
                                     </mat-error>
                                 </mat-form-field>
                                 
