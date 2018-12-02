@@ -1,4 +1,4 @@
-﻿namespace Allergo.SeleniumTests.Infrastructure
+﻿namespace Allergo.SeleniumTests.Contacts
 {
     public interface ITestScenario
     {

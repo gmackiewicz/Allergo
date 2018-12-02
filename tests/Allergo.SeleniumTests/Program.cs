@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using Allergo.SeleniumTests.Contacts;
 using Allergo.SeleniumTests.Infrastructure;
 using Allergo.SeleniumTests.Tests;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
 
 namespace Allergo.SeleniumTests
 {
@@ -11,6 +11,8 @@ namespace Allergo.SeleniumTests
     {
         static void Main(string[] args)
         {
+            PopulateConsts();
+
             var testScenarios = new Dictionary<string, ITestScenario>
             {
                 {"1", new RegisterTestScenario()}
@@ -42,6 +44,12 @@ namespace Allergo.SeleniumTests
                     Console.WriteLine(ex);
                 }
             }
+        }
+
+        private static void PopulateConsts()
+        {
+            var appSettings = ConfigurationManager.AppSettings;
+            AllergoConsts.ApplicationUrl = appSettings["base_url"];
         }
     }
 }

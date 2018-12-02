@@ -1,18 +1,11 @@
 ﻿using System;
 using System.Threading;
+using Allergo.SeleniumTests.Contracts;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 
 namespace Allergo.SeleniumTests.Infrastructure
 {
-    public interface IBrowserService : IDisposable
-    {
-        void Sleep(TimeSpan sleepTime);
-        void GoToUrl(string url);
-        void FillInput(By by, string value);
-        void ClickElement(By by);
-    }
-
     public class BrowserService : IBrowserService
     {
         private readonly IWebDriver _webDriver;

@@ -1,4 +1,6 @@
 ﻿using System;
+using Allergo.SeleniumTests.Contacts;
+using Allergo.SeleniumTests.Contracts;
 using Allergo.SeleniumTests.Infrastructure;
 using OpenQA.Selenium;
 
@@ -14,15 +16,15 @@ namespace Allergo.SeleniumTests.Tests
             {
                 browserService.GoToUrl($"{AllergoConsts.ApplicationUrl}/register");
 
-                browserService.FillInput(By.Id("mat-input-0"), "portal_login");
-                browserService.FillInput(By.Id("mat-input-1"), "portal_password");
+                browserService.FillInput(By.Id("pp-portal_login"), "portal_login");
+                browserService.FillInput(By.Id("pp-portal_password"), "portal_password");
 
                 browserService.ClickElement(By.XPath("//button//span[text()='Dalej']/.."));
 
-                browserService.FillInput(By.Id("mat-input-2"), "test@allergo.pl");
-                browserService.FillInput(By.Id("mat-input-3"), "allergo_login");
-                browserService.FillInput(By.Id("mat-input-4"), "Allergo_pass123*");
-                browserService.FillInput(By.Id("mat-input-5"), "Allergo_pass123*");
+                browserService.FillInput(By.Id("pp-email"), "test@allergo.pl");
+                browserService.FillInput(By.Id("pp-login"), "allergo_login");
+                browserService.FillInput(By.Id("pp-password"), "Allergo_pass123*");
+                browserService.FillInput(By.Id("pp-confirm-password"), "Allergo_pass123*");
 
                 browserService.ClickElement(By.XPath("//button//span[text()='Zarejestruj się']/.."));
 
