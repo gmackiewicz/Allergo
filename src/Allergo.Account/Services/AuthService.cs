@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using Allergo.Account.Contracts;
 using Allergo.Account.Models;
+using Allergo.Common.Enums;
 using Allergo.Common.Exceptions;
 using Allergo.Data.Models.Account;
 using Microsoft.AspNetCore.Identity;
@@ -46,11 +48,12 @@ namespace Allergo.Account.Services
             };
 
             var result = await _userManager.CreateAsync(newUser, model.Password);
+            await _userManager.AddToRoleAsync(newUser, AllergoRoleNames.Patient);
 
             if (!result.Succeeded)
             {
                 throw new BadRequestException(
-                    $"An error occured while registering user: {result.Errors.Join()}");
+                    $"An error occured while registering user: {result.Errors.Select(x => x.Description).Join()}");
             }
 
             await _signInManager.SignInAsync(newUser, false);

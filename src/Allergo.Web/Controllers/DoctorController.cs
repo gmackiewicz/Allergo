@@ -1,35 +1,22 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using Allergo.Web.ViewModels.Common;
+﻿using Allergo.Common.Contracts;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace Allergo.Web.Controllers
 {
     public class DoctorController: AllergoBaseController
     {
+        private readonly IDoctorService _doctorService;
+
+        public DoctorController(
+            IDoctorService doctorService)
+        {
+            _doctorService = doctorService;
+        }
+
         public async Task<JsonResult> GetDoctors()
         {
-            var model = new List<DoctorViewModel>
-            {
-                new DoctorViewModel
-                {
-                    FirstName = "Doctor",
-                    LastName = "Dolittle",
-                    Id = "abcdefghh"
-                },
-                new DoctorViewModel
-                {
-                    FirstName = "Second",
-                    LastName = "Doktor",
-                    Id = "abcdefgh2h"
-                },
-                new DoctorViewModel
-                {
-                    FirstName = "Third",
-                    LastName = "Doc",
-                    Id = "abcdefgh2h33"
-                },
-            };
+            var model = await _doctorService.GetAllAsync();
 
             return await Task.FromResult(Json(model));
         }
