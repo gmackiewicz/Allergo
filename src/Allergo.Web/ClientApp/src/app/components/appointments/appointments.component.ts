@@ -36,16 +36,17 @@ export class AppointmentsComponent {
         private dialog: MatDialog) { }
 
     ngOnInit(): void {
+        this.doctorsControl.setValue('');
+
         this.doctorService
             .getDoctors()
             .subscribe(response => {
                 this.doctors = response;
                 this.filteredDoctors = 
-                    this.doctorsControl.valueChanges
-                        .pipe(
-                            map(val => val ? this.filterDoctors(val) : this.doctors.slice())
-                        );
-            })
+                    this.doctorsControl
+                        .valueChanges
+                        .map(val => val ? this.filterDoctors(val) : response.slice());
+            });
     }
 
     filterDoctors(val): Doctor[] {
@@ -55,6 +56,8 @@ export class AppointmentsComponent {
                     return this.doctorUtil.getFullName(doctor).toLowerCase().includes(val.toLowerCase());
                 }); 
         } 
+
+        return this.doctors.slice();
     }
 
     doctorSelected = (doctor) => {
@@ -79,8 +82,8 @@ export class AppointmentsComponent {
                             }
                         }
                     }
-
-                    ds.appointments.sort(a => a.minutes).sort(a => a.hour);
+                    
+                    ds.appointments.sort(function(a, b) {return a.minutes - b.minutes}).sort(function(a, b) {return a.hour - b.hour});
                 })
             });
     }
