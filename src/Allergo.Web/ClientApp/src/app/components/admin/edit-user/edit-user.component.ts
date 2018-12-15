@@ -17,6 +17,7 @@ export class EditUserComponent implements OnInit {
     private sub: any;
     users: User;
     roles: Role[];
+    selectedRoleId: string;
 
     constructor(private userService: UsersService,
         private route: ActivatedRoute,
@@ -53,7 +54,7 @@ export class EditUserComponent implements OnInit {
                 .subscribe(result => {
                     this.editUserForm.controls.email.setValue(result.email);
                     this.editUserForm.controls.userName.setValue(result.userName);
-                    this.editUserForm.controls.role.setValue(result.role.name);
+                    this.editUserForm.controls.role.setValue(result.role.id);
                 });
         });
     }

@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import 'rxjs/add/operator/map'
 
 import { User } from './../models/user.model';
@@ -11,10 +11,14 @@ import Role = Rolemodel.Role;
 export class UsersService {
     private http: HttpClient;
     private baseUrl: string;
+    private headers: HttpHeaders;
 
     constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
         this.http = http;
         this.baseUrl = baseUrl;
+        this.headers = new HttpHeaders({
+            'Authorization': 'Bearer ' + localStorage.getItem('token')
+        });
     }
 
     getUsers(take, skip) {
@@ -24,7 +28,7 @@ export class UsersService {
             .set("take", take)
             .set("skip", skip);
 
-        return this.http.get<User[]>(url, { params: params });
+        return this.http.get<User[]>(url, { params: params, headers: this.headers });
     }
 
     getUser(id) {
@@ -33,19 +37,19 @@ export class UsersService {
         let params = new HttpParams()
             .set("id", id);
 
-        return this.http.get<User>(url, { params: params });
+        return this.http.get<User>(url, { params: params, headers: this.headers });
     }
 
     getRoles() {
         let url = this.baseUrl + 'api/User/GetRoles';
 
-        return this.http.get<Role[]>(url);
+        return this.http.get<Role[]>(url, { headers: this.headers });
     }
 
     updateUser(id, email, userName, roleId) {
         let registerModel = new EditUserRequest(id, email, userName, roleId);
         let url = this.baseUrl + 'api/User/Edit';
 
-        return this.http.put<User>(url, registerModel);
+        return this.http.put<User>(url, registerModel, { headers: this.headers });
     }
 }

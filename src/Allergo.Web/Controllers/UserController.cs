@@ -3,11 +3,14 @@ using Allergo.Account.Contracts;
 using Allergo.Account.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using Allergo.Common.Enums;
 using Allergo.Web.ViewModels.User;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Allergo.Web.Controllers
 {
+    [Authorize(Roles = AllergoRoleNames.Admin)]
     public class UserController : AllergoBaseController
     {
         private readonly IUserService _userService;

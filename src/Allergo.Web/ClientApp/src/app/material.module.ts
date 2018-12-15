@@ -10,7 +10,8 @@ import {
     MatListModule,
     MatExpansionModule, 
     MatAutocompleteModule,
-    MatDialogModule} 
+    MatDialogModule,
+    MatSelectModule} 
 from '@angular/material';
 
 @NgModule({
@@ -24,7 +25,8 @@ from '@angular/material';
         MatListModule,
         MatExpansionModule,
         MatAutocompleteModule,
-        MatDialogModule
+        MatDialogModule,
+        MatSelectModule
     ],
     exports: [
         MatCardModule,
@@ -36,7 +38,8 @@ from '@angular/material';
         MatListModule,
         MatExpansionModule,
         MatAutocompleteModule,
-        MatDialogModule
+        MatDialogModule,
+        MatSelectModule
     ]
 })
 export class MaterialModule { }
