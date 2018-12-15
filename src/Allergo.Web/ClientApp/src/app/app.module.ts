@@ -5,7 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
-import { MaterialModule } from './material.module'; 
+import { MaterialModule } from './material.module';
 
 /* COMPONENTS */
 import { AppComponent } from './app.component';
@@ -28,12 +28,12 @@ import { ScheduleService } from './services/schedule.service';
 import { DoctorService } from './services/doctor.service';
 
 import { JwtUtil } from './utils/jwt.util';
+import { RolesUtil } from './utils/roles.util';
 import { AuthGuard } from './utils/authGuard.util';
 import { ScheduleUtil } from './utils/schedule.util';
 import { DoctorUtil } from './utils/doctor.util';
 import { RemoveAppointmentComponent } from './components/appointments/remove-appointment/remove-appointment.component';
 import { AppointmentService } from './services/appointment.service';
-
 
 @NgModule({
   declarations: [
@@ -76,6 +76,7 @@ import { AppointmentService } from './services/appointment.service';
     AppointmentService,
 
     JwtUtil,
+    RolesUtil,
     AuthGuard,
     ScheduleUtil,
     DoctorUtil

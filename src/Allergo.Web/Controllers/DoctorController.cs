@@ -1,10 +1,10 @@
-﻿using Allergo.Common.Contracts;
+﻿using System.Threading.Tasks;
+using Allergo.Common.Contracts;
 using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
 
 namespace Allergo.Web.Controllers
 {
-    public class DoctorController: AllergoBaseController
+    public class DoctorController : AllergoBaseController
     {
         private readonly IDoctorService _doctorService;
 

@@ -4,21 +4,27 @@ import 'rxjs/add/operator/map'
 
 import { Schedule } from './../models/schedule.model';
 import { ScheduleRequest } from '../models/requests/schedule-request.model';
+import { AdmissionHours } from '../models/admission-hours.model';
+import { BaseService } from './base.service';
 
 @Injectable()
-export class ScheduleService {
-    private http: HttpClient;
-    private baseUrl: string;
+export class ScheduleService extends BaseService {
 
     constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
-        this.http = http;
-        this.baseUrl = baseUrl;
+        super(http, baseUrl);
     }
-    
-    getSchedule(doctorId, dayFrom) {
-        let url = this.baseUrl + 'api/Schedule/GetSchedule';
-        let registerModel = new ScheduleRequest(doctorId, dayFrom);
 
-        return this.http.post<Schedule>(url, registerModel);
+    getSchedule(doctorId, dayFrom) {
+        let url = this.baseUrl + 'Schedule/GetSchedule';
+        let getScheduleModel = new ScheduleRequest(doctorId, dayFrom);
+
+        return this.http.post<Schedule>(url, getScheduleModel);
+    }
+
+    getAdmissionHours() {
+        let url = this.baseUrl + 'Schedule/GetAdmissionHours';
+
+        return this.http.get<AdmissionHours>(url, { headers: this.headers });
+
     }
 }

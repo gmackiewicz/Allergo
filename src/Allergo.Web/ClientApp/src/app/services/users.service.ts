@@ -6,19 +6,13 @@ import { User } from './../models/user.model';
 import { EditUserRequest } from '../models/requests/edit-user-request.model';
 import Rolemodel = require("../models/role.model");
 import Role = Rolemodel.Role;
+import { BaseService } from './base.service';
 
 @Injectable()
-export class UsersService {
-    private http: HttpClient;
-    private baseUrl: string;
-    private headers: HttpHeaders;
-
+export class UsersService extends BaseService {
+    
     constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
-        this.http = http;
-        this.baseUrl = baseUrl;
-        this.headers = new HttpHeaders({
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
-        });
+        super(http, baseUrl);
     }
 
     getUsers(take, skip) {

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { RolesUtil } from '../../utils/roles.util';
 
 @Component({
     selector: 'app-nav-menu',
@@ -7,7 +8,8 @@ import { Router } from '@angular/router';
     styleUrls: ['./nav-menu.component.css']
 })
 export class NavMenuComponent {
-    constructor(private router: Router) {
+    constructor(private router: Router,
+        private roles: RolesUtil) {
     }
 
     isExpanded = false;
@@ -23,5 +25,13 @@ export class NavMenuComponent {
     logout() {
         localStorage.clear();
         this.router.navigateByUrl('/login');
+    }
+
+    isAdmin() {
+        return this.roles.isInRole('Admin');
+    }
+
+    isDoctor() {
+        return this.roles.isInRole('Doctor');
     }
 }

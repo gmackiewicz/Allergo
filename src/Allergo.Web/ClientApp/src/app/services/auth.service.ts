@@ -6,15 +6,13 @@ import { JwtUtil } from '../utils/jwt.util';
 
 import { LoginRequest } from '../models/requests/login-request.model';
 import { RegisterRequest } from '../models/requests/register-request.model';
+import { BaseService } from './base.service';
 
 @Injectable()
-export class AuthService {
-    private http: HttpClient;
-    private baseUrl: string;
-
+export class AuthService extends BaseService {
+    
     constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string, private jwtUtil: JwtUtil) {
-        this.http = http;
-        this.baseUrl = baseUrl;
+        super(http, baseUrl);
     }
 
     login(login, password) {

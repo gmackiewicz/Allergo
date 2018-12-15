@@ -1,4 +1,5 @@
-﻿using Allergo.Account.Contracts;
+﻿using System;
+using Allergo.Account.Contracts;
 using Allergo.Schedule.Contracts;
 using Allergo.Schedule.Dto;
 using Allergo.Web.ViewModels.Appointment;
@@ -15,7 +16,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Allergo.Web.Controllers
 {
-    public class ScheduleController: AllergoBaseController
+    public class ScheduleController : AllergoBaseController
     {
         private readonly IScheduleService _scheduleService;
         private readonly IUserService _userService;
@@ -59,6 +60,29 @@ namespace Allergo.Web.Controllers
             }
 
             return Json(model);
+        }
+
+        [HttpGet]
+        [Authorize(Roles = AllergoRoleNames.Doctor)]
+        public async Task<JsonResult> GetAdmissionHours()
+        {
+            var currentUser = await _userService.GetUserByName(HttpContext.User.Identity.Name);
+            var requestDto = new GetScheduleRequestDto
+            {
+                DoctorId = currentUser.Id.ToString(),
+                DayFrom = DateTime.UtcNow
+            };
+
+            var modelDto = await _scheduleService.GetScheduleAsync(requestDto);
+
+            var result =
+                Mapper.Map<ScheduleDto, ScheduleViewModel>(modelDto)
+                    .DaySchedules
+                    .GroupBy(x => x.Day.DayOfWeek)
+                    .OrderBy(x => x.Key)
+                    .Select(x => new { Day = x.Key, AdmissionHours = x });
+
+            return Json(result);
         }
 
         [HttpPost]
