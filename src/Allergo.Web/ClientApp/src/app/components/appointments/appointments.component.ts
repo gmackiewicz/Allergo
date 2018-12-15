@@ -17,6 +17,8 @@ import { SetAppointmentComponent } from './set-appointment/set-appointment.compo
 import { RemoveAppointmentComponent } from './remove-appointment/remove-appointment.component';
 import { DaySchedule } from '../../models/day-schedule.model';
 
+import * as moment from 'moment';
+
 @Component({
     selector: 'app-appointments',
     templateUrl: './appointments.component.html'
@@ -63,12 +65,13 @@ export class AppointmentsComponent {
     doctorSelected = (doctor) => {
         this.doctorsControl.setValue(this.doctorUtil.getFullName(doctor));
         this.selectedDoctor = doctor;
-        this.getSchedule(doctor.Id);
+        this.getSchedule(doctor.id);
     }
 
     getSchedule = (doctorId) => {
+        debugger;
         this.scheduleService
-            .getSchedule(doctorId, Date.now())
+            .getSchedule(doctorId, moment().format("YYYY-MM-DD"))
             .subscribe(response => {
                 this.schedule = response;
                 this.schedule.daySchedules.forEach(ds => {

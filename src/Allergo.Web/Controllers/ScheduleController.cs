@@ -9,7 +9,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using Allergo.Common.Enums;
 using Allergo.Web.ViewModels.Appointment;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Allergo.Web.Controllers
 {
@@ -29,8 +31,8 @@ namespace Allergo.Web.Controllers
         [HttpPost]
         public async Task<JsonResult> GetSchedule([FromBody]GetScheduleRequestViewModel request)
         {
-            var modelDto = await _scheduleService.GetScheduleAsync(
-                Mapper.Map<GetScheduleRequestViewModel, GetScheduleRequestDto>(request));
+            var requestDto = Mapper.Map<GetScheduleRequestViewModel, GetScheduleRequestDto>(request);
+            var modelDto = await _scheduleService.GetScheduleAsync(requestDto);
 
             var model = Mapper.Map<ScheduleDto, ScheduleViewModel>(modelDto);
             var daySchedule = model.DaySchedules.FirstOrDefault();
@@ -60,6 +62,7 @@ namespace Allergo.Web.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = AllergoRoleNames.Doctor)]
         public async Task CreateSchedule([FromBody] CreateScheduleRequestViewModel request)
         {
             var model = Mapper.Map<CreateScheduleRequestViewModel, CreateScheduleRequestDto>(request);
@@ -72,6 +75,7 @@ namespace Allergo.Web.Controllers
         }
 
         [HttpDelete]
+        [Authorize(Roles = AllergoRoleNames.Doctor)]
         public async Task RemoveSchedule([FromBody] RemoveScheduleRequestViewModel request)
         {
             var model = Mapper.Map<RemoveScheduleRequestViewModel, RemoveScheduleRequestDto>(request);
