@@ -24,8 +24,8 @@ export class AuthService {
         return this.http.post<string>(url, loginModel);
     }
 
-    register(email, login, password) {
-        let registerModel = new RegisterRequest(email, login, password);
+    register(email, login, password, firstName, lastName) {
+        let registerModel = new RegisterRequest(email, login, password, firstName, lastName);
         let url = this.baseUrl + 'api/Auth/Register';
 
         return this.http.post<string>(url, registerModel);
