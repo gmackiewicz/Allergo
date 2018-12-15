@@ -1,7 +1,10 @@
-﻿using Allergo.Account.Contracts;
+﻿using System.Net;
+using Allergo.Account.Contracts;
 using Allergo.Account.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using Allergo.Web.ViewModels.User;
+using AutoMapper;
 
 namespace Allergo.Web.Controllers
 {
@@ -15,23 +18,33 @@ namespace Allergo.Web.Controllers
         }
 
         [HttpGet]
-        public async Task<JsonResult> GetAll(int take = 20, int skip = 0)
+        public async Task<JsonResult> GetUsers(int take = 20, int skip = 0)
         {
-            var result = await _userService.GetAll(take, skip);
+            var result = await _userService.GetUsersAsync(take, skip);
             return Json(result);
         }
 
         [HttpPut]
-        public async Task<JsonResult> Edit([FromBody] EditUserViewModel viewModel)
+        public async Task Edit([FromBody] EditUserRequestViewModel viewModel)
         {
-            var result = await _userService.EditUser(viewModel);
-            return Json(result);
+            var requestDto = Mapper.Map<EditUserRequestViewModel, EditUserRequestDto>(viewModel);
+
+            await _userService.EditUserAsync(requestDto);
+
+            HttpContext.Response.StatusCode = (int)HttpStatusCode.OK;
         }
 
         [HttpGet]
         public async Task<JsonResult> GetUser(string id)
         {
-            var result = await _userService.GetUser(id);
+            var result = await _userService.GetUserAsync(id);
+            return Json(result);
+        }
+
+        [HttpGet]
+        public async Task<JsonResult> GetRoles()
+        {
+            var result = await _userService.GetRolesAsync();
             return Json(result);
         }
     }

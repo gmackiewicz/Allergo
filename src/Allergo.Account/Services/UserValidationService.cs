@@ -6,7 +6,7 @@ namespace Allergo.Account.Services
 {
     public class UserValidationService : IUserValidationService
     {
-        public void ValidateEditViewModel(EditUserViewModel model)
+        public void ValidateEditViewModel(EditUserRequestDto model)
         {
             if (string.IsNullOrEmpty(model.Id))
             {
@@ -24,6 +24,12 @@ namespace Allergo.Account.Services
             {
                 throw new BadRequestException(
                     $"Edit user error: UserName cannot be null!");
+            }
+
+            if (string.IsNullOrEmpty(model.RoleId))
+            {
+                throw new BadRequestException(
+                    "Edit user error: You must provide role id!");
             }
         }
     }

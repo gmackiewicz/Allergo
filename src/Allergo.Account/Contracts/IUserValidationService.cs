@@ -4,6 +4,6 @@ namespace Allergo.Account.Contracts
 {
     public interface IUserValidationService
     {
-        void ValidateEditViewModel(EditUserViewModel model);
+        void ValidateEditViewModel(EditUserRequestDto model);
     }
 }

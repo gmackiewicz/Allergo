@@ -21,13 +21,13 @@ namespace Allergo.Data
             ConfigureAdmissionHoursModel(builder);
 
             ConfigureAllergoRoles(builder);
-
+         
             base.OnModelCreating(builder);
         }
-
+        
         private void ConfigureAllergoRoles(ModelBuilder builder)
         {
-            builder.Entity<AllergoRole>().HasData(new AllergoRole()
+            builder.Entity<AllergoRole>().HasData(new AllergoRole
             {
                 Id = new Guid("3ca04c41-6ba2-41b4-8549-98e09c83777f"),
                 Name = "Doctor",
@@ -35,7 +35,7 @@ namespace Allergo.Data
                 ConcurrencyStamp = "3ca04c41-6ba2-41b4-8549-98e09c83777f"
             });
 
-            builder.Entity<AllergoRole>().HasData(new AllergoRole()
+            builder.Entity<AllergoRole>().HasData(new AllergoRole
             {
                 Id = new Guid("5ec55e49-85fa-407c-a308-4faaec25ded0"),
                 Name = "Patient",
@@ -43,7 +43,7 @@ namespace Allergo.Data
                 ConcurrencyStamp = "5ec55e49-85fa-407c-a308-4faaec25ded0"
             });
 
-            builder.Entity<AllergoRole>().HasData(new AllergoRole()
+            builder.Entity<AllergoRole>().HasData(new AllergoRole
             {
                 Id = new Guid("275b3afd-e537-4e98-9d67-622b37606565"),
                 Name = "Admin",

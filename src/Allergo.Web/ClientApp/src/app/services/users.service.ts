@@ -4,6 +4,8 @@ import 'rxjs/add/operator/map'
 
 import { User } from './../models/user.model';
 import { EditUserRequest } from '../models/requests/edit-user-request.model';
+import Rolemodel = require("../models/role.model");
+import Role = Rolemodel.Role;
 
 @Injectable()
 export class UsersService {
@@ -14,15 +16,15 @@ export class UsersService {
         this.http = http;
         this.baseUrl = baseUrl;
     }
-    
+
     getUsers(take, skip) {
-        let url = this.baseUrl + 'api/User/GetAll';
+        let url = this.baseUrl + 'api/User/GetUsers';
 
         let params = new HttpParams()
             .set("take", take)
             .set("skip", skip);
 
-        return this.http.get<User[]>(url, { params: params});
+        return this.http.get<User[]>(url, { params: params });
     }
 
     getUser(id) {
@@ -31,11 +33,17 @@ export class UsersService {
         let params = new HttpParams()
             .set("id", id);
 
-        return this.http.get<User>(url, { params: params});
+        return this.http.get<User>(url, { params: params });
     }
 
-    updateUser(id, email, userName) {
-        let registerModel = new EditUserRequest(id, email, userName);
+    getRoles() {
+        let url = this.baseUrl + 'api/User/GetRoles';
+
+        return this.http.get<Role[]>(url);
+    }
+
+    updateUser(id, email, userName, roleId) {
+        let registerModel = new EditUserRequest(id, email, userName, roleId);
         let url = this.baseUrl + 'api/User/Edit';
 
         return this.http.put<User>(url, registerModel);

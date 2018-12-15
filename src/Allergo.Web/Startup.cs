@@ -1,4 +1,4 @@
-using Allergo.Account;
+﻿using Allergo.Account;
 using Allergo.Data;
 using Allergo.Data.Models.Account;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -156,8 +156,10 @@ namespace Allergo.Web
             {
                 cfg.AddProfile(new CommonProfile());
                 cfg.AddProfile(new ScheduleProfile());
+                cfg.AddProfile(new UserProfile());
             });
         }
+
         private static void UpdateDatabase(IApplicationBuilder app)
         {
             using (var serviceScope = app.ApplicationServices
