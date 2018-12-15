@@ -39,6 +39,11 @@
                         </li>
                     </ul>
                 </li>
+                <li [routerLinkActive]='["link-active"]'>
+                    <a href="#" (click)='logout()'>
+                        <span class='glyphicon glyphicon-log-out'></span> Wyloguj się
+                    </a>
+                </li>
             </ul>
         </div>
     </div>

@@ -16,7 +16,7 @@ export class AuthService {
         this.http = http;
         this.baseUrl = baseUrl;
     }
-    
+
     login(login, password) {
         let loginModel = new LoginRequest(login, password);
         let url = this.baseUrl + 'api/Auth/Login';
@@ -34,11 +34,11 @@ export class AuthService {
     isLoggedIn() {
         const token = localStorage.getItem('token');
 
-        if (token != null){
+        if (token != null) {
             const decodedToken = this.jwtUtil.decode(localStorage.getItem('token'));
             const currentUnixTimestamp = Math.round((new Date()).getTime() / 1000);
-        
-            if (decodedToken.exp > currentUnixTimestamp){
+
+            if (decodedToken.exp > currentUnixTimestamp) {
                 return true;
             }
         }
