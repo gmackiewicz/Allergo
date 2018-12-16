@@ -25,7 +25,7 @@ export class ScheduleService extends BaseService {
     getAdmissionHours() {
         let url = this.baseUrl + 'Schedule/GetAdmissionHours';
 
-        return this.http.get<AdmissionHours>(url, { headers: this.headers });
+        return this.http.get<AdmissionHours[]>(url, { headers: this.headers });
     }
 
     createAdmissionHour(weekDay, startTime, endTime) {
