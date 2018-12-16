@@ -14,7 +14,8 @@
                         *ngFor="let admission of day.admissionHours"
                         type="submit" 
                         mat-flat-button
-                        [ngClass]="mat-primary">
+                        [ngClass]="mat-primary"
+                        (click)="removeAdmission(admission.id)">
                         {{ scheduleUtil.formatTime(admission.startTime) }} - {{ scheduleUtil.formatTime(admission.endTime) }}
                     </button>
                 </mat-expansion-panel>

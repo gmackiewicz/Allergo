@@ -27,7 +27,6 @@ export class ScheduleComponent implements OnInit {
             .getAdmissionHours()
             .subscribe(response => {
                 this.schedule = response;
-                console.log(response);
             });
     }
 
@@ -42,8 +41,12 @@ export class ScheduleComponent implements OnInit {
                     width: '450px'
                 })
                 .afterClosed()
-                .subscribe(result =>
-                    console.log(result)
-                );
+                .subscribe(() => this.getAdmissionHours());
+    }
+
+    removeAdmission = (admissionId) => {
+        this.scheduleService
+            .removeAdmissionHours(admissionId)
+            .subscribe(() => this.getAdmissionHours());
     }
 }

@@ -34,4 +34,13 @@ export class ScheduleService extends BaseService {
 
         return this.http.post(url, request, { headers: this.headers });
     }
+
+    removeAdmissionHours(admissionId) {
+        let url = this.baseUrl + 'Schedule/RemoveSchedule';
+
+        let params = new HttpParams()
+            .set("scheduleId", admissionId);
+
+        return this.http.delete(url, { params: params, headers: this.headers });
+    }
 }

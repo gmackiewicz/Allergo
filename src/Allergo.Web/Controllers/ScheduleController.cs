@@ -100,11 +100,14 @@ namespace Allergo.Web.Controllers
 
         [HttpDelete]
         [Authorize(Roles = AllergoRoleNames.Doctor)]
-        public async Task RemoveSchedule([FromBody] RemoveScheduleRequestViewModel request)
+        public async Task RemoveSchedule(string scheduleId)
         {
-            var model = Mapper.Map<RemoveScheduleRequestViewModel, RemoveScheduleRequestDto>(request);
+            var request = new RemoveScheduleRequestDto
+            {
+                ScheduleId = scheduleId
+            };
 
-            await _scheduleService.RemoveScheduleAsync(model);
+            await _scheduleService.RemoveScheduleAsync(request);
 
             HttpContext.Response.StatusCode = (int)HttpStatusCode.OK;
         }
