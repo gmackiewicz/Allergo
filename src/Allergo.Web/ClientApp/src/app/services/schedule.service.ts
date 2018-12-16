@@ -6,6 +6,7 @@ import { Schedule } from './../models/schedule.model';
 import { ScheduleRequest } from '../models/requests/schedule-request.model';
 import { AdmissionHours } from '../models/admission-hours.model';
 import { BaseService } from './base.service';
+import { NewAdmissionHourRequest } from '../models/requests/new-admission-hour-request.model';
 
 @Injectable()
 export class ScheduleService extends BaseService {
@@ -25,6 +26,12 @@ export class ScheduleService extends BaseService {
         let url = this.baseUrl + 'Schedule/GetAdmissionHours';
 
         return this.http.get<AdmissionHours>(url, { headers: this.headers });
+    }
 
+    createAdmissionHour(weekDay, startTime, endTime) {
+        let url = this.baseUrl + 'Schedule/CreateSchedule';
+        let request = new NewAdmissionHourRequest(weekDay, startTime, endTime);
+
+        return this.http.post(url, request, { headers: this.headers });
     }
 }

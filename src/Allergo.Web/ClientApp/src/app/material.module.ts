@@ -11,7 +11,7 @@ import {
     MatExpansionModule, 
     MatAutocompleteModule,
     MatDialogModule,
-    MatSelectModule} 
+    MatSelectModule}
 from '@angular/material';
 
 @NgModule({

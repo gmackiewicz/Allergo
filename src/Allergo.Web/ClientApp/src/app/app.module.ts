@@ -34,6 +34,7 @@ import { ScheduleUtil } from './utils/schedule.util';
 import { DoctorUtil } from './utils/doctor.util';
 import { RemoveAppointmentComponent } from './components/appointments/remove-appointment/remove-appointment.component';
 import { AppointmentService } from './services/appointment.service';
+import { AddAdmissionHourComponent } from './components/admin/schedule/add-admission-hour/add-addmission-hour.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { AppointmentService } from './services/appointment.service';
     ScheduleComponent,
     AppointmentsComponent,
     SetAppointmentComponent,
-    RemoveAppointmentComponent
+    RemoveAppointmentComponent,
+    AddAdmissionHourComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -83,7 +85,8 @@ import { AppointmentService } from './services/appointment.service';
   ],
   entryComponents: [
     SetAppointmentComponent,
-    RemoveAppointmentComponent
+    RemoveAppointmentComponent,
+    AddAdmissionHourComponent
   ],
   bootstrap: [AppComponent]
 })
