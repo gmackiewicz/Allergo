@@ -12,7 +12,7 @@ import { MatDialog } from '@angular/material';
 })
 
 export class ScheduleComponent implements OnInit {
-    schedule: AdmissionHours;
+    schedule: AdmissionHours[];
 
     constructor(
         private scheduleService: ScheduleService,
@@ -58,11 +58,5 @@ export class ScheduleComponent implements OnInit {
                     .afterClosed()
                     .subscribe(() => this.getAdmissionHours());
         }
-    }
-
-    removeAdmission = (admissionId) => {
-        this.scheduleService
-            .removeAdmissionHours(admissionId)
-            .subscribe(() => this.getAdmissionHours());
     }
 }

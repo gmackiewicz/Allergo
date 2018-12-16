@@ -78,6 +78,7 @@ namespace Allergo.Web.Controllers
             var result =
                 Mapper.Map<ScheduleDto, ScheduleViewModel>(modelDto)
                     .DaySchedules
+                    .OrderBy(x => x.StartTime)
                     .GroupBy(x => x.Day.DayOfWeek)
                     .OrderBy(x => x.Key)
                     .Select(x => new { Day = x.Key, AdmissionHours = x });
