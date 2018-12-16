@@ -69,7 +69,6 @@ export class AppointmentsComponent {
     }
 
     getSchedule = (doctorId) => {
-        debugger;
         this.scheduleService
             .getSchedule(doctorId, moment().format("YYYY-MM-DD"))
             .subscribe(response => {

@@ -15,11 +15,14 @@ import { LoginComponent } from './components/login/login.component'
 import { RegisterComponent } from './components/register/register.component';
 import { AppointmentsComponent } from './components/appointments/appointments.component';
 import { SetAppointmentComponent } from './components/appointments/set-appointment/set-appointment.component';
+import { RemoveAppointmentComponent } from './components/appointments/remove-appointment/remove-appointment.component';
 
 import { UsersComponent } from './components/admin/users/users.component';
 import { EditUserComponent } from './components/admin/edit-user/edit-user.component';
 import { AdminComponent } from './components/admin/admin/admin.component';
 import { ScheduleComponent } from './components/admin/schedule/schedule.component';
+import { AddAdmissionHourComponent } from './components/admin/schedule/add-admission-hour/add-addmission-hour.component';
+import { RemoveAdmissionHourComponent } from './components/admin/schedule/remove-admission-hour/remove-admission-hour.component';
 
 /* SERVICES ANT UTILS */
 import { AuthService } from './services/auth.service';
@@ -32,9 +35,7 @@ import { RolesUtil } from './utils/roles.util';
 import { AuthGuard } from './utils/authGuard.util';
 import { ScheduleUtil } from './utils/schedule.util';
 import { DoctorUtil } from './utils/doctor.util';
-import { RemoveAppointmentComponent } from './components/appointments/remove-appointment/remove-appointment.component';
 import { AppointmentService } from './services/appointment.service';
-import { AddAdmissionHourComponent } from './components/admin/schedule/add-admission-hour/add-addmission-hour.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { AddAdmissionHourComponent } from './components/admin/schedule/add-admis
     AppointmentsComponent,
     SetAppointmentComponent,
     RemoveAppointmentComponent,
-    AddAdmissionHourComponent
+    AddAdmissionHourComponent,
+    RemoveAdmissionHourComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -86,7 +88,8 @@ import { AddAdmissionHourComponent } from './components/admin/schedule/add-admis
   entryComponents: [
     SetAppointmentComponent,
     RemoveAppointmentComponent,
-    AddAdmissionHourComponent
+    AddAdmissionHourComponent,
+    RemoveAdmissionHourComponent
   ],
   bootstrap: [AppComponent]
 })

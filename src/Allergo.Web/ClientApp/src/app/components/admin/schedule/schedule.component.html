@@ -1,8 +1,6 @@
 <div class="container admin">
     <div class="row">
         <div class="col-md-12">
-            GRAFIK
-
             <mat-accordion>
                 <mat-expansion-panel *ngFor="let day of schedule">
                     <mat-expansion-panel-header>
@@ -15,13 +13,13 @@
                         type="submit" 
                         mat-flat-button
                         [ngClass]="mat-primary"
-                        (click)="removeAdmission(admission.id)">
+                        (click)="showRemoveAdmissionHourDialog(admission)">
                         {{ scheduleUtil.formatTime(admission.startTime) }} - {{ scheduleUtil.formatTime(admission.endTime) }}
                     </button>
                 </mat-expansion-panel>
             </mat-accordion>
 
-            <button type="submit" mat-raised-button (click)="showNewAdmissionHoursDialog()">Dodaj nowe godziny przyjęć</button>
+            <button type="submit" mat-raised-button  color="primary" (click)="showNewAdmissionHoursDialog()">Dodaj nowe godziny przyjęć</button>
         </div>
     </div>
 </div>

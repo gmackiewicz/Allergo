@@ -1,0 +1,11 @@
+<h1 mat-dialog-title>Usuń godziny przyjęć</h1>
+<div mat-dialog-content>
+    <p>
+        Czy na pewno chcesz usunąć godziny przyjęć w dniu <strong>{{ scheduleUtil.getDayName(data.day) }}</strong> 
+        w godzinach od <strong>{{ scheduleUtil.formatTime(data.startTime) }}</strong> do <strong>{{ scheduleUtil.formatTime(data.endTime) }}</strong> 
+    </p>
+</div>
+<div mat-dialog-actions align="end">
+    <button mat-raised-button [mat-dialog-close]="data.animal">Nie</button>
+    <button mat-raised-button color="primary" (click)="submit()">Tak</button>
+</div>
