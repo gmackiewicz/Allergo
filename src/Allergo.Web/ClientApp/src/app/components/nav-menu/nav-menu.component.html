@@ -27,17 +27,22 @@
                         <span class='glyphicon glyphicon-cog'></span> Zarządzaj
                     </a>
                     <ul class="nav navbar-nav">
-                        <li [routerLinkActive]='["link"]' [routerLinkActiveOptions]='{ exact: true }'>
+                        <li [routerLinkActive]='["link"]' [routerLinkActiveOptions]='{ exact: true }' *ngIf='isAdmin()'>
                             <a [routerLink]='["/admin/users"]' (click)='collapse()'>
                                 <span class='glyphicon glyphicon-user'></span> Użytkownicy
                             </a>
                         </li>
-                        <li [routerLinkActive]='["link"]' [routerLinkActiveOptions]='{ exact: true }'>
+                        <li [routerLinkActive]='["link"]' [routerLinkActiveOptions]='{ exact: true }' *ngIf='isDoctor()'>
                             <a [routerLink]='["/admin/schedule"]' (click)='collapse()'>
                                 <span class='glyphicon glyphicon-calendar'></span> Grafik
                             </a>
                         </li>
                     </ul>
+                </li>
+                <li [routerLinkActive]='["link-active"]'>
+                    <a href="#" (click)='logout()'>
+                        <span class='glyphicon glyphicon-log-out'></span> Wyloguj się
+                    </a>
                 </li>
             </ul>
         </div>

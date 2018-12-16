@@ -1,0 +1,26 @@
+<h1 mat-dialog-title>Nowe godziny przyjęć</h1>
+
+<form [formGroup]="addAdmissionHourForm">
+    <div mat-dialog-content>
+        <mat-form-field class="input-full-width">
+            <mat-select
+                matNativeControl
+                id="pp-add-admission-hour-weekday"
+                placeholder="Dzień tygodnia"
+                formControlName="weekday">
+
+                <mat-option *ngFor="let i of [1,2,3,4,5,6,7]" [value]="i">{{scheduleUtil.getDayNameById(i)}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field class="input-full-wdth">
+            <input matInput type="time" placeholder="Początek" formControlName="startTime">
+        </mat-form-field>
+        <mat-form-field class="input-full-wdth">
+            <input matInput type="time" placeholder="Koniec" formControlName="endTime">
+        </mat-form-field>
+    </div>
+    <div mat-dialog-actions>
+        <button mat-button (click)="cancel()">Anuluj</button>
+        <button mat-button (click)="submit()" cdkFocusInitial>Zapisz</button>
+    </div>
+</form>

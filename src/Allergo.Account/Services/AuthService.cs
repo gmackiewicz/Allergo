@@ -44,7 +44,9 @@ namespace Allergo.Account.Services
             var newUser = new AllergoUser
             {
                 UserName = model.UserName,
-                Email = model.Email
+                Email = model.Email,
+                FirstName = model.FirstName,
+                LastName = model.LastName
             };
 
             var result = await _userManager.CreateAsync(newUser, model.Password);
@@ -57,7 +59,7 @@ namespace Allergo.Account.Services
             }
 
             await _signInManager.SignInAsync(newUser, false);
-            return GetToken(newUser);
+            return await GetToken(newUser);
         }
 
         public async Task<string> SignIn(SignInViewModel model)
@@ -73,19 +75,26 @@ namespace Allergo.Account.Services
             }
 
             var user = await _userManager.FindByNameAsync(model.UserName);
-            return GetToken(user);
+            return await GetToken(user);
         }
 
-        private string GetToken(AllergoUser user)
+        private async Task<string> GetToken(AllergoUser user)
         {
             var utcNow = DateTime.UtcNow;
-
-            var claims = new[]
+            
+            var claims = new List<Claim>
             {
                 new Claim(JwtRegisteredClaimNames.UniqueName, user.UserName),
                 new Claim(JwtRegisteredClaimNames.Jti, user.Id.ToString()),
                 new Claim(JwtRegisteredClaimNames.Iat, utcNow.ToString(CultureInfo.InvariantCulture))
             };
+
+            var userRoles = await _userManager.GetRolesAsync(user);
+
+            foreach (var role in userRoles)
+            {
+                claims.Add(new Claim("role", role));
+            }
 
             var signingKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration.GetValue<string>("Tokens:Key")));
             var signingCredentials = new SigningCredentials(signingKey, SecurityAlgorithms.HmacSha256);

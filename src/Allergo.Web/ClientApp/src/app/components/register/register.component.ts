@@ -23,7 +23,6 @@ export class RegisterComponent {
     registerForm: FormGroup;
     message: string;
     matcher = new MyErrorStateMatcher();
-
     
     constructor(private authService: AuthService, private formBuilder: FormBuilder, private router: Router) {
         this.externalAuthForm = this.formBuilder.group({
@@ -50,12 +49,20 @@ export class RegisterComponent {
                 '', 
                 [ Validators.required ]
             ],
+            firstName: [
+                '', 
+                [ Validators.required ]
+            ],
+            lastName: [
+                '', 
+                [ Validators.required ]
+            ],
             confirmPassword: ['']
         }, { 
             validator: this.checkPasswords 
         });
     }
-    
+
     stepperChange(stepper) {
         if (stepper.selectedIndex === 1) {
             
@@ -65,9 +72,11 @@ export class RegisterComponent {
     submit() {
         this.authService
             .register(
-                this.registerForm.controls.email.value, 
-                this.registerForm.controls.login.value, 
-                this.registerForm.controls.password.value)
+                this.registerForm.controls.email.value,
+                this.registerForm.controls.login.value,
+                this.registerForm.controls.password.value,
+                this.registerForm.controls.firstName.value,
+                this.registerForm.controls.lastName.value)
             .subscribe(result => {
                 localStorage.setItem('token', result);
                 this.message = "";

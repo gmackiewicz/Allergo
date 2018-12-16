@@ -92,6 +92,26 @@
                                     </mat-error>
                                 </mat-form-field>
                                 
+                                <mat-form-field class="input-full-width">
+                                    <input  id="pp-firstName"
+                                            matInput placeholder="Imię" 
+                                            formControlName="firstName"
+                                            required>
+                                    <mat-error *ngIf="registerForm.controls['firstName'].errors?.required">
+                                        Imię jest <strong>wymagane</strong>
+                                    </mat-error>
+                                </mat-form-field>
+
+                                <mat-form-field class="input-full-width">
+                                    <input  id="pp-lastName"
+                                            matInput placeholder="Nazwisko" 
+                                            formControlName="lastName"
+                                            required>
+                                    <mat-error *ngIf="registerForm.controls['lastName'].errors?.required">
+                                        Nazwisko jest <strong>wymagane</strong>
+                                    </mat-error>
+                                </mat-form-field>
+                                
                                 <div class="text-center">
                                     <button mat-raised-button matStepperPrevious color="basic">Powrót</button>
                                     <button mat-raised-button type="submit" color="primary">Zarejestruj się</button>

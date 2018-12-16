@@ -3,19 +3,17 @@ import { HttpClient } from '@angular/common/http';
 import 'rxjs/add/operator/map'
 
 import { Doctor } from '../models/doctor.model';
+import { BaseService } from './base.service';
 
 @Injectable()
-export class DoctorService {
-    private http: HttpClient;
-    private baseUrl: string;
+export class DoctorService extends BaseService{
 
     constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
-        this.http = http;
-        this.baseUrl = baseUrl;
+        super(http, baseUrl);
     }
     
     getDoctors() {
-        let url = this.baseUrl + 'api/Doctor/GetDoctors';
+        let url = this.baseUrl + 'Doctor/GetDoctors';
 
         return this.http.get<Doctor[]>(url);
     }

@@ -7,9 +7,10 @@ namespace Allergo.Account.Contracts
 {
     public interface IUserService
     {
-        Task<AllergoUser> EditUser(EditUserViewModel userViewModel);
-        Task<List<AllergoUser>> GetAll(int take, int skip);
-        Task<AllergoUser> GetUser(string id);
+        Task EditUserAsync(EditUserRequestDto requestDto);
+        Task<List<UserDto>> GetUsersAsync(int take, int skip);
+        Task<UserDto> GetUserAsync(string id);
         Task<AllergoUser> GetUserByName(string userName);
+        Task<List<RoleDto>> GetRolesAsync();
     }
 }

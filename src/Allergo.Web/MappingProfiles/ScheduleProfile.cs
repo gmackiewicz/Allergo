@@ -11,7 +11,6 @@ namespace Allergo.Web.MappingProfiles
         {
             CreateMap<CreateScheduleRequestViewModel, CreateScheduleRequestDto>();
             CreateMap<GetScheduleRequestViewModel, GetScheduleRequestDto>();
-            CreateMap<RemoveScheduleRequestViewModel, RemoveScheduleRequestDto>();
 
             CreateMap<DayScheduleDto, DayScheduleViewModel>();
             CreateMap<ScheduleDto, ScheduleViewModel>();

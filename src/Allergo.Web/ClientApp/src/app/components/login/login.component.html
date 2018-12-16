@@ -34,6 +34,7 @@
                     </mat-card-content>
                     <mat-card-actions class="text-center">
                         <button type="submit" mat-raised-button color="primary">Zaloguj się</button>
+                        <button mat-raised-button color="secondary" [routerLink]='["/register"]'>Zarejestruj się</button>
                         <small class="form-text text-danger text-center error-message">{{ message }}</small>
                     </mat-card-actions>
                 </form>

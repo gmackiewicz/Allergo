@@ -2,6 +2,26 @@
     <div class="row">
         <div class="col-md-12">
             GRAFIK
+
+            <mat-accordion>
+                <mat-expansion-panel *ngFor="let day of schedule">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                        {{ scheduleUtil.getDayNameById(day.day) }}
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <button 
+                        *ngFor="let admission of day.admissionHours"
+                        type="submit" 
+                        mat-flat-button
+                        [ngClass]="mat-primary"
+                        (click)="removeAdmission(admission.id)">
+                        {{ scheduleUtil.formatTime(admission.startTime) }} - {{ scheduleUtil.formatTime(admission.endTime) }}
+                    </button>
+                </mat-expansion-panel>
+            </mat-accordion>
+
+            <button type="submit" mat-raised-button (click)="showNewAdmissionHoursDialog()">Dodaj nowe godziny przyjęć</button>
         </div>
     </div>
 </div>

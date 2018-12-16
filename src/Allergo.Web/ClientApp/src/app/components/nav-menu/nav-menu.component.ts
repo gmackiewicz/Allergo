@@ -1,18 +1,37 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { RolesUtil } from '../../utils/roles.util';
 
 @Component({
-  selector: 'app-nav-menu',
-  templateUrl: './nav-menu.component.html',
-  styleUrls: ['./nav-menu.component.css']
+    selector: 'app-nav-menu',
+    templateUrl: './nav-menu.component.html',
+    styleUrls: ['./nav-menu.component.css']
 })
 export class NavMenuComponent {
-  isExpanded = false;
+    constructor(private router: Router,
+        private roles: RolesUtil) {
+    }
 
-  collapse() {
-    this.isExpanded = false;
-  }
+    isExpanded = false;
 
-  toggle() {
-    this.isExpanded = !this.isExpanded;
-  }
+    collapse() {
+        this.isExpanded = false;
+    }
+
+    toggle() {
+        this.isExpanded = !this.isExpanded;
+    }
+
+    logout() {
+        localStorage.clear();
+        this.router.navigateByUrl('/login');
+    }
+
+    isAdmin() {
+        return this.roles.isInRole('Admin');
+    }
+
+    isDoctor() {
+        return this.roles.isInRole('Doctor');
+    }
 }

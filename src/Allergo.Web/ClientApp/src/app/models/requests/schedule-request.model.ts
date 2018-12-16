@@ -1,5 +1,5 @@
 export class ScheduleRequest {
     constructor(
-        public DoctorId: number,
+        public DoctorId: string,
         public DayFrom: Date) { }
 }

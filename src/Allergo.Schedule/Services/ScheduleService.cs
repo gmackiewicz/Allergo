@@ -1,4 +1,7 @@
-﻿using Allergo.Common.Contracts;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Allergo.Common.Contracts;
 using Allergo.Common.Dto;
 using Allergo.Common.Exceptions;
 using Allergo.Data.Contracts;
@@ -8,12 +11,10 @@ using Allergo.Schedule.Contracts;
 using Allergo.Schedule.Dto;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Allergo.Schedule.Services
 {
-    public class ScheduleService: IScheduleService
+    public class ScheduleService : IScheduleService
     {
         private readonly IDataService _dataService;
         private readonly IDoctorService _doctorService;
@@ -28,22 +29,28 @@ namespace Allergo.Schedule.Services
 
         public async Task<ScheduleDto> GetScheduleAsync(GetScheduleRequestDto request)
         {
-            var doctor = await _doctorService.GetDoctorAsync(request.DoctorId);           
-            var result = new ScheduleDto();
-
-            result.Doctor = Mapper.Map<AllergoUser, DoctorDto>(doctor);
+            var doctor = await _doctorService.GetDoctorAsync(request.DoctorId);
+            var result = new ScheduleDto
+            {
+                Doctor = Mapper.Map<AllergoUser, DoctorDto>(doctor)
+            };
 
             for (int i = 0; i < 7; i++)
             {
                 var day = request.DayFrom.AddDays(i);
-                var doctorDaySchedule =
-                    doctor.AdmissionHours.FirstOrDefault(x => x.IsCurrent && x.DayOfWeek == day.DayOfWeek);
 
-                if (doctorDaySchedule != null)
+                var doctorDaySchedule =
+                    doctor
+                        .AdmissionHours
+                        .Where(x => x.IsCurrent && x.DayOfWeek == day.DayOfWeek)
+                        .ToList();
+
+                if (doctorDaySchedule.Any())
                 {
-                    var dayScheduleDto = Mapper.Map<AdmissionHours, DayScheduleDto>(doctorDaySchedule);
-                    dayScheduleDto.Day = day;
-                    result.DaySchedules.Add(dayScheduleDto);
+                    var daySchedulesDto = Mapper.Map<List<AdmissionHours>, List<DayScheduleDto>>(doctorDaySchedule);
+
+                    daySchedulesDto.ForEach(x => x.Day = day);
+                    result.DaySchedules.AddRange(daySchedulesDto);
                 }
             }
 
