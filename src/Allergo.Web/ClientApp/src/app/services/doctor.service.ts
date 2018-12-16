@@ -13,7 +13,7 @@ export class DoctorService extends BaseService{
     }
     
     getDoctors() {
-        let url = this.baseUrl + 'api/Doctor/GetDoctors';
+        let url = this.baseUrl + 'Doctor/GetDoctors';
 
         return this.http.get<Doctor[]>(url);
     }

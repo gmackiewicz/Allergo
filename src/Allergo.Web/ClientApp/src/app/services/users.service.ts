@@ -16,7 +16,7 @@ export class UsersService extends BaseService {
     }
 
     getUsers(take, skip) {
-        let url = this.baseUrl + 'api/User/GetUsers';
+        let url = this.baseUrl + 'User/GetUsers';
 
         let params = new HttpParams()
             .set("take", take)
@@ -26,7 +26,7 @@ export class UsersService extends BaseService {
     }
 
     getUser(id) {
-        let url = this.baseUrl + 'api/User/GetUser';
+        let url = this.baseUrl + 'User/GetUser';
 
         let params = new HttpParams()
             .set("id", id);
@@ -35,14 +35,14 @@ export class UsersService extends BaseService {
     }
 
     getRoles() {
-        let url = this.baseUrl + 'api/User/GetRoles';
+        let url = this.baseUrl + 'User/GetRoles';
 
         return this.http.get<Role[]>(url, { headers: this.headers });
     }
 
     updateUser(id, email, userName, roleId) {
         let registerModel = new EditUserRequest(id, email, userName, roleId);
-        let url = this.baseUrl + 'api/User/Edit';
+        let url = this.baseUrl + 'User/Edit';
 
         return this.http.put<User>(url, registerModel, { headers: this.headers });
     }

@@ -17,14 +17,14 @@ export class AuthService extends BaseService {
 
     login(login, password) {
         let loginModel = new LoginRequest(login, password);
-        let url = this.baseUrl + 'api/Auth/Login';
+        let url = this.baseUrl + 'Auth/Login';
 
         return this.http.post<string>(url, loginModel);
     }
 
     register(email, login, password, firstName, lastName) {
         let registerModel = new RegisterRequest(email, login, password, firstName, lastName);
-        let url = this.baseUrl + 'api/Auth/Register';
+        let url = this.baseUrl + 'Auth/Register';
 
         return this.http.post<string>(url, registerModel);
     }

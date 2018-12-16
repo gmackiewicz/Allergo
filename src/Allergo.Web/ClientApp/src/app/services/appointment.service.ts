@@ -14,14 +14,14 @@ export class AppointmentService extends BaseService {
     }
     
     setAppointment(date, userId, doctorId) {
-        let url = this.baseUrl + 'api/Appointment/SetAppointment';
+        let url = this.baseUrl + 'Appointment/SetAppointment';
         let body = new SetAppointmentRequest(date, userId, doctorId);
 
         return this.http.post(url, body);
     }
     
     cancelAppointment(appointmentId) {
-        let url = this.baseUrl + 'api/Appointment/CancelAppointment';
+        let url = this.baseUrl + 'Appointment/CancelAppointment';
         let body = new CancelAppointmentRequest(appointmentId);
 
         return this.http.post(url, body);
