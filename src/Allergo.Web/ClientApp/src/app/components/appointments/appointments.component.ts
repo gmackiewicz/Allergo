@@ -74,16 +74,16 @@ export class AppointmentsComponent {
             .subscribe(response => {
                 this.schedule = response;
                 this.schedule.daySchedules.forEach(ds => {
-                    ds.appointments.forEach(a => a.taken = true);
+                    ds.appointments.forEach(a => a.taken = false);
                 });
                 this.schedule.daySchedules.forEach(ds => {
-                    for (var h = 7; h < 19; h++) {
-                        for (var m = 0; m < 60; m += 15) {
-                            if (ds.appointments.filter(a => a.hour === h && a.minutes === m).length === 0) {
-                                ds.appointments.push(new Appointment('', h, m, false, false));
-                            }
-                        }
-                    }
+//                    for (var h = 7; h < 19; h++) {
+//                        for (var m = 0; m < 60; m += 15) {
+//                            if (ds.appointments.filter(a => a.hour === h && a.minutes === m).length === 0) {
+//                                ds.appointments.push(new Appointment('', h, m, false, false));
+//                            }
+//                        }
+//                    }
                     
                     ds.appointments.sort(function(a, b) {return a.minutes - b.minutes}).sort(function(a, b) {return a.hour - b.hour});
                 })

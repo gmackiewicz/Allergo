@@ -36,27 +36,17 @@ namespace Allergo.Web.Controllers
             var modelDto = await _scheduleService.GetScheduleAsync(requestDto);
 
             var model = Mapper.Map<ScheduleDto, ScheduleViewModel>(modelDto);
-            var daySchedule = model.DaySchedules.FirstOrDefault();
-            if (daySchedule != null)
+            foreach (var daySchedule in model.DaySchedules)
             {
-                daySchedule.Appointments = new List<AppointmentViewModel>
+                daySchedule.Appointments = new List<AppointmentViewModel>();
+                for (TimeSpan i = daySchedule.StartTime; i < daySchedule.EndTime; i= i.Add(TimeSpan.FromMinutes(15)))
                 {
-                    new AppointmentViewModel
+                    daySchedule.Appointments.Add(new AppointmentViewModel
                     {
-                        Hour = 13,
-                        Minutes = 15
-                    },
-                    new AppointmentViewModel
-                    {
-                        Hour = 13,
-                        Minutes = 45
-                    },
-                    new AppointmentViewModel
-                    {
-                        Hour = 14,
-                        Minutes = 0
-                    }
-                };
+                        Hour = i.Hours,
+                        Minutes = i.Minutes
+                    });
+                }
             }
 
             return Json(model);
