@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Allergo.Common\Allergo.Common.csproj" />
+    <ProjectReference Include="..\Allergo.Data\Allergo.Data.csproj" />
+  </ItemGroup>
+
+</Project>

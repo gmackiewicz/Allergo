@@ -1,15 +1,28 @@
-﻿using System.Threading.Tasks;
+﻿using Allergo.Account.Contracts;
+using Allergo.Appointment.Contracts;
+using Allergo.Appointment.Dto;
 using Allergo.Web.ViewModels.Appointment;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace Allergo.Web.Controllers
 {
     public class AppointmentController: AllergoBaseController
     {
+        private readonly IUserService _userService;
+        private readonly IAppointmentService _appointmentService;
+
         [HttpPost]
-        public async Task SetAppointment([FromBody] CreateAppointmentRequestViewModel request)
+        public async Task<JsonResult> SetAppointment([FromBody] CreateAppointmentRequestViewModel request)
         {
-            await Task.CompletedTask;
+            var model = Mapper.Map<CreateAppointmentRequestViewModel, CreateAppointmentRequestDto>(request);
+
+            var currentUser = await _userService.GetUserByName(HttpContext.User.Identity.Name);
+            model.UserId = currentUser.Id;
+
+            await _appointmentService.CreateAppointmentAsync(model);
+            return await Task.FromResult(Json("ok"));
         }
 
         [HttpPost]
