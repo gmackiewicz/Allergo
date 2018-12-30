@@ -13,17 +13,17 @@ export class AppointmentService extends BaseService {
         super(http, baseUrl);
     }
     
-    setAppointment(date, userId, doctorId) {
+    setAppointment(date, doctorId) {
         let url = this.baseUrl + 'Appointment/SetAppointment';
-        let body = new SetAppointmentRequest(date, userId, doctorId);
+        let body = new SetAppointmentRequest(date, doctorId);
 
-        return this.http.post(url, body);
+        return this.http.post(url, body, { headers: this.headers });
     }
     
     cancelAppointment(appointmentId) {
         let url = this.baseUrl + 'Appointment/CancelAppointment';
         let body = new CancelAppointmentRequest(appointmentId);
 
-        return this.http.post(url, body);
+        return this.http.post(url, body, { headers: this.headers });
     }
 }
