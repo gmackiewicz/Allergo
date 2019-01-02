@@ -10,6 +10,7 @@ namespace Allergo.Data.Models.Appointment
         public Guid UserId { get; set; }
         public Guid DoctorId { get; set; }
         public bool IsCancelled { get; set; }
+        public string Diagnosis { get; set; }
         public virtual AllergoUser User { get; set; }
         public virtual AllergoUser Doctor { get; set; }
     }

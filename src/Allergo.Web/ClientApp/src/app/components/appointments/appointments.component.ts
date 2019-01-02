@@ -12,7 +12,7 @@ import { DoctorUtil } from '../../utils/doctor.util';
 
 import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs/operators';
-import { Appointment } from '../../models/appointment.model';
+import { ScheduleAppointment } from '../../models/schedule-appointment.model';
 import { SetAppointmentComponent } from './set-appointment/set-appointment.component';
 import { RemoveAppointmentComponent } from './remove-appointment/remove-appointment.component';
 import { DaySchedule } from '../../models/day-schedule.model';
@@ -106,7 +106,7 @@ export class AppointmentsComponent {
         this.openDialog(appointment, day);
     }
 
-    openDialog(appointment: Appointment, day: DaySchedule) {
+    openDialog(appointment: ScheduleAppointment, day: DaySchedule) {
         if (appointment.isCurrentUser) {
             const dialogRef = 
                 this.dialog

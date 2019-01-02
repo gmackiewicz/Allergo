@@ -2,6 +2,10 @@
 using Allergo.Appointment.Dto;
 using Allergo.Common.Contracts;
 using Allergo.Data.Contracts;
+using Allergo.Data.Models.Appointment;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Allergo.Appointment.Services
@@ -32,6 +36,25 @@ namespace Allergo.Appointment.Services
 
             await _dataService.GetSet<Data.Models.Appointment.Appointment>().AddAsync(newAppointment);
             await _dataService.SaveDbAsync();
+        }
+
+        public IList<AppointmentDto> GetAppointments(Guid userId)
+        {
+            var result =
+                _dataService
+                    .GetSet<Data.Models.Appointment.Appointment>()
+                    .Where(a => a.UserId == userId)
+                    .Select(a => new AppointmentDto
+                    {
+                        Date = a.Date,
+                        User = a.User,
+                        Doctor = a.Doctor,
+                        IsCancelled = a.IsCancelled,
+                        Diagnosis = a.Diagnosis
+                    })
+                    .ToList();
+
+            return result;
         }
     }
 }

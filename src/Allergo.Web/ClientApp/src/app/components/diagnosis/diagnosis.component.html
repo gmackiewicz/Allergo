@@ -1,0 +1,16 @@
+<div class="container admin">
+    <div class="row">
+        <div class="col-md-12">
+            <mat-accordion>
+                <mat-expansion-panel *ngFor="let appointment of appointments">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                        {{ getAppointmentTitle(appointment) }}
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    {{ appointment.diagnosis }}
+                </mat-expansion-panel>
+            </mat-accordion>
+        </div>
+    </div>
+</div>

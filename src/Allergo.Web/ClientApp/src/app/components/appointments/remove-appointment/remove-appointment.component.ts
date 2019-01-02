@@ -1,6 +1,5 @@
 import { Component, Inject } from "@angular/core";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
-import { Appointment } from "../../../models/appointment.model";
 import { Doctor } from "../../../models/doctor.model";
 import { ScheduleUtil } from "../../../utils/schedule.util";
 import { DoctorUtil } from "../../../utils/doctor.util";

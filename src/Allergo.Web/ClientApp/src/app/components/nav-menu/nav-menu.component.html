@@ -19,6 +19,11 @@
                 </li>
                 <li [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }'>
                     <a [routerLink]='["/appointments"]' (click)='collapse()'>
+                        <span class='glyphicon glyphicon-briefcase'></span> Umów się
+                    </a>
+                </li>
+                <li [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }'>
+                    <a [routerLink]='["/diagnosis"]' (click)='collapse()'>
                         <span class='glyphicon glyphicon-book'></span> Wizyty
                     </a>
                 </li>

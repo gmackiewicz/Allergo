@@ -16,6 +16,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { AppointmentsComponent } from './components/appointments/appointments.component';
 import { SetAppointmentComponent } from './components/appointments/set-appointment/set-appointment.component';
 import { RemoveAppointmentComponent } from './components/appointments/remove-appointment/remove-appointment.component';
+import { DiagnosisComponent } from './components/diagnosis/diagnosis.component';
 
 import { UsersComponent } from './components/admin/users/users.component';
 import { EditUserComponent } from './components/admin/edit-user/edit-user.component';
@@ -52,7 +53,8 @@ import { AppointmentService } from './services/appointment.service';
     SetAppointmentComponent,
     RemoveAppointmentComponent,
     AddAdmissionHourComponent,
-    RemoveAdmissionHourComponent
+    RemoveAdmissionHourComponent,
+    DiagnosisComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -61,6 +63,7 @@ import { AppointmentService } from './services/appointment.service';
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
       { path: 'appointments', component: AppointmentsComponent, canActivate: [AuthGuard] },
+      { path: 'diagnosis', component: DiagnosisComponent, canActivate: [AuthGuard] },
       { path: 'admin', component: AdminComponent, canActivate: [AuthGuard] },
       { path: 'admin/users', component: UsersComponent, canActivate: [AuthGuard] },
       { path: 'admin/user/:id', component: EditUserComponent, canActivate: [AuthGuard] },

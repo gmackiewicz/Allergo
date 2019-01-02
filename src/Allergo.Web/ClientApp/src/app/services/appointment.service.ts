@@ -5,6 +5,7 @@ import 'rxjs/add/operator/map'
 import { SetAppointmentRequest } from '../models/requests/set-appointment-request.model';
 import { CancelAppointmentRequest } from '../models/requests/cancel-appointment-request.model';
 import { BaseService } from './base.service';
+import { Appointment } from '../models/appointment.model';
 
 @Injectable()
 export class AppointmentService extends BaseService {
@@ -25,5 +26,11 @@ export class AppointmentService extends BaseService {
         let body = new CancelAppointmentRequest(appointmentId);
 
         return this.http.post(url, body, { headers: this.headers });
+    }
+
+    getUserAppointments() {
+        let url = this.baseUrl + 'Appointment/GetUserAppointment';
+
+        return this.http.get<Appointment[]>(url, { headers: this.headers });
     }
 }

@@ -35,5 +35,14 @@ namespace Allergo.Web.Controllers
         {
             return await Task.FromResult(Json("ok"));
         }
+
+        public async Task<JsonResult> GetUserAppointments()
+        {
+            var currentUser = await _userService.GetUserByName(HttpContext.User.Identity.Name);
+
+            var result = _appointmentService.GetAppointments(currentUser.Id);
+
+            return Json(result);
+        }
     }
 }
