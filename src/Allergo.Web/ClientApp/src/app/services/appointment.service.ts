@@ -29,7 +29,7 @@ export class AppointmentService extends BaseService {
     }
 
     getUserAppointments() {
-        let url = this.baseUrl + 'Appointment/GetUserAppointment';
+        let url = this.baseUrl + 'Appointment/GetUserAppointments';
 
         return this.http.get<Appointment[]>(url, { headers: this.headers });
     }

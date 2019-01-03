@@ -13,6 +13,14 @@ namespace Allergo.Web.Controllers
         private readonly IUserService _userService;
         private readonly IAppointmentService _appointmentService;
 
+        public AppointmentController(
+            IUserService userService,
+            IAppointmentService appointmentService)
+        {
+            _userService = userService;
+            _appointmentService = appointmentService;
+        }
+
         [HttpPost]
         public async Task<JsonResult> SetAppointment([FromBody] CreateAppointmentRequestViewModel request)
         {

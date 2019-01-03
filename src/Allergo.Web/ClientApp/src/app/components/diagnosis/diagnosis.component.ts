@@ -27,10 +27,11 @@ export class DiagnosisComponent {
             .getUserAppointments()
             .subscribe(result => {
                 this.appointments = result;
+                console.log(this.appointments);
             })
     }
 
     getAppointmentTitle(appointment: Appointment) {
-        return this.pipe.transform(appointment.date, 'long') + ' u ' + this.doctorUtil.getFullName(appointment.doctor)
+        return this.pipe.transform(appointment.date, 'medium') + ' u ' + this.doctorUtil.getFullName(appointment.doctor)
     }
 }

@@ -1,11 +1,14 @@
 /* MODULES */
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { MaterialModule } from './material.module';
+import { registerLocaleData } from '@angular/common';
+import localePl from '@angular/common/locales/pl';
+registerLocaleData(localePl);
 
 /* COMPONENTS */
 import { AppComponent } from './app.component';
@@ -81,7 +84,7 @@ import { AppointmentService } from './services/appointment.service';
     ScheduleService,
     DoctorService,
     AppointmentService,
-
+    { provide: LOCALE_ID, useValue: 'pl-PL'},
     JwtUtil,
     RolesUtil,
     AuthGuard,
