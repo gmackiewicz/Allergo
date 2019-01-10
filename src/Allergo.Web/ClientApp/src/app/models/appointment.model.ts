@@ -1,9 +1,12 @@
-export class Appointment{
+import { User } from "./user.model";
+
+export class Appointment {
     constructor(
         public id: string,
-        public hour: number,
-        public minutes: number,
-        public isCurrentUser: boolean,
-        public taken: boolean = true
-    ) {}
+        public date: Date,
+        public user: User,
+        public doctor: User,
+        public isCancelled: boolean,
+        public diagnosis: string
+    ) { }
 }

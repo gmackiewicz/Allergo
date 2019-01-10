@@ -1,6 +1,5 @@
 import { Component, Inject } from "@angular/core";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
-import { Appointment } from "../../../models/appointment.model";
 import { Doctor } from "../../../models/doctor.model";
 import { ScheduleUtil } from "../../../utils/schedule.util";
 import { DoctorUtil } from "../../../utils/doctor.util";
@@ -19,12 +18,16 @@ export class SetAppointmentComponent {
         private appointmentService: AppointmentService) {}
 
     submit = () => {
-        let newDate = new Date(this.data.day);
+        let tmpDate = new Date(this.data.day);
+        let newDate = new Date();
+        newDate.setUTCFullYear(tmpDate.getFullYear());
+        newDate.setUTCMonth(tmpDate.getMonth());
+        newDate.setUTCDate(tmpDate.getDate());
         newDate.setUTCHours(this.data.appointment.hour);
         newDate.setUTCMinutes(this.data.appointment.minutes);
 
         this.appointmentService
-            .setAppointment(newDate, '', this.data.doctor.id)
+            .setAppointment(newDate, this.data.doctor.id)
             .subscribe(result => this.dialogRef.close())
     }
 }

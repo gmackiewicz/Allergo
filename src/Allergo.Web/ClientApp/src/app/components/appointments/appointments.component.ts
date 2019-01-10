@@ -12,7 +12,7 @@ import { DoctorUtil } from '../../utils/doctor.util';
 
 import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs/operators';
-import { Appointment } from '../../models/appointment.model';
+import { ScheduleAppointment } from '../../models/schedule-appointment.model';
 import { SetAppointmentComponent } from './set-appointment/set-appointment.component';
 import { RemoveAppointmentComponent } from './remove-appointment/remove-appointment.component';
 import { DaySchedule } from '../../models/day-schedule.model';
@@ -72,29 +72,41 @@ export class AppointmentsComponent {
         this.scheduleService
             .getSchedule(doctorId, moment().format("YYYY-MM-DD"))
             .subscribe(response => {
-                this.schedule = response;
+                this.schedule = this.groupByDay(response);
                 this.schedule.daySchedules.forEach(ds => {
-                    ds.appointments.forEach(a => a.taken = true);
-                });
-                this.schedule.daySchedules.forEach(ds => {
-                    for (var h = 7; h < 19; h++) {
-                        for (var m = 0; m < 60; m += 15) {
-                            if (ds.appointments.filter(a => a.hour === h && a.minutes === m).length === 0) {
-                                ds.appointments.push(new Appointment('', h, m, false, false));
-                            }
-                        }
-                    }
-                    
+                    ds.appointments.forEach(a => a.taken = false);
                     ds.appointments.sort(function(a, b) {return a.minutes - b.minutes}).sort(function(a, b) {return a.hour - b.hour});
-                })
+                });
             });
+    }
+
+    groupByDay = (source: Schedule) => {
+        let result = new Schedule(source.doctor, null);
+        source.daySchedules.forEach(d => 
+        {
+            let existingDaySchedule = 
+                result.daySchedules !== null 
+                    ? result.daySchedules.find(x => x.day === d.day) 
+                    : undefined;
+                    
+            if (existingDaySchedule) {
+                existingDaySchedule.appointments = existingDaySchedule.appointments.concat(d.appointments);
+            } else {
+                if (!result.daySchedules) {
+                    result.daySchedules = new Array<DaySchedule>();
+                }
+                result.daySchedules.push(d);
+            }
+        })
+
+        return result;
     }
 
     appointmentClick = (appointment, day) => {
         this.openDialog(appointment, day);
     }
 
-    openDialog(appointment: Appointment, day: DaySchedule) {
+    openDialog(appointment: ScheduleAppointment, day: DaySchedule) {
         if (appointment.isCurrentUser) {
             const dialogRef = 
                 this.dialog

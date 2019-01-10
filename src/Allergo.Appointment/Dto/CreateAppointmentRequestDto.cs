@@ -1,10 +1,11 @@
 ﻿using System;
 
-namespace Allergo.Web.ViewModels.Appointment
+namespace Allergo.Appointment.Dto
 {
-    public class CreateAppointmentRequestViewModel
+    public class CreateAppointmentRequestDto
     {
         public DateTime Date { get; set; }
+        public Guid UserId { get; set; }
         public string DoctorId { get; set; }
     }
 }

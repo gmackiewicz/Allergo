@@ -1,11 +1,14 @@
 /* MODULES */
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { MaterialModule } from './material.module';
+import { registerLocaleData } from '@angular/common';
+import localePl from '@angular/common/locales/pl';
+registerLocaleData(localePl);
 
 /* COMPONENTS */
 import { AppComponent } from './app.component';
@@ -16,6 +19,8 @@ import { RegisterComponent } from './components/register/register.component';
 import { AppointmentsComponent } from './components/appointments/appointments.component';
 import { SetAppointmentComponent } from './components/appointments/set-appointment/set-appointment.component';
 import { RemoveAppointmentComponent } from './components/appointments/remove-appointment/remove-appointment.component';
+import { DiagnosisComponent } from './components/diagnosis/diagnosis.component';
+import { SetDiagnosisComponent } from './components/admin/set-diagnosis/set-diagnosis.component';
 
 import { UsersComponent } from './components/admin/users/users.component';
 import { EditUserComponent } from './components/admin/edit-user/edit-user.component';
@@ -36,6 +41,7 @@ import { AuthGuard } from './utils/authGuard.util';
 import { ScheduleUtil } from './utils/schedule.util';
 import { DoctorUtil } from './utils/doctor.util';
 import { AppointmentService } from './services/appointment.service';
+import { EditDiagnosisComponent } from './components/admin/set-diagnosis/edit-diagnosis/edit-diagnosis.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +58,10 @@ import { AppointmentService } from './services/appointment.service';
     SetAppointmentComponent,
     RemoveAppointmentComponent,
     AddAdmissionHourComponent,
-    RemoveAdmissionHourComponent
+    RemoveAdmissionHourComponent,
+    DiagnosisComponent,
+    SetDiagnosisComponent,
+    EditDiagnosisComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -61,10 +70,12 @@ import { AppointmentService } from './services/appointment.service';
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
       { path: 'appointments', component: AppointmentsComponent, canActivate: [AuthGuard] },
+      { path: 'diagnosis', component: DiagnosisComponent, canActivate: [AuthGuard] },
       { path: 'admin', component: AdminComponent, canActivate: [AuthGuard] },
       { path: 'admin/users', component: UsersComponent, canActivate: [AuthGuard] },
       { path: 'admin/user/:id', component: EditUserComponent, canActivate: [AuthGuard] },
-      { path: 'admin/schedule', component: ScheduleComponent, canActivate: [AuthGuard] }
+      { path: 'admin/schedule', component: ScheduleComponent, canActivate: [AuthGuard] },
+      { path: 'admin/set-diagnosis', component: SetDiagnosisComponent, canActivate: [AuthGuard] }
     ]),
     HttpClientModule,
     HttpModule,
@@ -78,7 +89,7 @@ import { AppointmentService } from './services/appointment.service';
     ScheduleService,
     DoctorService,
     AppointmentService,
-
+    { provide: LOCALE_ID, useValue: 'pl-PL'},
     JwtUtil,
     RolesUtil,
     AuthGuard,
@@ -89,7 +100,8 @@ import { AppointmentService } from './services/appointment.service';
     SetAppointmentComponent,
     RemoveAppointmentComponent,
     AddAdmissionHourComponent,
-    RemoveAdmissionHourComponent
+    RemoveAdmissionHourComponent,
+    EditDiagnosisComponent
   ],
   bootstrap: [AppComponent]
 })

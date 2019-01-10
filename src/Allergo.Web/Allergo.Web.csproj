@@ -28,6 +28,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Allergo.Account\Allergo.Account.csproj" />
+    <ProjectReference Include="..\Allergo.Appointment\Allergo.Appointment.csproj" />
     <ProjectReference Include="..\Allergo.Common\Allergo.Common.csproj" />
     <ProjectReference Include="..\Allergo.Schedule\Allergo.Schedule.csproj" />
   </ItemGroup>

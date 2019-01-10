@@ -4,14 +4,16 @@ using Allergo.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Allergo.Data.Migrations
 {
     [DbContext(typeof(AllergoDbContext))]
-    partial class AllergoDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190102173907_added-diagnosis")]
+    partial class addeddiagnosis
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
