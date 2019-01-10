@@ -38,14 +38,17 @@ namespace Allergo.Appointment.Services
             await _dataService.SaveDbAsync();
         }
 
-        public IList<AppointmentDto> GetAppointments(Guid userId)
+        public IList<AppointmentDto> GetUserAppointments(Guid userId, DateTime? beforeDate)
         {
             var result =
                 _dataService
                     .GetSet<Data.Models.Appointment.Appointment>()
-                    .Where(a => a.UserId == userId)
+                    .Where(a => 
+                        a.UserId == userId && 
+                        beforeDate.HasValue ? a.Date <= beforeDate : true)
                     .Select(a => new AppointmentDto
                     {
+                        Id = a.Id.ToString(),
                         Date = a.Date,
                         User = a.User,
                         Doctor = a.Doctor,
@@ -55,6 +58,39 @@ namespace Allergo.Appointment.Services
                     .ToList();
 
             return result;
+        }
+
+        public IList<AppointmentDto> GetDoctorAppointments(Guid doctorId, DateTime? beforeDate)
+        {
+            var result =
+                _dataService
+                    .GetSet<Data.Models.Appointment.Appointment>()
+                    .Where(a =>
+                        a.DoctorId == doctorId &&
+                        beforeDate.HasValue ? a.Date <= beforeDate : true)
+                    .Select(a => new AppointmentDto
+                    {
+                        Id = a.Id.ToString(),
+                        Date = a.Date,
+                        User = a.User,
+                        Doctor = a.Doctor,
+                        IsCancelled = a.IsCancelled,
+                        Diagnosis = a.Diagnosis
+                    })
+                    .ToList();
+
+            return result;
+        }
+
+        public async Task UpdateAppointmentAsync(Data.Models.Appointment.Appointment appointment)
+        {
+            _dataService.GetSet<Data.Models.Appointment.Appointment>().Update(appointment);
+            await _dataService.SaveDbAsync();
+        }
+
+        public async Task<Data.Models.Appointment.Appointment> GetAppointmentById(string id)
+        {
+            return await _dataService.GetSet<Data.Models.Appointment.Appointment>().FindAsync(new Guid(id));
         }
     }
 }

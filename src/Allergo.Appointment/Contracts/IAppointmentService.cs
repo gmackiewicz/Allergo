@@ -9,6 +9,12 @@ namespace Allergo.Appointment.Contracts
     {
         Task CreateAppointmentAsync(CreateAppointmentRequestDto request);
 
-        IList<AppointmentDto> GetAppointments(Guid userId);
+        IList<AppointmentDto> GetUserAppointments(Guid userId, DateTime? beforeDate);
+
+        IList<AppointmentDto> GetDoctorAppointments(Guid doctorId, DateTime? beforeDate);
+        
+        Task UpdateAppointmentAsync(Data.Models.Appointment.Appointment appointment);
+
+        Task<Data.Models.Appointment.Appointment> GetAppointmentById(string id);
     }
 }

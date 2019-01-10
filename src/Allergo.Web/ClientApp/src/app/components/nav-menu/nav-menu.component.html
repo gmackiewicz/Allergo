@@ -17,17 +17,17 @@
                         <span class='glyphicon glyphicon-home'></span> Home
                     </a>
                 </li>
-                <li [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }'>
+                <li [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }' *ngIf='isPatient()'>
                     <a [routerLink]='["/appointments"]' (click)='collapse()'>
                         <span class='glyphicon glyphicon-briefcase'></span> Umów się
                     </a>
                 </li>
-                <li [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }'>
+                <li [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }' *ngIf='isPatient()'>
                     <a [routerLink]='["/diagnosis"]' (click)='collapse()'>
                         <span class='glyphicon glyphicon-book'></span> Wizyty
                     </a>
                 </li>
-                <li [routerLinkActive]='["link"]' [routerLinkActiveOptions]='{ exact: true }'>
+                <li [routerLinkActive]='["link"]' [routerLinkActiveOptions]='{ exact: true }' *ngIf='isAdmin() || isDoctor()'>
                     <a [routerLink]='["/admin"]' (click)='collapse()'>
                         <span class='glyphicon glyphicon-cog'></span> Zarządzaj
                     </a>
@@ -40,6 +40,11 @@
                         <li [routerLinkActive]='["link"]' [routerLinkActiveOptions]='{ exact: true }' *ngIf='isDoctor()'>
                             <a [routerLink]='["/admin/schedule"]' (click)='collapse()'>
                                 <span class='glyphicon glyphicon-calendar'></span> Grafik
+                            </a>
+                        </li>
+                        <li [routerLinkActive]='["link"]' [routerLinkActiveOptions]='{ exact: true }' *ngIf='isDoctor()'>
+                            <a [routerLink]='["/admin/set-diagnosis"]' (click)='collapse()'>
+                                <span class='glyphicon glyphicon-calendar'></span> Wprowadź badania
                             </a>
                         </li>
                     </ul>

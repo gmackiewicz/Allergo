@@ -10,6 +10,6 @@ export class RolesUtil {
     isInRole(roleName) {
         let decodedToken = this.jwtUtil.decode(localStorage.getItem('token'));
 
-        return decodedToken.role === roleName;
+        return decodedToken.role.toLowerCase() === roleName.toLowerCase();
     }
 }

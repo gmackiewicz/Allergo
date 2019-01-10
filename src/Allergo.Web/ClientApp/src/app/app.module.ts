@@ -20,6 +20,7 @@ import { AppointmentsComponent } from './components/appointments/appointments.co
 import { SetAppointmentComponent } from './components/appointments/set-appointment/set-appointment.component';
 import { RemoveAppointmentComponent } from './components/appointments/remove-appointment/remove-appointment.component';
 import { DiagnosisComponent } from './components/diagnosis/diagnosis.component';
+import { SetDiagnosisComponent } from './components/admin/set-diagnosis/set-diagnosis.component';
 
 import { UsersComponent } from './components/admin/users/users.component';
 import { EditUserComponent } from './components/admin/edit-user/edit-user.component';
@@ -40,6 +41,7 @@ import { AuthGuard } from './utils/authGuard.util';
 import { ScheduleUtil } from './utils/schedule.util';
 import { DoctorUtil } from './utils/doctor.util';
 import { AppointmentService } from './services/appointment.service';
+import { EditDiagnosisComponent } from './components/admin/set-diagnosis/edit-diagnosis/edit-diagnosis.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +59,9 @@ import { AppointmentService } from './services/appointment.service';
     RemoveAppointmentComponent,
     AddAdmissionHourComponent,
     RemoveAdmissionHourComponent,
-    DiagnosisComponent
+    DiagnosisComponent,
+    SetDiagnosisComponent,
+    EditDiagnosisComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -70,7 +74,8 @@ import { AppointmentService } from './services/appointment.service';
       { path: 'admin', component: AdminComponent, canActivate: [AuthGuard] },
       { path: 'admin/users', component: UsersComponent, canActivate: [AuthGuard] },
       { path: 'admin/user/:id', component: EditUserComponent, canActivate: [AuthGuard] },
-      { path: 'admin/schedule', component: ScheduleComponent, canActivate: [AuthGuard] }
+      { path: 'admin/schedule', component: ScheduleComponent, canActivate: [AuthGuard] },
+      { path: 'admin/set-diagnosis', component: SetDiagnosisComponent, canActivate: [AuthGuard] }
     ]),
     HttpClientModule,
     HttpModule,
@@ -95,7 +100,8 @@ import { AppointmentService } from './services/appointment.service';
     SetAppointmentComponent,
     RemoveAppointmentComponent,
     AddAdmissionHourComponent,
-    RemoveAdmissionHourComponent
+    RemoveAdmissionHourComponent,
+    EditDiagnosisComponent
   ],
   bootstrap: [AppComponent]
 })

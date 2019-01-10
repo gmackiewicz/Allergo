@@ -1,0 +1,11 @@
+<div class="container admin">
+    <div class="row">
+        <div class="col-md-12">
+            <mat-list role="list">
+                <mat-list-item role="listitem" *ngFor="let appointment of appointments" (click)='openDialog(appointment)'>
+                        {{ getAppointmentTitle(appointment) }}
+                </mat-list-item>
+            </mat-list>
+        </div>
+    </div>
+</div>

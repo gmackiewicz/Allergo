@@ -4,6 +4,7 @@ using Allergo.Appointment.Dto;
 using Allergo.Web.ViewModels.Appointment;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Threading.Tasks;
 
 namespace Allergo.Web.Controllers
@@ -44,13 +45,31 @@ namespace Allergo.Web.Controllers
             return await Task.FromResult(Json("ok"));
         }
 
-        public async Task<JsonResult> GetUserAppointments()
+        public async Task<JsonResult> GetUserCompletedAppointments()
         {
             var currentUser = await _userService.GetUserByName(HttpContext.User.Identity.Name);
 
-            var result = _appointmentService.GetAppointments(currentUser.Id);
+            var result = _appointmentService.GetUserAppointments(currentUser.Id, DateTime.Now);
 
             return Json(result);
+        }
+
+        public async Task<JsonResult> GetDoctorCompletedAppointments()
+        {
+            var currentUser = await _userService.GetUserByName(HttpContext.User.Identity.Name);
+
+            var result = _appointmentService.GetDoctorAppointments(currentUser.Id, DateTime.Now);
+
+            return Json(result);
+        }
+
+        public async Task<JsonResult> SetAppointmentDiagnosis([FromBody] CreateAppointmentDiagnosisRequestViewModel request)
+        {
+            var appointment = await _appointmentService.GetAppointmentById(request.AppointmentId);
+            appointment.Diagnosis = request.Diagnosis;
+            await _appointmentService.UpdateAppointmentAsync(appointment);
+
+            return await Task.FromResult(Json("ok"));
         }
     }
 }

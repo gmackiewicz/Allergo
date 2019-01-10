@@ -34,4 +34,8 @@ export class NavMenuComponent {
     isDoctor() {
         return this.roles.isInRole('Doctor');
     }
+
+    isPatient() {
+        return this.roles.isInRole('Patient');
+    }
 }

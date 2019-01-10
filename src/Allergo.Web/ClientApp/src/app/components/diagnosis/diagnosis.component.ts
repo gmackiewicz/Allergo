@@ -24,10 +24,9 @@ export class DiagnosisComponent {
 
     getAppointments(): any {
         this.appointmentService
-            .getUserAppointments()
+            .getUserCompletedAppointments()
             .subscribe(result => {
                 this.appointments = result;
-                console.log(this.appointments);
             })
     }
 

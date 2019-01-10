@@ -4,6 +4,7 @@ import 'rxjs/add/operator/map'
 
 import { SetAppointmentRequest } from '../models/requests/set-appointment-request.model';
 import { CancelAppointmentRequest } from '../models/requests/cancel-appointment-request.model';
+import { SetAppointmentDiagnosisRequest } from '../models/requests/set-appointment-diagnosis-request.model';
 import { BaseService } from './base.service';
 import { Appointment } from '../models/appointment.model';
 
@@ -28,9 +29,22 @@ export class AppointmentService extends BaseService {
         return this.http.post(url, body, { headers: this.headers });
     }
 
-    getUserAppointments() {
-        let url = this.baseUrl + 'Appointment/GetUserAppointments';
+    getUserCompletedAppointments() {
+        let url = this.baseUrl + 'Appointment/GetUserCompletedAppointments';
 
         return this.http.get<Appointment[]>(url, { headers: this.headers });
+    }
+
+    getDoctorCompletedAppointments() {
+        let url = this.baseUrl + 'Appointment/GetDoctorCompletedAppointments';
+
+        return this.http.get<Appointment[]>(url, { headers: this.headers });
+    }
+
+    setAppointmentDiagnosis(appointmentId, diagnosis) {
+        let url = this.baseUrl + 'Appointment/SetAppointmentDiagnosis';
+        let body = new SetAppointmentDiagnosisRequest(appointmentId, diagnosis);
+
+        return this.http.post(url, body, { headers: this.headers });
     }
 }
