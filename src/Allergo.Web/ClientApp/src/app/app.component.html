@@ -1,10 +1,22 @@
-<div class='container-fluid'>
-  <div class='row'>
-    <div class='col-sm-3' *ngIf="authService.isLoggedIn()">
-      <app-nav-menu></app-nav-menu>
-    </div>
-    <div [className]="authService.isLoggedIn() ? 'col-sm-9 body-content' : 'col-sm-12 body-content'">
-      <router-outlet></router-outlet>
+<nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0" *ngIf="authService.isLoggedIn()">
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0" [routerLink]='["/"]'>Allergo</a>
+    <div class="w-100"></div>
+    <ul class="navbar-nav px-3">
+      <li class="nav-item text-nowrap" *ngIf="authService.isLoggedIn()">
+        <a class="nav-link" href="#" (click)='logout()'><span class='glyphicon glyphicon-log-out'></span> Wyloguj się</a>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="container-fluid">
+    <div class="row">
+      <nav class="col-md-2 d-none d-md-block bg-light sidebar" *ngIf="authService.isLoggedIn()">
+        <app-nav-menu></app-nav-menu>
+        
+      </nav>
+
+      <main role="main" [className]="authService.isLoggedIn() ? 'col-sm-9 ml-5 pt-3 px-4 body-content' : 'col-sm-12 body-content'">
+        <router-outlet></router-outlet>
+      </main>
     </div>
   </div>
-</div>
