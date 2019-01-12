@@ -3,8 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from './../../../models/user.model';
 import { UsersService } from './../../../services/users.service';
-import Rolemodel = require("../../../models/role.model");
-import Role = Rolemodel.Role;
+import { Role } from './../../../models/role.model';
 
 @Component({
     selector: 'app-edit-user',

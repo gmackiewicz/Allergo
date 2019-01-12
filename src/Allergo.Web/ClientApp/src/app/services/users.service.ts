@@ -4,8 +4,7 @@ import 'rxjs/add/operator/map'
 
 import { User } from './../models/user.model';
 import { EditUserRequest } from '../models/requests/edit-user-request.model';
-import Rolemodel = require("../models/role.model");
-import Role = Rolemodel.Role;
+import { Role } from '../models/role.model';
 import { BaseService } from './base.service';
 
 @Injectable()

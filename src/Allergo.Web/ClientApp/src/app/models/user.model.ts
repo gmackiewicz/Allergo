@@ -1,5 +1,4 @@
-import Rolemodel = require("./role.model");
-import Role = Rolemodel.Role;
+import { Role } from "./role.model";
 
 export class User {
     constructor(
