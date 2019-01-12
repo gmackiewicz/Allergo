@@ -29,6 +29,12 @@ export class AppointmentService extends BaseService {
         return this.http.post(url, body, { headers: this.headers });
     }
 
+    getUserAppointments() {
+        let url = this.baseUrl + 'Appointment/GetAppointments';
+
+        return this.http.get<Appointment[]>(url, { headers: this.headers });
+    }
+
     getUserCompletedAppointments() {
         let url = this.baseUrl + 'Appointment/GetUserCompletedAppointments';
 

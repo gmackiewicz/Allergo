@@ -46,7 +46,7 @@ namespace Allergo.Web.Controllers
             await _appointmentService.CancelAppointment(model);
         }
 
-        public async Task<JsonResult> GetAppointments([FromBody] GetAppointmentsRequestViewModel request)
+        public async Task<JsonResult> GetAppointments()
         {
             var currentUser = await _userService.GetUserByName(HttpContext.User.Identity.Name);
 

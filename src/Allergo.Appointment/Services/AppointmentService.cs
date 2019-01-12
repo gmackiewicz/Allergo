@@ -48,6 +48,7 @@ namespace Allergo.Appointment.Services
                     .Where(a => 
                         a.UserId == userId && 
                         beforeDate.HasValue ? a.Date <= beforeDate : true)
+                    .Include(x => x.Doctor)
                     .Select(a => Mapper.Map<AppointmentDto>(a))
                     .ToList();
 
@@ -62,6 +63,7 @@ namespace Allergo.Appointment.Services
                     .Where(a =>
                         a.DoctorId == doctorId &&
                         beforeDate.HasValue ? a.Date <= beforeDate : true)
+                    .Include(x => x.User)
                     .Select(a => Mapper.Map<AppointmentDto>(a))
                     .ToList();
 
