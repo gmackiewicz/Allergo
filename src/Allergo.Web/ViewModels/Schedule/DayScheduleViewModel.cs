@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Allergo.Web.ViewModels.Appointment;
 
 namespace Allergo.Web.ViewModels.Schedule
 {
@@ -8,7 +7,7 @@ namespace Allergo.Web.ViewModels.Schedule
     {
         public string Id { get; set; }
         public DateTime Day { get; set; }
-        public List<AppointmentViewModel> Appointments { get; set; }
+        public List<DayScheduleTermViewModel> Terms { get; set; }
         public TimeSpan StartTime { get; set; }
         public TimeSpan EndTime { get; set; }
     }

@@ -16,7 +16,7 @@ export class AppointmentService extends BaseService {
     }
     
     setAppointment(date, doctorId) {
-        let url = this.baseUrl + 'Appointment/SetAppointment';
+        let url = this.baseUrl + 'Appointment/CreateAppointment';
         let body = new SetAppointmentRequest(date, doctorId);
 
         return this.http.post(url, body, { headers: this.headers });
@@ -27,6 +27,12 @@ export class AppointmentService extends BaseService {
         let body = new CancelAppointmentRequest(appointmentId);
 
         return this.http.post(url, body, { headers: this.headers });
+    }
+
+    getUserAppointments() {
+        let url = this.baseUrl + 'Appointment/GetAppointments';
+
+        return this.http.get<Appointment[]>(url, { headers: this.headers });
     }
 
     getUserCompletedAppointments() {

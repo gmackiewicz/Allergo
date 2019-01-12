@@ -13,6 +13,7 @@ namespace Allergo.Web.MappingProfiles
             CreateMap<DayScheduleDto, DayScheduleViewModel>().ReverseMap();
             CreateMap<ScheduleDto, ScheduleViewModel>().ReverseMap();
             CreateMap<AdmissionHours, DayScheduleDto>().ReverseMap();
+            CreateMap<DayScheduleTermViewModel, DayScheduleTermDto>().ReverseMap();
         }
     }
 }

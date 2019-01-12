@@ -2,19 +2,18 @@
 using Allergo.Common.Enums;
 using Allergo.Schedule.Contracts;
 using Allergo.Schedule.Dto;
-using Allergo.Web.ViewModels.Appointment;
 using Allergo.Web.ViewModels.Schedule;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 
 namespace Allergo.Web.Controllers
 {
+    [Authorize]
     public class ScheduleController : AllergoBaseController
     {
         private readonly IScheduleService _scheduleService;
@@ -32,21 +31,12 @@ namespace Allergo.Web.Controllers
         public async Task<JsonResult> GetSchedule([FromBody]GetScheduleRequestViewModel request)
         {
             var requestDto = Mapper.Map<GetScheduleRequestViewModel, GetScheduleRequestDto>(request);
+            var currentUser = await _userService.GetUserByName(HttpContext.User.Identity.Name);
+            requestDto.CurrentUser = currentUser;
+
             var modelDto = await _scheduleService.GetScheduleAsync(requestDto);
 
             var model = Mapper.Map<ScheduleDto, ScheduleViewModel>(modelDto);
-            foreach (var daySchedule in model.DaySchedules)
-            {
-                daySchedule.Appointments = new List<AppointmentViewModel>();
-                for (TimeSpan i = daySchedule.StartTime; i < daySchedule.EndTime; i= i.Add(TimeSpan.FromMinutes(15)))
-                {
-                    daySchedule.Appointments.Add(new AppointmentViewModel
-                    {
-                        Hour = i.Hours,
-                        Minutes = i.Minutes
-                    });
-                }
-            }
 
             return Json(model);
         }
@@ -59,7 +49,8 @@ namespace Allergo.Web.Controllers
             var requestDto = new GetScheduleRequestDto
             {
                 DoctorId = currentUser.Id.ToString(),
-                DayFrom = DateTime.UtcNow
+                DayFrom = DateTime.UtcNow,
+                CurrentUser = currentUser
             };
 
             var modelDto = await _scheduleService.GetScheduleAsync(requestDto);

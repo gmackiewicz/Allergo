@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Allergo.Schedule.Dto
 {
@@ -8,5 +9,6 @@ namespace Allergo.Schedule.Dto
         public DateTime Day { get; set; }
         public TimeSpan StartTime { get; set; }
         public TimeSpan EndTime { get; set; }
+        public List<DayScheduleTermDto> Terms { get; set; }
     }
 }
