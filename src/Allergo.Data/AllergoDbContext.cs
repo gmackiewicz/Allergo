@@ -11,21 +11,23 @@ namespace Allergo.Data
     {
         public DbSet<AdmissionHours> AdmissionHours { get; set; }
         public DbSet<Appointment> Appointments { get; set; }
+
         public AllergoDbContext(DbContextOptions options) : base(options)
         {
         }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             ConfigureAppointmentModel(builder);
 
             ConfigureAdmissionHoursModel(builder);
 
-            ConfigureAllergoRoles(builder);
-         
+            InitializeAllergoRoles(builder);
+
             base.OnModelCreating(builder);
         }
-        
-        private void ConfigureAllergoRoles(ModelBuilder builder)
+
+        private void InitializeAllergoRoles(ModelBuilder builder)
         {
             builder.Entity<AllergoRole>().HasData(new AllergoRole
             {
