@@ -19,7 +19,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Allergo.Schedule", "src\All
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Allergo.SeleniumTests", "tests\Allergo.SeleniumTests\Allergo.SeleniumTests.csproj", "{CD6F9433-86F0-4EA0-8B90-5B4EA5509380}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Allergo.Appointment", "src\Allergo.Appointment\Allergo.Appointment.csproj", "{90A9AAEA-2532-4246-B549-577939142C20}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Allergo.Appointment", "src\Allergo.Appointment\Allergo.Appointment.csproj", "{90A9AAEA-2532-4246-B549-577939142C20}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Allergo.Home", "src\Allergo.Home\Allergo.Home.csproj", "{DEFDFAFA-F0D7-4B91-AFBA-F1BC099AF954}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,6 +57,10 @@ Global
 		{90A9AAEA-2532-4246-B549-577939142C20}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{90A9AAEA-2532-4246-B549-577939142C20}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{90A9AAEA-2532-4246-B549-577939142C20}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DEFDFAFA-F0D7-4B91-AFBA-F1BC099AF954}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DEFDFAFA-F0D7-4B91-AFBA-F1BC099AF954}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DEFDFAFA-F0D7-4B91-AFBA-F1BC099AF954}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DEFDFAFA-F0D7-4B91-AFBA-F1BC099AF954}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -67,6 +73,7 @@ Global
 		{FEF32E3B-97D4-4E47-9DE6-91657BDF45EF} = {AF11B6DA-4622-49BB-95E3-6253F9D7B01D}
 		{CD6F9433-86F0-4EA0-8B90-5B4EA5509380} = {9FCFC062-85E1-4D42-9223-FB832B9888FA}
 		{90A9AAEA-2532-4246-B549-577939142C20} = {AF11B6DA-4622-49BB-95E3-6253F9D7B01D}
+		{DEFDFAFA-F0D7-4B91-AFBA-F1BC099AF954} = {AF11B6DA-4622-49BB-95E3-6253F9D7B01D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C0DDAAC8-9033-4D70-9179-6D14C192854C}

@@ -10,5 +10,6 @@ namespace Allergo.Data.Models.Account
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public virtual ICollection<AdmissionHours> AdmissionHours { get; set; }
+        public virtual ICollection<IdentityUserRole<Guid>> UserRoles { get; set; }
     }
 }

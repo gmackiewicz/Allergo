@@ -29,11 +29,12 @@ import { ScheduleComponent } from './components/admin/schedule/schedule.componen
 import { AddAdmissionHourComponent } from './components/admin/schedule/add-admission-hour/add-addmission-hour.component';
 import { RemoveAdmissionHourComponent } from './components/admin/schedule/remove-admission-hour/remove-admission-hour.component';
 
-/* SERVICES ANT UTILS */
+/* SERVICES AND UTILS */
 import { AuthService } from './services/auth.service';
 import { UsersService } from './services/users.service';
 import { ScheduleService } from './services/schedule.service';
 import { DoctorService } from './services/doctor.service';
+import { HomeService } from './services/home.service';
 
 import { JwtUtil } from './utils/jwt.util';
 import { RolesUtil } from './utils/roles.util';
@@ -89,7 +90,8 @@ import { EditDiagnosisComponent } from './components/admin/set-diagnosis/edit-di
     ScheduleService,
     DoctorService,
     AppointmentService,
-    { provide: LOCALE_ID, useValue: 'pl-PL'},
+      { provide: LOCALE_ID, useValue: 'pl-PL' },
+    HomeService,
     JwtUtil,
     RolesUtil,
     AuthGuard,

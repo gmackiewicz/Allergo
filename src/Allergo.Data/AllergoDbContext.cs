@@ -18,13 +18,15 @@ namespace Allergo.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            base.OnModelCreating(builder);
+
             ConfigureAppointmentModel(builder);
 
             ConfigureAdmissionHoursModel(builder);
 
-            InitializeAllergoRoles(builder);
+            ConfigureAllergoUserModel(builder);
 
-            base.OnModelCreating(builder);
+            InitializeAllergoRoles(builder);
         }
 
         private void InitializeAllergoRoles(ModelBuilder builder)
@@ -73,6 +75,13 @@ namespace Allergo.Data
                 .HasOne(x => x.Doctor)
                 .WithMany(x => x.AdmissionHours)
                 .OnDelete(DeleteBehavior.Restrict);
+        }
+
+        private void ConfigureAllergoUserModel(ModelBuilder builder)
+        {
+            builder.Entity<AllergoUser>()
+                .HasMany(x => x.UserRoles)
+                .WithOne().HasForeignKey(x => x.UserId).IsRequired();
         }
     }
 }
