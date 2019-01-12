@@ -40,7 +40,7 @@ namespace Allergo.Web.Controllers
             await Task.CompletedTask;
         }
 
-        public async Task<JsonResult> GetAppointments([FromBody]GetAppointmentsRequestViewModel request)
+        public async Task<JsonResult> GetAppointments([FromBody] GetAppointmentsRequestViewModel request)
         {
             return await Task.FromResult(Json("ok"));
         }
