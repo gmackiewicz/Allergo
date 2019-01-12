@@ -1,18 +1,17 @@
-﻿using System;
-using Allergo.Account.Contracts;
+﻿using Allergo.Account.Contracts;
+using Allergo.Common.Enums;
 using Allergo.Schedule.Contracts;
 using Allergo.Schedule.Dto;
 using Allergo.Web.ViewModels.Appointment;
 using Allergo.Web.ViewModels.Schedule;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
-using Allergo.Common.Enums;
-using Allergo.Web.ViewModels.Appointment;
-using Microsoft.AspNetCore.Authorization;
 
 namespace Allergo.Web.Controllers
 {

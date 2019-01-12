@@ -1,7 +1,5 @@
 ﻿using Allergo.Data.Models.Account;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Allergo.Appointment.Dto
 {

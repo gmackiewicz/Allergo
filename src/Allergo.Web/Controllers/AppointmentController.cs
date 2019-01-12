@@ -25,24 +25,34 @@ namespace Allergo.Web.Controllers
         [HttpPost]
         public async Task<JsonResult> SetAppointment([FromBody] CreateAppointmentRequestViewModel request)
         {
-            var model = Mapper.Map<CreateAppointmentRequestViewModel, CreateAppointmentRequestDto>(request);
+            var model = Mapper.Map<CreateAppointmentRequestDto>(request);
 
             var currentUser = await _userService.GetUserByName(HttpContext.User.Identity.Name);
             model.UserId = currentUser.Id;
 
             await _appointmentService.CreateAppointmentAsync(model);
+
             return await Task.FromResult(Json("ok"));
         }
 
         [HttpPost]
         public async Task CancelAppointment([FromBody] CancelAppointmentRequestViewModel request)
         {
-            await Task.CompletedTask;
+            var currentUser = await _userService.GetUserByName(HttpContext.User.Identity.Name);
+
+            var model = Mapper.Map<CancelAppointmentRequestDto>(request);
+            model.UserId = currentUser.Id.ToString();
+
+            await _appointmentService.CancelAppointment(model);
         }
 
-        public async Task<JsonResult> GetAppointments([FromBody]GetAppointmentsRequestViewModel request)
+        public async Task<JsonResult> GetAppointments([FromBody] GetAppointmentsRequestViewModel request)
         {
-            return await Task.FromResult(Json("ok"));
+            var currentUser = await _userService.GetUserByName(HttpContext.User.Identity.Name);
+
+            var result = _appointmentService.GetUserAppointments(currentUser.Id, null);
+
+            return Json(result);
         }
 
         public async Task<JsonResult> GetUserCompletedAppointments()

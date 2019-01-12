@@ -1,6 +1,6 @@
-﻿namespace Allergo.Web.ViewModels.Appointment
+﻿namespace Allergo.Appointment.Dto
 {
-    public class CreateAppointmentDiagnosisRequestViewModel
+    public class CreateAppointmentDiagnosisRequestDto
     {
         public string AppointmentId { get; set; }
         public string Diagnosis { get; set; }

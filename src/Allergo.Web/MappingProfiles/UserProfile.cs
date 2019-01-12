@@ -9,7 +9,7 @@ namespace Allergo.Web.MappingProfiles
     {
         public UserProfile()
         {
-            CreateMap<EditUserRequestViewModel, EditUserRequestDto>();
+            CreateMap<EditUserRequestViewModel, EditUserRequestDto>().ReverseMap();
             CreateMap<AllergoUser, UserDto>();
         }
     }

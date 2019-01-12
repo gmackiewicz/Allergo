@@ -1,6 +1,12 @@
 ﻿using Allergo.Account;
+using Allergo.Appointment;
+using Allergo.Common;
 using Allergo.Data;
 using Allergo.Data.Models.Account;
+using Allergo.Schedule;
+using Allergo.Web.MappingProfiles;
+using Allergo.Web.Middleware;
+using AutoMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -13,12 +19,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Text;
-using Allergo.Appointment;
-using Allergo.Common;
-using Allergo.Schedule;
-using Allergo.Web.MappingProfiles;
-using Allergo.Web.Middleware;
-using AutoMapper;
 
 namespace Allergo.Web
 {
@@ -115,7 +115,8 @@ namespace Allergo.Web
             services.RegisterScheduleModule();
             services.RegisterAppointmentModule();
         }
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, UserManager<AllergoUser> userManager)
         {
             //if (env.IsDevelopment())
             //{
@@ -159,7 +160,10 @@ namespace Allergo.Web
                 cfg.AddProfile(new CommonProfile());
                 cfg.AddProfile(new ScheduleProfile());
                 cfg.AddProfile(new UserProfile());
+                cfg.AddProfile(new AppointmentProfile());
             });
+
+            AllergoDbInitializer.SeedUsers(userManager);
         }
 
         private static void UpdateDatabase(IApplicationBuilder app)
