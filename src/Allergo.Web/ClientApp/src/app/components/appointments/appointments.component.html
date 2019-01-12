@@ -19,17 +19,15 @@
                             {{ scheduleUtil.getDayName(day.day) }}
                             </mat-panel-title>
                         </mat-expansion-panel-header>
-                        <button 
-                            *ngFor="let appointment of day.appointments"
-                            type="submit" 
-                            mat-flat-button [disabled]="appointment.taken && !appointment.isCurrentUser" 
-                            [ngClass]="{ 'mat-primary appointment-button': appointment.isCurrentUser, 'mat-basic appointment-button': !appointment.isCurrentUser }"
-                            (click)="appointmentClick(appointment, day)">
-                            {{ scheduleUtil.getClockFormat(appointment.hour, appointment.minutes) }}
+                        <button *ngFor="let term of day.terms"
+                                type="submit"
+                                mat-flat-button [disabled]="term.isTaken && !term.isTakenByCurrentUser"
+                                [ngClass]="{ 'mat-accent appointment-button': term.isTakenByCurrentUser, 'mat-basic appointment-button': !term.isTakenByCurrentUser }"
+                                (click)="appointmentClick(term, day)">
+                            {{ scheduleUtil.getClockFormat(term.hour, term.minutes) }}
                         </button>
                     </mat-expansion-panel>
                 </mat-accordion>
             </div>
         </div>
     </div>
-    

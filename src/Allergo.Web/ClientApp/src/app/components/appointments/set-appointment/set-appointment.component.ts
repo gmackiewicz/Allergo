@@ -23,8 +23,8 @@ export class SetAppointmentComponent {
         newDate.setUTCFullYear(tmpDate.getFullYear());
         newDate.setUTCMonth(tmpDate.getMonth());
         newDate.setUTCDate(tmpDate.getDate());
-        newDate.setUTCHours(this.data.appointment.hour);
-        newDate.setUTCMinutes(this.data.appointment.minutes);
+        newDate.setUTCHours(this.data.term.hour);
+        newDate.setUTCMinutes(this.data.term.minutes);
         newDate.setUTCSeconds(0);
 
         this.appointmentService

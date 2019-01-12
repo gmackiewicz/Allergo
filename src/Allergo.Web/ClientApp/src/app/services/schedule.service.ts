@@ -19,7 +19,7 @@ export class ScheduleService extends BaseService {
         let url = this.baseUrl + 'Schedule/GetSchedule';
         let getScheduleModel = new ScheduleRequest(doctorId, dayFrom);
 
-        return this.http.post<Schedule>(url, getScheduleModel);
+        return this.http.post<Schedule>(url, getScheduleModel, { headers: this.headers });
     }
 
     getAdmissionHours() {

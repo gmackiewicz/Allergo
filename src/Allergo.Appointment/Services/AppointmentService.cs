@@ -39,6 +39,7 @@ namespace Allergo.Appointment.Services
 
             var collidingAppointment = await appointmentSet
                 .FirstOrDefaultAsync(x =>
+                    !x.IsCancelled &&
                     x.Date.Day == request.Date.Day && x.Date.Hour == request.Date.Hour &&
                     x.Date.Minute == request.Date.Minute);
 

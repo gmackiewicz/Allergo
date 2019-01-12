@@ -11,11 +11,10 @@ import { ScheduleUtil } from '../../utils/schedule.util';
 import { DoctorUtil } from '../../utils/doctor.util';
 
 import { Observable } from 'rxjs/Observable';
-import { map } from 'rxjs/operators';
-import { ScheduleAppointment } from '../../models/schedule-appointment.model';
 import { SetAppointmentComponent } from './set-appointment/set-appointment.component';
 import { RemoveAppointmentComponent } from './remove-appointment/remove-appointment.component';
 import { DaySchedule } from '../../models/day-schedule.model';
+import { ScheduleTerm } from '../../models/schedule-term.model';
 
 import * as moment from 'moment';
 
@@ -72,10 +71,10 @@ export class AppointmentsComponent {
         this.scheduleService
             .getSchedule(doctorId, moment().format("YYYY-MM-DD"))
             .subscribe(response => {
+                console.log(response);
                 this.schedule = this.groupByDay(response);
                 this.schedule.daySchedules.forEach(ds => {
-                    ds.appointments.forEach(a => a.taken = false);
-                    ds.appointments.sort(function(a, b) {return a.minutes - b.minutes}).sort(function(a, b) {return a.hour - b.hour});
+                    ds.terms.sort(function(a, b) {return a.minutes - b.minutes}).sort(function(a, b) {return a.hour - b.hour});
                 });
             });
     }
@@ -90,7 +89,7 @@ export class AppointmentsComponent {
                     : undefined;
                     
             if (existingDaySchedule) {
-                existingDaySchedule.appointments = existingDaySchedule.appointments.concat(d.appointments);
+                existingDaySchedule.terms = existingDaySchedule.terms.concat(d.terms);
             } else {
                 if (!result.daySchedules) {
                     result.daySchedules = new Array<DaySchedule>();
@@ -106,8 +105,8 @@ export class AppointmentsComponent {
         this.openDialog(appointment, day);
     }
 
-    openDialog(appointment: ScheduleAppointment, day: DaySchedule) {
-        if (appointment.isCurrentUser) {
+    openDialog(term: ScheduleTerm, day: DaySchedule) {
+        if (term.isTakenByCurrentUser) {
             const dialogRef = 
                 this.dialog
                     .open(RemoveAppointmentComponent, {
@@ -115,12 +114,12 @@ export class AppointmentsComponent {
                             width: '400px',
                             data: { 
                                 doctor: this.selectedDoctor, 
-                                appointment: appointment
+                                term: term
                             }
                         })
                     .afterClosed()
                     .subscribe(result => this.getSchedule(this.selectedDoctor.id));
-        } else {
+        } else if (!term.isTaken) {
             const dialogRef = 
                 this.dialog
                     .open(SetAppointmentComponent, {
@@ -128,7 +127,7 @@ export class AppointmentsComponent {
                             width: '400px',
                             data: { 
                                 doctor: this.selectedDoctor, 
-                                appointment: appointment,
+                                term: term,
                                 day: day.day
                             }
                         })
