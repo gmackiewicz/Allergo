@@ -159,6 +159,7 @@ namespace Allergo.Web
                 cfg.AddProfile(new CommonProfile());
                 cfg.AddProfile(new ScheduleProfile());
                 cfg.AddProfile(new UserProfile());
+                cfg.AddProfile(new AppointmentProfile());
             });
         }
 
