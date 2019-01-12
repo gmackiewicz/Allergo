@@ -29,14 +29,33 @@ namespace Allergo.Appointment.Services
         {
             var doctor = await _doctorService.GetDoctorAsync(request.DoctorId);
 
+            if (doctor == null)
+            {
+                throw new InvalidDoctorIdException();
+            }
+
+            var appointmentSet = _dataService.GetSet<Data.Models.Appointment.Appointment>();
+
+
+            var collidingAppointment = await appointmentSet
+                .FirstOrDefaultAsync(x =>
+                    x.Date.Day == request.Date.Day && x.Date.Hour == request.Date.Hour &&
+                    x.Date.Minute == request.Date.Minute);
+
+            if (collidingAppointment != null)
+            {
+                throw new CollidingAppointmentException(
+                    $"Cannot create an appointment for time: {request.Date} as it's already taken!");
+            }
+
             var newAppointment = new Data.Models.Appointment.Appointment
             {
                 Doctor = doctor,
                 Date = request.Date,
-                UserId =  request.UserId
+                UserId = request.UserId
             };
 
-            await _dataService.GetSet<Data.Models.Appointment.Appointment>().AddAsync(newAppointment);
+            await appointmentSet.AddAsync(newAppointment);
             await _dataService.SaveDbAsync();
         }
 
@@ -45,8 +64,8 @@ namespace Allergo.Appointment.Services
             var result =
                 _dataService
                     .GetSet<Data.Models.Appointment.Appointment>()
-                    .Where(a => 
-                        a.UserId == userId && 
+                    .Where(a =>
+                        a.UserId == userId &&
                         beforeDate.HasValue ? a.Date <= beforeDate : true)
                     .Include(x => x.Doctor)
                     .Select(a => Mapper.Map<AppointmentDto>(a))
@@ -73,7 +92,7 @@ namespace Allergo.Appointment.Services
         public async Task UpdateAppointmentAsync(AppointmentDto appointmentDto)
         {
             var set = _dataService.GetSet<Data.Models.Appointment.Appointment>();
-            
+
             var appointment = await set.FirstOrDefaultAsync(x => appointmentDto.Id == x.Id.ToString());
 
             if (appointment == null)

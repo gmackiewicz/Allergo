@@ -23,7 +23,7 @@ namespace Allergo.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<JsonResult> SetAppointment([FromBody] CreateAppointmentRequestViewModel request)
+        public async Task CreateAppointment([FromBody] CreateAppointmentRequestViewModel request)
         {
             var model = Mapper.Map<CreateAppointmentRequestDto>(request);
 
@@ -31,8 +31,6 @@ namespace Allergo.Web.Controllers
             model.UserId = currentUser.Id;
 
             await _appointmentService.CreateAppointmentAsync(model);
-
-            return await Task.FromResult(Json("ok"));
         }
 
         [HttpPost]

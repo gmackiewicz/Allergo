@@ -16,7 +16,7 @@ export class AppointmentService extends BaseService {
     }
     
     setAppointment(date, doctorId) {
-        let url = this.baseUrl + 'Appointment/SetAppointment';
+        let url = this.baseUrl + 'Appointment/CreateAppointment';
         let body = new SetAppointmentRequest(date, doctorId);
 
         return this.http.post(url, body, { headers: this.headers });

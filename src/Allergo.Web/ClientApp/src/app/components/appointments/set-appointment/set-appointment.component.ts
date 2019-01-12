@@ -25,6 +25,7 @@ export class SetAppointmentComponent {
         newDate.setUTCDate(tmpDate.getDate());
         newDate.setUTCHours(this.data.appointment.hour);
         newDate.setUTCMinutes(this.data.appointment.minutes);
+        newDate.setUTCSeconds(0);
 
         this.appointmentService
             .setAppointment(newDate, this.data.doctor.id)
