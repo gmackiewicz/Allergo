@@ -2,35 +2,39 @@
     <h1 class="h2">Umów się na wizytę</h1>
 </div>
 <div class="container admin">
-        <div class="row">
-            <div class="col-md-12">
-                <form class="example-form">
-                    <mat-form-field class="half-width">
-                        <input id="pp-search-doctor" type="text" placeholder="Wybierz lekarza" aria-label="Lekarz" matInput [formControl]="doctorsControl" [matAutocomplete]="auto">
-                        <mat-autocomplete #auto="matAutocomplete">
-                            <mat-option *ngFor="let doctor of filteredDoctors | async" [value]="doctor" (click)="doctorSelected(doctor)">
-                                {{ this.doctorUtil.getFullName(doctor) }}
-                            </mat-option>
-                        </mat-autocomplete>
-                    </mat-form-field>
-                </form>
-    
-                <mat-accordion>
-                    <mat-expansion-panel *ngFor="let day of schedule?.daySchedules">
-                        <mat-expansion-panel-header>
-                            <mat-panel-title>
-                            {{ scheduleUtil.getDayName(day.day) }}
-                            </mat-panel-title>
-                        </mat-expansion-panel-header>
-                        <button *ngFor="let term of day.terms"
-                                type="submit"
-                                mat-flat-button [disabled]="term.isTaken && !term.isTakenByCurrentUser"
-                                [ngClass]="{ 'mat-accent appointment-button': term.isTakenByCurrentUser, 'mat-basic appointment-button': !term.isTakenByCurrentUser }"
-                                (click)="appointmentClick(term, day)">
-                            {{ scheduleUtil.getClockFormat(term.hour, term.minutes) }}
-                        </button>
-                    </mat-expansion-panel>
-                </mat-accordion>
+    <div class="row">
+        <div class="col-md-12">
+            <form class="example-form">
+                <mat-form-field class="half-width">
+                    <input id="pp-search-doctor" type="text" placeholder="Wybierz lekarza" aria-label="Lekarz" matInput [formControl]="doctorsControl" [matAutocomplete]="auto">
+                    <mat-autocomplete #auto="matAutocomplete">
+                        <mat-option *ngFor="let doctor of filteredDoctors | async" [value]="doctor" (click)="doctorSelected(doctor)">
+                            {{ this.doctorUtil.getFullName(doctor) }}
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+            </form>
+
+            <div *ngIf="errorMessage" class="error-message">
+                {{errorMessage}}
             </div>
+
+            <mat-accordion>
+                <mat-expansion-panel *ngFor="let day of schedule?.daySchedules">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            {{ scheduleUtil.getDayName(day.day) }}
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <button *ngFor="let term of day.terms"
+                            type="submit"
+                            mat-flat-button [disabled]="term.isTaken && !term.isTakenByCurrentUser"
+                            [ngClass]="{ 'mat-accent appointment-button': term.isTakenByCurrentUser, 'mat-basic appointment-button': !term.isTakenByCurrentUser }"
+                            (click)="appointmentClick(term, day)">
+                        {{ scheduleUtil.getClockFormat(term.hour, term.minutes) }}
+                    </button>
+                </mat-expansion-panel>
+            </mat-accordion>
         </div>
     </div>
+</div>

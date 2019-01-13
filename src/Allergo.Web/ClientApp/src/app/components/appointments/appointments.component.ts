@@ -30,6 +30,7 @@ export class AppointmentsComponent {
     doctors: Doctor[];
     filteredDoctors: Observable<Doctor[]>;
     selectedDoctor: Doctor;
+    errorMessage: string = "";
 
     constructor(
         private scheduleService: ScheduleService,
@@ -53,7 +54,6 @@ export class AppointmentsComponent {
     }
 
     filterDoctors(val): Doctor[] {
-        console.log("Entering filter doctors");
         if (typeof val === 'string') {
             return this.doctors
                 .filter(doctor => {
@@ -74,10 +74,16 @@ export class AppointmentsComponent {
         this.scheduleService
             .getSchedule(doctorId, moment().format("YYYY-MM-DD"))
             .subscribe(response => {
-                this.schedule = this.groupByDay(response);
-                this.schedule.daySchedules.forEach(ds => {
-                    ds.terms.sort(function(a, b) {return a.minutes - b.minutes}).sort(function(a, b) {return a.hour - b.hour});
-                });
+                if (!response.daySchedules || response.daySchedules.length === 0) {
+                    this.errorMessage = "Wybrany lekarz nie ma jeszcze wprowadzonego grafiku. Spróbuj wybrać innego!"
+                } else {
+                    this.schedule = this.groupByDay(response);
+                    this.schedule.daySchedules.forEach(ds => {
+                        ds.terms.sort(function (a, b) { return a.minutes - b.minutes }).sort(function (a, b) { return a.hour - b.hour });
+                    });
+                    this.errorMessage = "";
+                }
+
             });
     }
 
