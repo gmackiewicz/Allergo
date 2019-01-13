@@ -32,7 +32,7 @@
                                         id="pp-user-role"
                                         placeholder="Rola"
                                         formControlName="role">
-                                    <mat-option *ngFor="let r of roles" [value]="r.id">{{r.name}}</mat-option>
+                                    <mat-option *ngFor="let r of roles" [value]="r.id">{{getPolishRoleName(r.name)}}</mat-option>
                                 </mat-select>
                             </mat-form-field>
                         </mat-card-content>

@@ -84,6 +84,15 @@ export class EditUserComponent implements OnInit {
                     },
                     error => this.message = "Wystąpił błąd. Przepraszamy :(");
         }
-
+    }
+    getPolishRoleName(roleName) {
+        roleName = roleName.toLowerCase();
+        if (roleName === "admin") {
+            return "Administrator";
+        } else if (roleName == "doctor") {
+            return "Doktor";
+        } else {
+            return "Pacjent";
+        }
     }
 }

@@ -1,9 +1,13 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+    <h1 class="h2">Lista odbytych wizyt</h1>
+</div>
 <div class="container admin">
     <div class="row">
+        <span *ngIf="!appointments || appointments.length === 0">Brak odbytych wizyt.</span>
         <div class="col-md-12">
             <mat-list role="list">
                 <mat-list-item role="listitem" *ngFor="let appointment of appointments" (click)='openDialog(appointment)'>
-                        {{ getAppointmentTitle(appointment) }}
+                    {{ getAppointmentTitle(appointment) }}
                 </mat-list-item>
             </mat-list>
         </div>
