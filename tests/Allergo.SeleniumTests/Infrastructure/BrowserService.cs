@@ -26,10 +26,16 @@ namespace Allergo.SeleniumTests.Infrastructure
         }
 
         public void FillInput(By by, string value)
-            => _webDriver.FindElement(by).SendKeys(value);
+        {
+            _webDriver.FindElement(by).SendKeys(value);
+            Sleep(TimeSpan.FromSeconds(1));
+        }
 
         public void ClickElement(By by)
-            => _webDriver.FindElement(by).Click();
+        {
+            _webDriver.FindElement(by).Click();
+            Sleep(TimeSpan.FromSeconds(1));
+        }
 
         public void Dispose() => _webDriver?.Dispose();
     }

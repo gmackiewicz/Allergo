@@ -3,6 +3,7 @@ using Allergo.Appointment;
 using Allergo.Common;
 using Allergo.Data;
 using Allergo.Data.Models.Account;
+using Allergo.Home;
 using Allergo.Schedule;
 using Allergo.Web.MappingProfiles;
 using Allergo.Web.Middleware;
@@ -114,6 +115,7 @@ namespace Allergo.Web
             services.RegisterAccountModule();
             services.RegisterScheduleModule();
             services.RegisterAppointmentModule();
+            services.RegisterHomeModule();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, UserManager<AllergoUser> userManager)
@@ -161,6 +163,7 @@ namespace Allergo.Web
                 cfg.AddProfile(new ScheduleProfile());
                 cfg.AddProfile(new UserProfile());
                 cfg.AddProfile(new AppointmentProfile());
+                cfg.AddProfile(new HomeProfile());
             });
 
             AllergoDbInitializer.SeedUsers(userManager);

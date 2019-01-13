@@ -36,6 +36,6 @@ export class EditDiagnosisComponent {
             .setAppointmentDiagnosis(
                 this.data.id,
                 this.editDiagnosisForm.controls.diagnosis.value)
-            .subscribe(result => this.dialogRef.close());
+            .subscribe(result => this.dialogRef.close("success"));
     }
 }

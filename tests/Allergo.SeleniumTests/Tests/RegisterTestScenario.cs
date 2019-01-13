@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using Allergo.SeleniumTests.Contacts;
 using Allergo.SeleniumTests.Contracts;
 using Allergo.SeleniumTests.Infrastructure;

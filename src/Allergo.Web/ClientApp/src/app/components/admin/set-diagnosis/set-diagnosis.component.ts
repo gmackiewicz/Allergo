@@ -45,6 +45,8 @@ export class SetDiagnosisComponent {
                     data: appointment
                 })
                 .afterClosed()
-                .subscribe(() => this.getAppointments());
+                .subscribe((result) => {
+                    if (result === "success") this.getAppointments();
+                });
     }
 }

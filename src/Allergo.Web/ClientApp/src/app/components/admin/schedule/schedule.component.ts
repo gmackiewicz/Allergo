@@ -47,7 +47,9 @@ export class ScheduleComponent implements OnInit {
                         width: '450px'
                     })
                     .afterClosed()
-                    .subscribe(() => this.getAdmissionHours());
+                    .subscribe((result) => {
+                        if (result === "success") this.getAdmissionHours();
+                    });
         } else {
             const dialogRef =
                 this.dialog
@@ -56,7 +58,9 @@ export class ScheduleComponent implements OnInit {
                         data: admission
                     })
                     .afterClosed()
-                    .subscribe(() => this.getAdmissionHours());
+                    .subscribe((result) => {
+                        if (result === "success") this.getAdmissionHours();
+                    });
         }
     }
 }

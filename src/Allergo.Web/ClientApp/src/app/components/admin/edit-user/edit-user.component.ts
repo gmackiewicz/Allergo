@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { User } from './../../../models/user.model';
 import { UsersService } from './../../../services/users.service';
 import { Role } from './../../../models/role.model';
+import { JwtUtil } from '../../../utils/jwt.util'
 
 @Component({
     selector: 'app-edit-user',
@@ -17,11 +18,13 @@ export class EditUserComponent implements OnInit {
     users: User;
     roles: Role[];
     selectedRoleId: string;
+    successMessage: string = "";
 
     constructor(private userService: UsersService,
         private route: ActivatedRoute,
         private formBuilder: FormBuilder,
-        private router: Router) {
+        private router: Router,
+        private jwtUtil: JwtUtil) {
         this.editUserForm = this.formBuilder.group({
             email: [
                 '',
@@ -63,15 +66,33 @@ export class EditUserComponent implements OnInit {
     }
 
     submit() {
-        this.userService
-            .updateUser(
-                this.id,
-                this.editUserForm.controls.email.value,
-                this.editUserForm.controls.userName.value,
-                this.editUserForm.controls.role.value)
-            .subscribe(result => {
-                console.log(result);
-            },
-                error => this.message = "Wystąpił błąd. Przepraszamy :(");
+        var currentUserId = this.jwtUtil.decode(localStorage.getItem('token')).jti;
+        var currentUserRoleName = this.jwtUtil.decode(localStorage.getItem('token')).role;
+
+        if (this.id === currentUserId && this.editUserForm.controls.role.value !== this.roles.find(x => x.name === currentUserRoleName).id) {
+            this.message = "Nie możesz pozbawić się roli administratora.";
+        } else
+        {
+            this.userService
+                .updateUser(
+                    this.id,
+                    this.editUserForm.controls.email.value,
+                    this.editUserForm.controls.userName.value,
+                    this.editUserForm.controls.role.value)
+                .subscribe(result => {
+                    this.successMessage = "Zapisano zmiany.";
+                    this.editUserForm.markAsPristine();
+                }, error => this.message = "Wystąpił błąd. Przepraszamy :(");
+        }
+    }
+    getPolishRoleName(roleName) {
+        roleName = roleName.toLowerCase();
+        if (roleName === "admin") {
+            return "Administrator";
+        } else if (roleName == "doctor") {
+            return "Doktor";
+        } else {
+            return "Pacjent";
+        }
     }
 }

@@ -1,60 +1,41 @@
-<div class='main-nav'>
-    <div class='navbar navbar-inverse'>
-        <div class='navbar-header'>
-            <button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse' [attr.aria-expanded]='isExpanded' (click)='toggle()'>
-                <span class='sr-only'>Toggle navigation</span>
-                <span class='icon-bar'></span>
-                <span class='icon-bar'></span>
-                <span class='icon-bar'></span>
-            </button>
-            <a class='navbar-brand' [routerLink]='["/"]'>Allergo.Web</a>
-        </div>
-        <div class='clearfix'></div>
-        <div class='navbar-collapse collapse' [ngClass]='{ "in": isExpanded }'>
-            <ul class='nav navbar-nav'>
-                <li [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }'>
-                    <a [routerLink]='["/"]' (click)='collapse()'>
-                        <span class='glyphicon glyphicon-home'></span> Home
+<div class="sidebar-sticky">
+    <ul class="nav flex-column">
+        <li class="nav-item">
+            <a class="nav-link" [routerLinkActive]='["active"]' [routerLinkActiveOptions]='{ exact: true }' [routerLink]='["/"]' (click)='collapse()'>
+                <span class='glyphicon glyphicon-home feather'></span> Home
+            </a>
+        </li>
+        <li class="nav-item" *ngIf='isPatient()'>
+            <a class="nav-link" [routerLinkActive]='["active"]' [routerLinkActiveOptions]='{ exact: true }' [routerLink]='["/appointments"]' (click)='collapse()'>
+                <span class='glyphicon glyphicon-briefcase feather'></span> Umów się
+            </a>
+        </li>
+        <li class="nav-item" *ngIf='isPatient()'>
+            <a class="nav-link" [routerLinkActive]='["active"]' [routerLinkActiveOptions]='{ exact: true }' [routerLink]='["/diagnosis"]' (click)='collapse()'>
+                <span class='glyphicon glyphicon-book feather'></span> Wizyty
+            </a>
+        </li>
+        <li class="nav-item" *ngIf='isAdmin() || isDoctor()'>
+            <a (click)='collapse()'>
+                    <span class='glyphicon glyphicon-cog feather'></span> Zarządzaj
+            </a>
+            <ul class="nav flex-column ml-4">
+                <li class="nav-item" *ngIf='isAdmin()'>
+                    <a class="nav-link" [routerLinkActive]='["active"]' [routerLinkActiveOptions]='{ exact: true }' [routerLink]='["/admin/users"]' (click)='collapse()'>
+                        <span class='glyphicon glyphicon-user feather'></span> Użytkownicy
                     </a>
                 </li>
-                <li [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }' *ngIf='isPatient()'>
-                    <a [routerLink]='["/appointments"]' (click)='collapse()'>
-                        <span class='glyphicon glyphicon-briefcase'></span> Umów się
+                <li class="nav-item" *ngIf='isDoctor()'>
+                    <a class="nav-link" [routerLinkActive]='["active"]' [routerLinkActiveOptions]='{ exact: true }' [routerLink]='["/admin/schedule"]' (click)='collapse()'>
+                        <span class='glyphicon glyphicon-calendar feather'></span> Grafik
                     </a>
                 </li>
-                <li [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }' *ngIf='isPatient()'>
-                    <a [routerLink]='["/diagnosis"]' (click)='collapse()'>
-                        <span class='glyphicon glyphicon-book'></span> Wizyty
-                    </a>
-                </li>
-                <li [routerLinkActive]='["link"]' [routerLinkActiveOptions]='{ exact: true }' *ngIf='isAdmin() || isDoctor()'>
-                    <a [routerLink]='["/admin"]' (click)='collapse()'>
-                        <span class='glyphicon glyphicon-cog'></span> Zarządzaj
-                    </a>
-                    <ul class="nav navbar-nav">
-                        <li [routerLinkActive]='["link"]' [routerLinkActiveOptions]='{ exact: true }' *ngIf='isAdmin()'>
-                            <a [routerLink]='["/admin/users"]' (click)='collapse()'>
-                                <span class='glyphicon glyphicon-user'></span> Użytkownicy
-                            </a>
-                        </li>
-                        <li [routerLinkActive]='["link"]' [routerLinkActiveOptions]='{ exact: true }' *ngIf='isDoctor()'>
-                            <a [routerLink]='["/admin/schedule"]' (click)='collapse()'>
-                                <span class='glyphicon glyphicon-calendar'></span> Grafik
-                            </a>
-                        </li>
-                        <li [routerLinkActive]='["link"]' [routerLinkActiveOptions]='{ exact: true }' *ngIf='isDoctor()'>
-                            <a [routerLink]='["/admin/set-diagnosis"]' (click)='collapse()'>
-                                <span class='glyphicon glyphicon-calendar'></span> Wprowadź badania
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li [routerLinkActive]='["link-active"]'>
-                    <a href="#" (click)='logout()'>
-                        <span class='glyphicon glyphicon-log-out'></span> Wyloguj się
+                <li class="nav-item" *ngIf='isDoctor()'>
+                    <a class="nav-link" [routerLinkActive]='["active"]' [routerLinkActiveOptions]='{ exact: true }' [routerLink]='["/admin/set-diagnosis"]' (click)='collapse()'>
+                        <span class='glyphicon glyphicon-calendar feather'></span> Wprowadź badania
                     </a>
                 </li>
             </ul>
-        </div>
-    </div>
+        </li>
+    </ul>
 </div>

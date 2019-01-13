@@ -16,11 +16,14 @@ import { RemoveAppointmentComponent } from './remove-appointment/remove-appointm
 import { DaySchedule } from '../../models/day-schedule.model';
 import { ScheduleTerm } from '../../models/schedule-term.model';
 
+import { startWith, map } from 'rxjs/operators';
+
 import * as moment from 'moment';
 
 @Component({
     selector: 'app-appointments',
-    templateUrl: './appointments.component.html'
+    templateUrl: './appointments.component.html',
+    styleUrls: ['./appointments.component.css']
 })
 export class AppointmentsComponent {
     doctorsControl = new FormControl();
@@ -28,6 +31,7 @@ export class AppointmentsComponent {
     doctors: Doctor[];
     filteredDoctors: Observable<Doctor[]>;
     selectedDoctor: Doctor;
+    errorMessage: string = "";
 
     constructor(
         private scheduleService: ScheduleService,
@@ -43,10 +47,10 @@ export class AppointmentsComponent {
             .getDoctors()
             .subscribe(response => {
                 this.doctors = response;
-                this.filteredDoctors = 
+                this.filteredDoctors =
                     this.doctorsControl
-                        .valueChanges
-                        .map(val => val ? this.filterDoctors(val) : response.slice());
+                    .valueChanges
+                    .pipe(startWith(''), map(val => val ? this.filterDoctors(val) : response.slice()));
             });
     }
 
@@ -71,11 +75,15 @@ export class AppointmentsComponent {
         this.scheduleService
             .getSchedule(doctorId, moment().format("YYYY-MM-DD"))
             .subscribe(response => {
-                console.log(response);
-                this.schedule = this.groupByDay(response);
-                this.schedule.daySchedules.forEach(ds => {
-                    ds.terms.sort(function(a, b) {return a.minutes - b.minutes}).sort(function(a, b) {return a.hour - b.hour});
-                });
+                if (!response.daySchedules || response.daySchedules.length === 0) {
+                    this.errorMessage = "Wybrany lekarz nie ma jeszcze wprowadzonego grafiku. Spróbuj wybrać innego!"
+                } else {
+                    this.schedule = this.groupByDay(response);
+                    this.schedule.daySchedules.forEach(ds => {
+                        ds.terms.sort(function (a, b) { return a.minutes - b.minutes }).sort(function (a, b) { return a.hour - b.hour });
+                    });
+                    this.errorMessage = "";
+                }
             });
     }
 
@@ -118,7 +126,9 @@ export class AppointmentsComponent {
                             }
                         })
                     .afterClosed()
-                    .subscribe(result => this.getSchedule(this.selectedDoctor.id));
+                    .subscribe(result => {
+                        if (result === "success") this.getSchedule(this.selectedDoctor.id);
+                    });
         } else if (!term.isTaken) {
             const dialogRef = 
                 this.dialog
@@ -132,7 +142,9 @@ export class AppointmentsComponent {
                             }
                         })
                     .afterClosed()
-                    .subscribe(result => this.getSchedule(this.selectedDoctor.id));
+                    .subscribe(result => {
+                        if (result === "success") this.getSchedule(this.selectedDoctor.id);
+                    });
         }
     }
 }

@@ -28,18 +28,25 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\app\models\dashboard-data.model.ts" />
     <None Remove="ClientApp\src\app\models\schedule-term.model.ts" />
+    <None Remove="ClientApp\src\app\models\statistics.model.ts" />
+    <None Remove="ClientApp\src\app\services\home.service.ts" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Allergo.Account\Allergo.Account.csproj" />
     <ProjectReference Include="..\Allergo.Appointment\Allergo.Appointment.csproj" />
     <ProjectReference Include="..\Allergo.Common\Allergo.Common.csproj" />
+    <ProjectReference Include="..\Allergo.Home\Allergo.Home.csproj" />
     <ProjectReference Include="..\Allergo.Schedule\Allergo.Schedule.csproj" />
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\models\dashboard-data.model.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\schedule-term.model.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\models\statistics.model.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\services\home.service.ts" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

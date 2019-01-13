@@ -1,16 +1,20 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+    <h1 class="h2">Twoje godziny przyjęć</h1>
+</div>
 <div class="container admin">
     <div class="row">
         <div class="col-md-12">
+            <span *ngIf="!schedule || schedule.length === 0">Nie masz jeszcze wprowadzonych żadnych godzin przyjęć</span> <br />
             <mat-accordion>
                 <mat-expansion-panel *ngFor="let day of schedule">
                     <mat-expansion-panel-header>
                         <mat-panel-title>
-                        {{ scheduleUtil.getDayNameById(day.day) }}
+                            {{ scheduleUtil.getDayNameById(day.day) }}
                         </mat-panel-title>
                     </mat-expansion-panel-header>
-                    <button 
+                    <button
                         *ngFor="let admission of day.admissionHours"
-                        type="submit" 
+                        type="submit"
                         mat-flat-button
                         [ngClass]="mat-primary"
                         (click)="showRemoveAdmissionHourDialog(admission)">
@@ -19,7 +23,7 @@
                 </mat-expansion-panel>
             </mat-accordion>
 
-            <button type="submit" mat-raised-button  color="primary" (click)="showNewAdmissionHoursDialog()">Dodaj nowe godziny przyjęć</button>
+            <button type="submit" mat-raised-button color="primary" (click)="showNewAdmissionHoursDialog()">Dodaj nowe godziny przyjęć</button>
         </div>
     </div>
 </div>

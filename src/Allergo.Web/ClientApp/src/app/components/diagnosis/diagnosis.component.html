@@ -1,3 +1,6 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+    <h1 class="h2">Twoje wizyty</h1>
+</div>
 <div class="container admin">
     <div class="row">
         <div class="col-md-12">
@@ -5,12 +8,23 @@
                 <mat-expansion-panel *ngFor="let appointment of appointments">
                     <mat-expansion-panel-header>
                         <mat-panel-title>
-                        {{ getAppointmentTitle(appointment) }}
+                            {{ getAppointmentTitle(appointment) }}
                         </mat-panel-title>
                     </mat-expansion-panel-header>
-                    {{ appointment.diagnosis }}
+                    <span *ngIf="appointment.diagnosis">Wynik badania: {{ appointment.diagnosis }}</span>
+                    <span *ngIf="!appointment.diagnosis">Wynik badania: (brak)</span>
+                    <button mat-flat-button class="mat-accent" *ngIf="!appointment.isPast && !appointment.isCancelled" (click)="cancelAppointment(appointment.id)">
+                        Odwołaj
+                    </button>
                 </mat-expansion-panel>
             </mat-accordion>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <button mat-flat-button class="appointment-button" [routerLinkActive]='["active"]' [routerLinkActiveOptions]='{ exact: true }' [routerLink]='["/appointments"]'>
+                Przejdź do rejestracji
+            </button>
         </div>
     </div>
 </div>

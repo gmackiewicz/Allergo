@@ -67,7 +67,8 @@ namespace Allergo.Appointment.Services
                     .GetSet<Data.Models.Appointment.Appointment>()
                     .Where(a =>
                         a.UserId == userId &&
-                        beforeDate.HasValue ? a.Date <= beforeDate : true)
+                        !a.IsCancelled &&
+                        (!beforeDate.HasValue || a.Date <= beforeDate))
                     .Include(x => x.Doctor)
                     .Select(a => Mapper.Map<AppointmentDto>(a))
                     .ToList();

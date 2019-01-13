@@ -20,6 +20,6 @@ export class RemoveAppointmentComponent {
     submit = () => {
         this.appointmentService
             .cancelAppointment(this.data.term.appointmentId)
-            .subscribe(result => this.dialogRef.close());
+            .subscribe(result => this.dialogRef.close("success"));
     }
 }

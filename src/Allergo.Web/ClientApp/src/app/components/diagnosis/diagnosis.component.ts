@@ -33,4 +33,7 @@ export class DiagnosisComponent {
     getAppointmentTitle(appointment: Appointment) {
         return this.pipe.transform(appointment.date, 'medium') + ' u ' + this.doctorUtil.getFullName(appointment.doctor)
     }
+    cancelAppointment(appointmentId) {
+        this.appointmentService.cancelAppointment(appointmentId).subscribe(result => this.getAppointments());
+    }
 }

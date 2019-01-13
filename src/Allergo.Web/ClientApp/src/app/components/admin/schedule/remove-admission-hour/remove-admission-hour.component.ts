@@ -23,6 +23,6 @@ export class RemoveAdmissionHourComponent {
     submit = () => {
         this.sheduleService
             .removeAdmissionHours(this.data.id)
-            .subscribe(result => this.dialogRef.close());
+            .subscribe(result => this.dialogRef.close("success"));
     }
 }
