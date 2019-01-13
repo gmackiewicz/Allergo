@@ -16,6 +16,8 @@ import { RemoveAppointmentComponent } from './remove-appointment/remove-appointm
 import { DaySchedule } from '../../models/day-schedule.model';
 import { ScheduleTerm } from '../../models/schedule-term.model';
 
+import { startWith, map } from 'rxjs/operators';
+
 import * as moment from 'moment';
 
 @Component({
@@ -43,14 +45,15 @@ export class AppointmentsComponent {
             .getDoctors()
             .subscribe(response => {
                 this.doctors = response;
-                this.filteredDoctors = 
+                this.filteredDoctors =
                     this.doctorsControl
-                        .valueChanges
-                        .map(val => val ? this.filterDoctors(val) : response.slice());
+                    .valueChanges
+                    .pipe(startWith(''), map(val => val ? this.filterDoctors(val) : response.slice()));
             });
     }
 
     filterDoctors(val): Doctor[] {
+        console.log("Entering filter doctors");
         if (typeof val === 'string') {
             return this.doctors
                 .filter(doctor => {
@@ -71,7 +74,6 @@ export class AppointmentsComponent {
         this.scheduleService
             .getSchedule(doctorId, moment().format("YYYY-MM-DD"))
             .subscribe(response => {
-                console.log(response);
                 this.schedule = this.groupByDay(response);
                 this.schedule.daySchedules.forEach(ds => {
                     ds.terms.sort(function(a, b) {return a.minutes - b.minutes}).sort(function(a, b) {return a.hour - b.hour});
