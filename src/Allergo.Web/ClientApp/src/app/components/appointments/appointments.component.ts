@@ -22,7 +22,8 @@ import * as moment from 'moment';
 
 @Component({
     selector: 'app-appointments',
-    templateUrl: './appointments.component.html'
+    templateUrl: './appointments.component.html',
+    styleUrls: ['./appointments.component.css']
 })
 export class AppointmentsComponent {
     doctorsControl = new FormControl();

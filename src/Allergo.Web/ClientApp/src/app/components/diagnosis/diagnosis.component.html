@@ -8,13 +8,20 @@
                 <mat-expansion-panel *ngFor="let appointment of appointments">
                     <mat-expansion-panel-header>
                         <mat-panel-title>
-                        {{ getAppointmentTitle(appointment) }}
+                            {{ getAppointmentTitle(appointment) }}
                         </mat-panel-title>
                     </mat-expansion-panel-header>
                     <span *ngIf="appointment.diagnosis">Wynik badania: {{ appointment.diagnosis }}</span>
                     <span *ngIf="!appointment.diagnosis">Wynik badania: (brak)</span>
                 </mat-expansion-panel>
             </mat-accordion>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <button mat-flat-button class="appointment-button" [routerLinkActive]='["active"]' [routerLinkActiveOptions]='{ exact: true }' [routerLink]='["/appointments"]'>
+                Przejdź do rejestracji
+            </button>
         </div>
     </div>
 </div>

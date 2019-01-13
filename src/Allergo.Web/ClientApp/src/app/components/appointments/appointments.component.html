@@ -4,16 +4,28 @@
 <div class="container admin">
     <div class="row">
         <div class="col-md-12">
-            <form class="example-form">
-                <mat-form-field class="half-width">
-                    <input id="pp-search-doctor" type="text" placeholder="Wybierz lekarza" aria-label="Lekarz" matInput [formControl]="doctorsControl" [matAutocomplete]="auto">
-                    <mat-autocomplete #auto="matAutocomplete">
-                        <mat-option *ngFor="let doctor of filteredDoctors | async" [value]="doctor" (click)="doctorSelected(doctor)">
-                            {{ this.doctorUtil.getFullName(doctor) }}
-                        </mat-option>
-                    </mat-autocomplete>
-                </mat-form-field>
-            </form>
+            <div class="row">
+                <div class="col-md-6">
+                    <form class="example-form">
+                        <mat-form-field class="input-full-width">
+                            <input id="pp-search-doctor" type="text" placeholder="Wybierz lekarza" aria-label="Lekarz" matInput [formControl]="doctorsControl" [matAutocomplete]="auto">
+                            <mat-autocomplete #auto="matAutocomplete">
+                                <mat-option *ngFor="let doctor of filteredDoctors | async" [value]="doctor" (click)="doctorSelected(doctor)">
+                                    {{ this.doctorUtil.getFullName(doctor) }}
+                                </mat-option>
+                            </mat-autocomplete>
+                        </mat-form-field>
+                    </form>
+                </div>
+                <div class="col-md-6">
+                    <button mat-flat-button
+                            [disabled]="true">Zajęty termin</button>
+                    <button mat-flat-button
+                            class="appointment-button appointment-button-success">Moja wizyta</button>
+                    <button mat-flat-button
+                            class="mat-primary appointment-button">Wolny termin</button>
+                </div>
+            </div>
 
             <div *ngIf="errorMessage" class="error-message">
                 {{errorMessage}}
@@ -28,13 +40,19 @@
                     </mat-expansion-panel-header>
                     <button *ngFor="let term of day.terms"
                             type="submit"
-                            mat-flat-button [disabled]="term.isTaken && !term.isTakenByCurrentUser"
-                            [ngClass]="{ 'mat-accent appointment-button': term.isTakenByCurrentUser, 'mat-basic appointment-button': !term.isTakenByCurrentUser }"
+                            mat-flat-button
+                            [disabled]="term.isTaken && !term.isTakenByCurrentUser"
+                            [ngClass]="{ 'appointment-button appointment-button-success': term.isTakenByCurrentUser,
+                                         'mat-primary appointment-button': !term.isTakenByCurrentUser }"
                             (click)="appointmentClick(term, day)">
                         {{ scheduleUtil.getClockFormat(term.hour, term.minutes) }}
                     </button>
                 </mat-expansion-panel>
             </mat-accordion>
+
+            <button mat-flat-button class="appointment-button" [routerLinkActive]='["active"]' [routerLinkActiveOptions]='{ exact: true }' [routerLink]='["/diagnosis"]'>
+                Przejdź do Twoich wizyt
+            </button>
         </div>
     </div>
 </div>
