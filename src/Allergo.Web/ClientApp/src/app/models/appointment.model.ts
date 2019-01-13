@@ -7,6 +7,7 @@ export class Appointment {
         public user: User,
         public doctor: User,
         public isCancelled: boolean,
-        public diagnosis: string
+        public diagnosis: string,
+        public isPast: boolean
     ) { }
 }

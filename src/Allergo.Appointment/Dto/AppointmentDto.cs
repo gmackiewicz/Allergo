@@ -1,5 +1,6 @@
 ﻿using Allergo.Data.Models.Account;
 using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Allergo.Appointment.Dto
 {
@@ -11,5 +12,8 @@ namespace Allergo.Appointment.Dto
         public AllergoUser Doctor { get; set; }
         public bool IsCancelled { get; set; }
         public string Diagnosis { get; set; }
+
+        [NotMapped]
+        public bool IsPast => Date <= DateTime.UtcNow;
     }
 }

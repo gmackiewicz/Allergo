@@ -13,6 +13,9 @@
                     </mat-expansion-panel-header>
                     <span *ngIf="appointment.diagnosis">Wynik badania: {{ appointment.diagnosis }}</span>
                     <span *ngIf="!appointment.diagnosis">Wynik badania: (brak)</span>
+                    <button mat-flat-button class="mat-accent" *ngIf="!appointment.isPast" (click)="cancelAppointment(appointment.id)">
+                        Odwołaj
+                    </button>
                 </mat-expansion-panel>
             </mat-accordion>
         </div>
