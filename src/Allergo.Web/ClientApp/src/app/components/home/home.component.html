@@ -11,40 +11,47 @@
         </button>
     </div>
 </div>
-<h2>Section title</h2>
-<div class="table-responsive">
-    <table class="table table-striped table-sm">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Header</th>
-                <th>Header</th>
-                <th>Header</th>
-                <th>Header</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>1,001</td>
-                <td>Lorem</td>
-                <td>ipsum</td>
-                <td>dolor</td>
-                <td>sit</td>
-            </tr>
-            <tr>
-                <td>1,002</td>
-                <td>amet</td>
-                <td>consectetur</td>
-                <td>adipiscing</td>
-                <td>elit</td>
-            </tr>
-            <tr>
-                <td>1,003</td>
-                <td>Integer</td>
-                <td>nec</td>
-                <td>odio</td>
-                <td>Praesent</td>
-            </tr>
-        </tbody>
-    </table>
+<h2>Nie daj się zaskoczyć alergii..</h2>
+<div class="dashboard-row">
+    <img src="assets/images/wiosna.jpg" height="350px" class="dashboard-image"/>
+    <mat-card class="dashboard-card-tall">
+        <mat-card-header class="dashboard-card-header">
+            <mat-card-title class="dashboard-card-header-title">Czy wiesz, że..</mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+            pierwsze drzewa pylą już w styczniu? Nie czekaj na objawy, zadbaj o siebie już teraz!
+        </mat-card-content>
+        <mat-card-footer class="dashboard-card-footer">
+            <a [routerLinkActive]='["active"]' [routerLinkActiveOptions]='{ exact: true }' [routerLink]='["/appointments"]'>
+                Umów się na wizytę
+            </a>
+        </mat-card-footer>
+    </mat-card>
+</div>
+<h2>Statystyki</h2>
+<div class="dashboard-row">
+    <mat-card class="dashboard-card">
+        <mat-card-header class="dashboard-card-header">
+            <mat-card-title class="dashboard-card-header-title">Zarejestrowanych użytkowników</mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+            {{dashboardData.statistics.registeredUsersCount}}
+        </mat-card-content>
+    </mat-card>
+    <mat-card class="dashboard-card">
+        <mat-card-header class="dashboard-card-header">
+            <mat-card-title class="dashboard-card-header-title">Lekarzy <br />w placówce</mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+            {{dashboardData.statistics.doctorsCount}}
+        </mat-card-content>
+    </mat-card>
+    <mat-card class="dashboard-card">
+        <mat-card-header class="dashboard-card-header" text>
+            <mat-card-title class="dashboard-card-header-title">Liczba <br /> wizyt</mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+            {{dashboardData.statistics.appointmentsCount}}
+        </mat-card-content>
+    </mat-card>
 </div>

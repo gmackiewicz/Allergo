@@ -1,0 +1,30 @@
+.dashboard-row {
+    display: flex;
+}
+.dashboard-card {
+    width: 275px; 
+    height: 150px; 
+    margin: auto; 
+    justify-content: space-around;
+}
+
+.dashboard-card-header {
+    justify-content: space-around;
+    font-weight: bold;
+}
+
+.dashboard-card-header-title {
+    text-align: center;
+    font-weight: bold;
+}
+
+.dashboard-card-content {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 10px;    
+}
+
+.dashboard-card-footer {
+    text-align: center;
+
+}

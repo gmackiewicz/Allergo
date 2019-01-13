@@ -29,7 +29,6 @@
 
   <ItemGroup>
     <None Remove="ClientApp\src\app\models\dashboard-data.model.ts" />
-    <None Remove="ClientApp\src\app\models\file.ts" />
     <None Remove="ClientApp\src\app\models\schedule-term.model.ts" />
     <None Remove="ClientApp\src\app\models\statistics.model.ts" />
     <None Remove="ClientApp\src\app\services\home.service.ts" />
@@ -45,7 +44,6 @@
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\src\app\models\dashboard-data.model.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\models\file.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\schedule-term.model.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\statistics.model.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\services\home.service.ts" />
