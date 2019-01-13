@@ -29,6 +29,6 @@ export class SetAppointmentComponent {
 
         this.appointmentService
             .setAppointment(newDate, this.data.doctor.id)
-            .subscribe(result => this.dialogRef.close())
+            .subscribe(result => this.dialogRef.close("success"))
     }
 }

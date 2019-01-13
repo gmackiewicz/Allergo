@@ -40,10 +40,10 @@ export class AddAdmissionHourComponent {
                 this.addAdmissionHourForm.controls.startTime.value,
                 this.addAdmissionHourForm.controls.endTime.value
             )
-            .subscribe(() => this.dialogRef.close());
+            .subscribe(() => this.dialogRef.close("success"));
     }
 
     cancel(): void {
-        this.dialogRef.close();
+        this.dialogRef.close("fail");
     }
 }

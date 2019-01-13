@@ -125,7 +125,9 @@ export class AppointmentsComponent {
                             }
                         })
                     .afterClosed()
-                    .subscribe(result => this.getSchedule(this.selectedDoctor.id));
+                    .subscribe(result => {
+                        if (result === "success") this.getSchedule(this.selectedDoctor.id);
+                    });
         } else if (!term.isTaken) {
             const dialogRef = 
                 this.dialog
@@ -139,7 +141,9 @@ export class AppointmentsComponent {
                             }
                         })
                     .afterClosed()
-                    .subscribe(result => this.getSchedule(this.selectedDoctor.id));
+                    .subscribe(result => {
+                        if (result === "success") this.getSchedule(this.selectedDoctor.id);
+                    });
         }
     }
 }
