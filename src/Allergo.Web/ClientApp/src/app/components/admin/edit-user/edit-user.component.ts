@@ -18,6 +18,7 @@ export class EditUserComponent implements OnInit {
     users: User;
     roles: Role[];
     selectedRoleId: string;
+    successMessage: string = "";
 
     constructor(private userService: UsersService,
         private route: ActivatedRoute,
@@ -67,11 +68,9 @@ export class EditUserComponent implements OnInit {
     submit() {
         var currentUserId = this.jwtUtil.decode(localStorage.getItem('token')).jti;
         var currentUserRoleName = this.jwtUtil.decode(localStorage.getItem('token')).role;
-        console.log(currentUserId);
-        console.log(currentUserRoleName);
-        if (this.id === currentUserId && this.editUserForm.controls.role.value !== this.roles.find(x => x.name === currentUserRoleName).id)
-        {
-            this.message = "Nie możesz pozbawić się roli administratora."
+
+        if (this.id === currentUserId && this.editUserForm.controls.role.value !== this.roles.find(x => x.name === currentUserRoleName).id) {
+            this.message = "Nie możesz pozbawić się roli administratora.";
         } else
         {
             this.userService
@@ -81,8 +80,9 @@ export class EditUserComponent implements OnInit {
                     this.editUserForm.controls.userName.value,
                     this.editUserForm.controls.role.value)
                 .subscribe(result => {
-                    },
-                    error => this.message = "Wystąpił błąd. Przepraszamy :(");
+                    this.successMessage = "Zapisano zmiany.";
+                    this.editUserForm.markAsPristine();
+                }, error => this.message = "Wystąpił błąd. Przepraszamy :(");
         }
     }
     getPolishRoleName(roleName) {

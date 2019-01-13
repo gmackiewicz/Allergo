@@ -38,8 +38,9 @@
                         </mat-card-content>
                         <mat-card-actions class="text-center">
                             <button type="submit" mat-raised-button (click)="backToList()">Powrót</button>
-                            <button type="submit" mat-raised-button color="primary">Zapisz</button>
+                            <button type="submit" mat-raised-button color="primary" [disabled]="!editUserForm.dirty">Zapisz</button>
                             <small class="form-text text-danger text-center error-message">{{ message }}</small>
+                            <small class="form-text text-center" *ngIf="successMessage && !editUserForm.dirty">{{ successMessage }}</small>
                         </mat-card-actions>
                     </form>
                 </mat-card>
