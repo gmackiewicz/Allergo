@@ -15,7 +15,8 @@ namespace Allergo.SeleniumTests
 
             var testScenarios = new Dictionary<string, ITestScenario>
             {
-                {"1", new RegisterTestScenario()}
+                {"1", new RegisterTestScenario()},
+                {"2", new RegisterAppointmentTestScenario()}
             };
 
             while (true)
