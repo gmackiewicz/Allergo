@@ -83,7 +83,6 @@ export class AppointmentsComponent {
                     });
                     this.errorMessage = "";
                 }
-
             });
     }
 
