@@ -61,8 +61,8 @@
     <Compile Include="Contracts\ITestScenario.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tests\CreateScheduleTestScenario.cs" />
     <Compile Include="Tests\RegisterAppointmentTestScenario.cs" />
-    <Compile Include="Tests\RegisterTestScenario.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
