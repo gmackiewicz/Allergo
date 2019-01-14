@@ -24,7 +24,6 @@ import { SetDiagnosisComponent } from './components/admin/set-diagnosis/set-diag
 
 import { UsersComponent } from './components/admin/users/users.component';
 import { EditUserComponent } from './components/admin/edit-user/edit-user.component';
-import { AdminComponent } from './components/admin/admin/admin.component';
 import { ScheduleComponent } from './components/admin/schedule/schedule.component';
 import { AddAdmissionHourComponent } from './components/admin/schedule/add-admission-hour/add-addmission-hour.component';
 import { RemoveAdmissionHourComponent } from './components/admin/schedule/remove-admission-hour/remove-admission-hour.component';
@@ -56,7 +55,6 @@ import { EditDiagnosisComponent } from './components/admin/set-diagnosis/edit-di
     RegisterComponent,
     UsersComponent,
     EditUserComponent,
-    AdminComponent,
     ScheduleComponent,
     AppointmentsComponent,
     SetAppointmentComponent,
@@ -75,7 +73,6 @@ import { EditDiagnosisComponent } from './components/admin/set-diagnosis/edit-di
       { path: 'register', component: RegisterComponent },
       { path: 'appointments', component: AppointmentsComponent, canActivate: [PatientGuard] },
       { path: 'diagnosis', component: DiagnosisComponent, canActivate: [PatientGuard] },
-      { path: 'admin', component: AdminComponent, canActivate: [AdminGuard] },
       { path: 'admin/users', component: UsersComponent, canActivate: [AdminGuard] },
       { path: 'admin/user/:id', component: EditUserComponent, canActivate: [AdminGuard] },
       { path: 'admin/schedule', component: ScheduleComponent, canActivate: [DoctorGuard] },
