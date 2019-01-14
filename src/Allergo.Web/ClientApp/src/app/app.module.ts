@@ -39,6 +39,9 @@ import { HomeService } from './services/home.service';
 import { JwtUtil } from './utils/jwt.util';
 import { RolesUtil } from './utils/roles.util';
 import { AuthGuard } from './utils/authGuard.util';
+import { DoctorGuard } from './utils/doctorGuard.util';
+import { PatientGuard } from './utils/patientGuard.util';
+import { AdminGuard } from './utils/adminGuard.util';
 import { ScheduleUtil } from './utils/schedule.util';
 import { DoctorUtil } from './utils/doctor.util';
 import { AppointmentService } from './services/appointment.service';
@@ -70,13 +73,13 @@ import { EditDiagnosisComponent } from './components/admin/set-diagnosis/edit-di
       { path: '', component: HomeComponent, pathMatch: 'full', canActivate: [AuthGuard] },
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
-      { path: 'appointments', component: AppointmentsComponent, canActivate: [AuthGuard] },
-      { path: 'diagnosis', component: DiagnosisComponent, canActivate: [AuthGuard] },
-      { path: 'admin', component: AdminComponent, canActivate: [AuthGuard] },
-      { path: 'admin/users', component: UsersComponent, canActivate: [AuthGuard] },
-      { path: 'admin/user/:id', component: EditUserComponent, canActivate: [AuthGuard] },
-      { path: 'admin/schedule', component: ScheduleComponent, canActivate: [AuthGuard] },
-      { path: 'admin/set-diagnosis', component: SetDiagnosisComponent, canActivate: [AuthGuard] }
+      { path: 'appointments', component: AppointmentsComponent, canActivate: [PatientGuard] },
+      { path: 'diagnosis', component: DiagnosisComponent, canActivate: [PatientGuard] },
+      { path: 'admin', component: AdminComponent, canActivate: [AdminGuard] },
+      { path: 'admin/users', component: UsersComponent, canActivate: [AdminGuard] },
+      { path: 'admin/user/:id', component: EditUserComponent, canActivate: [AdminGuard] },
+      { path: 'admin/schedule', component: ScheduleComponent, canActivate: [DoctorGuard] },
+      { path: 'admin/set-diagnosis', component: SetDiagnosisComponent, canActivate: [DoctorGuard] }
     ]),
     HttpClientModule,
     HttpModule,
@@ -95,6 +98,9 @@ import { EditDiagnosisComponent } from './components/admin/set-diagnosis/edit-di
     JwtUtil,
     RolesUtil,
     AuthGuard,
+    AdminGuard,
+    DoctorGuard,
+    PatientGuard,
     ScheduleUtil,
     DoctorUtil
   ],

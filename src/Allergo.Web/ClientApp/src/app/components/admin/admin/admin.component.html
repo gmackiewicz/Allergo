@@ -8,7 +8,11 @@
                 <mat-card-content>
                     <mat-list>
                         <mat-list-item role="listitem">
-                            <h4 mat-line>Lista podstron admina?</h4>
+                            <h4 mat-line>
+                                <a class="nav-link" [routerLink]='["/admin/users"]'>
+                                    <span class='glyphicon glyphicon-user feather'></span> Użytkownicy
+                                </a>
+                            </h4>
                         </mat-list-item>
                     </mat-list>
                 </mat-card-content>
