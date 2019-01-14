@@ -31,11 +31,11 @@ namespace Allergo.SeleniumTests.Tests
                 browserService.Sleep(TimeSpan.FromSeconds(3));
 
                 browserService.ClickElement(
-                    By.XPath("//mat-accordion//mat-panel-title[contains(text(),'Poniedziałek')]"));
-
+                    By.XPath("//mat-accordion//mat-panel-title[contains(text(),'Piątek')]"));
+                
                 browserService.ClickElement(
                     By.XPath(
-                        "//mat-accordion//div[@class='mat-expansion-panel-body']//button//span[contains(text(),'11:30')]"));
+                        "//mat-accordion//mat-panel-title[contains(text(),'Piątek')]//..//..//..//button//span[contains(text(),'11:30')]"));
 
                 browserService.ClickElement(By.XPath("//app-set-appointment//button//span[text()='Tak']"));
 
